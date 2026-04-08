@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StuntListing.com — SAG-AFTRA Stunt Performer Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --bg2: #13161e;
+    --bg3: #1a1e28;
+    --card: #1e2230;
+    --card-hover: #252a3a;
+    --border: #2a2f42;
+    --accent: #f0b429;
+    --accent2: #e05c2a;
+    --accent3: #3dd68c;
+    --text: #e8ecf4;
+    --text-muted: #7a849e;
+    --text-dim: #4a5268;
+    --red: #e05c2a;
+    --green: #3dd68c;
+    --blue: #4a90e2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 2rem;
+    height: 96px;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .logo span.logo-com { color: var(--text-muted); font-size: 2rem; letter-spacing: 0.03em; }
+  .search-wrap { flex: 1; max-width: 480px; position: relative; }
+  .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+  #search {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; padding: 9px 12px 9px 38px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  #search::placeholder { color: var(--text-dim); }
+  #search:focus { border-color: var(--accent); }
+  .header-badge {
+    display: flex; flex-direction: column; align-items: center; gap: 0; white-space: nowrap;
+  }
+  .header-badge-top {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+    letter-spacing: 0.35em; color: #ffffff; text-transform: uppercase;
+  }
+  .header-badge-line {
+    width: 100%; height: 2px; background: var(--accent); margin: 4px 0;
+  }
+  .header-badge-bottom {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+    letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase;
+    line-height: 1.05; text-align: center; font-weight: 900;
+  }
+
+  /* ── LAYOUT ── */
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 96px); }
+
+  /* ── SIDEBAR ── */
+  nav {
+    background: var(--bg2); border-right: 1px solid var(--border);
+    padding: 1.5rem 0; position: sticky; top: 96px;
+    height: calc(100vh - 96px); overflow-y: auto;
+  }
+  nav::-webkit-scrollbar { width: 4px; }
+  nav::-webkit-scrollbar-track { background: transparent; }
+  nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .nav-section-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim);
+    padding: 0.5rem 1.25rem 0.4rem; margin-top: 0.5rem;
+  }
+  .nav-btn {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 9px 1.25rem; background: none; border: none;
+    color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 400; cursor: pointer;
+    text-align: left; transition: all 0.15s; border-left: 3px solid transparent;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--bg3); }
+  .nav-btn.active { color: var(--accent); background: rgba(240,180,41,0.07); border-left-color: var(--accent); font-weight: 500; }
+  .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; opacity: 0.6; }
+  .nav-btn.active .nav-dot { opacity: 1; }
+
+  /* ── MAIN ── */
+  main { padding: 2rem 2.5rem; max-width: 960px; }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeUp 0.25s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .section-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.05em; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
+  .section-header p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ── CARDS ── */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; transition: border-color 0.2s, background 0.2s; }
+  .card:hover { background: var(--card-hover); border-color: #3a4060; }
+  .card-title { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+  .card p, .card li { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+  .card ul { padding-left: 1.2rem; }
+  .card ul li { margin-bottom: 0.2rem; }
+
+  /* ── ALERTS ── */
+  .alert { border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 0.87rem; line-height: 1.6; display: flex; gap: 12px; }
+  .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.2); color: #d4a017; }
+  .alert-info { background: rgba(74,144,226,0.08); border: 1px solid rgba(74,144,226,0.2); color: #7ab3e8; }
+  .alert-success { background: rgba(61,214,140,0.08); border: 1px solid rgba(61,214,140,0.2); color: #3dd68c; }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  thead th { background: var(--bg3); color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:hover { background: var(--bg3); }
+  td { padding: 10px 14px; color: var(--text-muted); vertical-align: top; }
+  td:first-child { color: var(--text); font-weight: 500; }
+  .rate-val { font-family: 'DM Mono', monospace; color: var(--green); font-weight: 500; }
+  .rate-tbd { color: var(--text-dim); font-style: italic; }
+  .section-row td { background: var(--bg2); color: var(--accent); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .rate-cell { font-family: 'DM Mono', monospace; color: var(--green); font-weight: 500; }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 0.6rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .accordion-header { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--card); border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; cursor: pointer; text-align: left; transition: background 0.15s; gap: 12px; }
+  .accordion-header:hover { background: var(--card-hover); }
+  .accordion-header.open { background: var(--card-hover); color: var(--accent); }
+  .accordion-chevron { transition: transform 0.2s; flex-shrink: 0; color: var(--text-dim); }
+  .accordion-header.open .accordion-chevron { transform: rotate(180deg); color: var(--accent); }
+  .accordion-body { display: none; padding: 0 1.25rem 1rem; background: var(--card-hover); }
+  .accordion-body.open { display: block; }
+  .accordion-body p, .accordion-body li { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
+  .accordion-body ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .accordion-body li { margin-bottom: 0.3rem; }
+  .accordion-body .source-link { display: inline-block; margin-top: 0.75rem; font-size: 0.78rem; color: var(--blue); text-decoration: none; font-family: 'DM Mono', monospace; }
+  .accordion-body .source-link:hover { text-decoration: underline; }
+
+  /* ── ERROR GRID ── */
+  .error-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  @media (max-width: 640px) { .error-grid { grid-template-columns: 1fr; } }
+  .error-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; display: flex; gap: 12px; align-items: flex-start; transition: border-color 0.2s; }
+  .error-item:hover { border-color: var(--red); }
+  .error-num { background: rgba(224,92,42,0.15); color: var(--red); font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 600; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .error-item h4 { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+  .error-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── EMAIL TEMPLATE ── */
+  .email-template { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; position: relative; margin-bottom: 1rem; }
+  .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--border); border: none; border-radius: 5px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; padding: 4px 10px; cursor: pointer; transition: all 0.15s; }
+  .copy-btn:hover { background: var(--accent); color: var(--bg); }
+
+  /* ── SEARCH RESULTS ── */
+  #search-results { display: none; }
+  #search-results.active { display: block; }
+  .search-result-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .search-result-item:hover { border-color: var(--accent); background: var(--card-hover); }
+  .result-section { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .result-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .result-snippet { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  mark { background: rgba(240,180,41,0.25); color: var(--accent); border-radius: 2px; padding: 0 2px; }
+
+  /* ── HOME ── */
+  .hero { background: linear-gradient(135deg, rgba(240,180,41,0.04) 0%, transparent 60%); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 2rem 1.75rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(240,180,41,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.75rem; }
+  .hero h2 span { color: var(--accent); }
+  .hero p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; max-width: 560px; }
+  .home-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+  @media (max-width: 680px) { .home-grid { grid-template-columns: 1fr 1fr; } }
+  .home-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; cursor: pointer; transition: all 0.2s; text-align: left; }
+  .home-card:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--card-hover); }
+  .home-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .home-card h4 { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+  .home-card p { font-size: 0.77rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── MISC ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .highlight { background: rgba(240,180,41,0.12); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 0.75rem 0; }
+  .highlight p { font-size: 0.87rem; color: var(--text); line-height: 1.6; }
+  .tag-filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .tag-filter { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+  .tag-filter:hover { border-color: var(--accent); color: var(--accent); }
+  .tag-filter.active { background: rgba(240,180,41,0.12); border-color: var(--accent); color: var(--accent); }
+  .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  @media (max-width: 640px) { .vocab-grid { grid-template-columns: 1fr; } }
+  .vocab-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .vocab-word { font-weight: 700; color: var(--accent); font-size: 0.92rem; margin-bottom: 0.4rem; }
+  .vocab-def { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+  .vocab-source { font-size: 0.73rem; color: var(--text-dim); margin-top: 0.4rem; font-family: 'DM Mono', monospace; }
+  main::-webkit-scrollbar { width: 6px; }
+  main::-webkit-scrollbar-track { background: transparent; }
+  main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo" onclick="showSection('home')"><span style="color:#ffffff;">STUNT</span><span style="color:#e02020;">LISTING</span></a>
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search topics, rules, keywords…" oninput="handleSearch(this.value)">
+  </div>
+  <div class="header-badge">
+    <span class="header-badge-top">SAG-AFTRA</span>
+    <div class="header-badge-line"></div>
+    <span class="header-badge-bottom">Stunt Performer<br>Toolkit</span>
+  </div>
+</header>
+
+<div class="layout">
+  <nav>
+    <div class="nav-section-label">Start Here</div>
+    <button class="nav-btn active" onclick="showSection('home')"><span class="nav-dot"></span>Overview</button>
+    <button class="nav-btn" onclick="showSection('paystub-errors')"><span class="nav-dot"></span>Paystub Errors</button>
+    <div class="nav-section-label">Pay &amp; Rates</div>
+    <button class="nav-btn" onclick="showSection('rates')"><span class="nav-dot"></span>Scale Rates</button>
+    <button class="nav-btn" onclick="showSection('overtime')"><span class="nav-dot"></span>Overtime Rules</button>
+    <button class="nav-btn" onclick="showSection('stunt-adjustments')"><span class="nav-dot"></span>Stunt Adjustments</button>
+    <button class="nav-btn" onclick="showSection('meal-penalties')"><span class="nav-dot"></span>Meal Penalties</button>
+    <button class="nav-btn" onclick="showSection('workweek')"><span class="nav-dot"></span>Workweek Rules</button>
+    <div class="nav-section-label">Additional Pay</div>
+    <button class="nav-btn" onclick="showSection('travel')"><span class="nav-dot"></span>Travel &amp; Location Expenses</button>
+    <button class="nav-btn" onclick="showSection('fittings')"><span class="nav-dot"></span>Fittings</button>
+    <button class="nav-btn" onclick="showSection('late-payments')"><span class="nav-dot"></span>Late Payments</button>
+    <div class="nav-section-label">Reference</div>
+    <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
+    <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
+    <button class="nav-btn" onclick="showSection('email-templates')"><span class="nav-dot"></span>Email Templates</button>
+  </nav>
+
+  <main>
+    <!-- SEARCH RESULTS -->
+    <div id="search-results">
+      <div class="section-header"><h1>Search Results</h1><p id="search-summary"></p></div>
+      <div id="results-list"></div>
+    </div>
+
+    <!-- EMAIL TEMPLATES -->
+    <div id="email-templates" class="section">
+      <div class="section-header">
+        <h1>Email Templates</h1>
+        <p>Ready-to-use language for contacting production accounting about missing or incorrect pay. Always attach your Exhibit G, paystub, and contract.</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div>Every email must: (1) clearly state in the first sentence what is missing or wrong, (2) include all relevant attachments, and (3) be forwardable as-is — production may pass it to their payroll service.</div>
+      </div>
+      <div class="card" style="margin-bottom:0.5rem;"><div class="card-title">Stunt Adjustment Not Paid</div></div>
+      <div class="email-template"><button class="copy-btn" onclick="copyTemplate(this)">Copy</button>Subject: Missing Stunt Adjustment Payment — [Your Name] — [Show Title] — [Work Date]
+
+Hi [Coordinator/Payroll Contact Name],
+
+My stunt adjustment was not paid for my work on [Show Title] on [Date].
+
+Per my contract and Exhibit G, I am owed a stunt adjustment of $[Amount] for [description of stunt/gag]. This does not appear on my paystub.
+
+Please advise on when a corrected check can be issued.
+
+Attached: Exhibit G, paystub, contract
+
+Thank you,
+[Your Name]</div>
+      <div class="card" style="margin-bottom:0.5rem;"><div class="card-title">Stunt Adjustment Excluded from OT Calculation</div></div>
+      <div class="email-template"><button class="copy-btn" onclick="copyTemplate(this)">Copy</button>Subject: Overtime Underpayment — Stunt Adjustment Not Included in OT Base — [Your Name] — [Show Title] — [Work Date]
+
+Hi [Coordinator/Payroll Contact Name],
+
+My overtime was calculated incorrectly on [Show Title] on [Date].
+
+My stunt adjustment of $[Amount] was not factored into the base rate used to calculate overtime. Per SAG-AFTRA rules, the stunt adjustment must be included in the base rate before overtime hourly rates are calculated.
+
+Correct OT base: $[Scale Rate] + $[Adjustment] = $[Total]. OT hourly (1.5x): $[Correct Rate]. I was paid at $[Incorrect Rate].
+
+Please issue a corrected check for the difference.
+
+Attached: Exhibit G, paystub, contract
+
+Thank you,
+[Your Name]</div>
+      <div class="card" style="margin-bottom:0.5rem;"><div class="card-title">Meal Penalties Not Paid</div></div>
+      <div class="email-template"><button class="copy-btn" onclick="copyTemplate(this)">Copy</button>Subject: Missing Meal Penalty Payment — [Your Name] — [Show Title] — [Work Date]
+
+Hi [Coordinator/Payroll Contact Name],
+
+Meal penalties were not paid for my work on [Show Title] on [Date].
+
+Per my Exhibit G, my meal break was delayed beyond the 6-hour threshold. Meal penalties should have accrued from [Time] until my meal break at [Time], totaling approximately $[Amount].
+
+Please issue a corrected payment.
+
+Attached: Exhibit G, paystub, contract
+
+Thank you,
+[Your Name]</div>
+      <div class="card" style="margin-bottom:0.5rem;"><div class="card-title">Late Payment</div></div>
+      <div class="email-template"><button class="copy-btn" onclick="copyTemplate(this)">Copy</button>Subject: Late Payment — [Your Name] — [Show Title] — [Work Date(s)]
+
+Hi [Coordinator/Payroll Contact Name],
+
+I have not received payment for my work on [Show Title] on [Date(s)]. Per SAG-AFTRA rules, this check is now late.
+
+Late payment penalties of $10/day (excluding Sat/Sun/holidays) are accruing up to a maximum of $200. Please advise on the status of my payment and issue any applicable late payment penalties along with the outstanding amount.
+
+Payroll service: [EP / Cast & Crew / GreenSlate / Other]
+
+Attached: Exhibit G, contract
+
+Thank you,
+[Your Name]</div>
+    </div>
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+      <div class="hero">
+        <h2>KNOW WHAT<br>YOU'RE <span>OWED.</span></h2>
+        <p>SAG-AFTRA rules are complex — and production accounting often gets it wrong. This toolkit breaks down exactly how stunt performer pay is calculated so you can spot errors and recover missing payments.</p>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div><strong>Principal performers have 6 months</strong> from when the error occurred to file a grievance with SAG-AFTRA. Don't wait — check your paystub as soon as it arrives.</div>
+      </div>
+      <h3 style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Jump to a Topic</h3>
+      <div class="home-grid">
+        <button class="home-card" onclick="showSection('paystub-errors')"><div class="home-card-icon">🔍</div><h4>Paystub Errors</h4><p>Common mistakes and what to do about them</p></button>
+        <button class="home-card" onclick="showSection('rates')"><div class="home-card-icon">💰</div><h4>Scale Rates</h4><p>Minimum daily &amp; weekly rates by contract type</p></button>
+        <button class="home-card" onclick="showSection('overtime')"><div class="home-card-icon">⏱️</div><h4>Overtime</h4><p>How OT is calculated on daily &amp; weekly contracts</p></button>
+        <button class="home-card" onclick="showSection('stunt-adjustments')"><div class="home-card-icon">🎬</div><h4>Stunt Adjustments</h4><p>What they are and how they affect OT calculations</p></button>
+        <button class="home-card" onclick="showSection('meal-penalties')"><div class="home-card-icon">🍽️</div><h4>Meal Penalties</h4><p>When you're owed one and how they're calculated</p></button>
+        <button class="home-card" onclick="showSection('workweek')"><div class="home-card-icon">📆</div><h4>Workweek Rules</h4><p>Studio vs. overnight location workweeks &amp; location allowance</p></button>
+        <button class="home-card" onclick="showSection('travel')"><div class="home-card-icon">✈️</div><h4>Travel &amp; Location</h4><p>Per diem, flight class rules, travel time as work time</p></button>
+        <button class="home-card" onclick="showSection('late-payments')"><div class="home-card-icon">📅</div><h4>Late Payments</h4><p>Penalties owed when production pays late</p></button>
+        <button class="home-card" onclick="showSection('email-templates')"><div class="home-card-icon">✉️</div><h4>Email Templates</h4><p>Copy-paste templates to dispute missing pay</p></button>
+      </div>
+      <hr class="divider">
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div>Use the <strong>search bar above</strong> to find any topic quickly, or browse sections using the left navigation.</div>
+      </div>
+    </div>
+
+    <!-- PAYSTUB ERRORS -->
+    <div id="paystub-errors" class="section">
+      <div class="section-header"><h1>Paystub Errors</h1><p>The most common mistakes production accounting makes — and the language to use when disputing them.</p></div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div>Always attach your <strong>Exhibit G, paystub, and contract</strong> when contacting production about an error. The first sentence of any email should clearly state what is missing or incorrect.</div>
+      </div>
+      <div class="error-grid">
+        <div class="error-item"><div class="error-num">01</div><div><h4>Stunt Adjustment Not Paid</h4><p>You performed a stunt that qualifies for an adjustment, but it doesn't appear on your paystub at all.</p></div></div>
+        <div class="error-item"><div class="error-num">02</div><div><h4>Meal Penalties Not Paid</h4><p>Your meal break was delayed beyond the allowed time but no penalty payment was added.</p></div></div>
+        <div class="error-item"><div class="error-num">03</div><div><h4>Overtime Not Paid</h4><p>You worked beyond the straight-time hours but overtime pay was not included.</p></div></div>
+        <div class="error-item"><div class="error-num">04</div><div><h4>Travel Time Not Paid</h4><p>Time spent traveling to/from a distant location is compensable work time — but often missing.</p></div></div>
+        <div class="error-item"><div class="error-num">05</div><div><h4>Check Never Received</h4><p>Payment was due but you never received a check or direct deposit.</p></div></div>
+        <div class="error-item"><div class="error-num">06</div><div><h4>Base Rate Incorrect</h4><p>Your daily or weekly rate was set below SAG-AFTRA scale minimums.</p></div></div>
+        <div class="error-item"><div class="error-num">07</div><div><h4>Stunt Adjustment Excluded from OT Base</h4><p>Your stunt adjustment must be factored into the base rate used to calculate overtime — if it isn't, all OT hourly rates are wrong.</p></div></div>
+        <div class="error-item"><div class="error-num">08</div><div><h4>Meal Penalty Miscalculated</h4><p>A meal penalty was paid but the amount is incorrect.</p></div></div>
+        <div class="error-item"><div class="error-num">09</div><div><h4>Location Allowance Not Paid</h4><p>On a weekly contract at an overnight location, you are owed an additional 4 hours of straight time — whether or not all 6 days were worked. This is frequently missing.</p></div></div>
+        <div class="error-item"><div class="error-num">10</div><div><h4>Fitting Not Paid</h4><p>You attended a wardrobe fitting and received no compensation.</p></div></div>
+        <div class="error-item"><div class="error-num">11</div><div><h4>Fitting Underpaid</h4><p>Fitting pay was included but calculated incorrectly.</p></div></div>
+        <div class="error-item"><div class="error-num">12</div><div><h4>Check Is Late</h4><p>Your check is past the contractual payment deadline — late penalties may be owed.</p></div></div>
+        <div class="error-item"><div class="error-num">13</div><div><h4>Holiday Pay Missing/Miscalculated</h4><p>Holiday pay was not paid or was computed incorrectly.</p></div></div>
+        <div class="error-item"><div class="error-num">14</div><div><h4>Reuse Pay Miscalculated</h4><p>Your footage was reused (recap, clip, etc.) but the reuse payment is wrong.</p></div></div>
+        <div class="error-item"><div class="error-num">15</div><div><h4>Individual vs. Corp Payment Error</h4><p>You were paid as an individual when you should have been paid through your loan-out corporation (or vice versa).</p></div></div>
+      </div>
+    </div>
+
+    <!-- RATES -->
+    <div id="rates" class="section">
+      <div class="section-header"><h1>SAG-AFTRA Scale Rates</h1><p>Minimum rates from the official SAG-AFTRA Theatrical and Television Agreement Wage Tables. These are floors — you can always negotiate more, but production cannot pay less.</p></div>
+      <div class="alert alert-success">
+        <span class="alert-icon">✅</span>
+        <div>Rates updated from official SAG-AFTRA wage tables. Current cycle: <strong>07/01/25–06/30/26</strong>. Source: SAG-AFTRA Theatrical Wage Table &amp; Television Agreement Wage Tables.</div>
+      </div>
+      <div class="tag-filter-row" id="rate-cycle-filters">
+        <button class="tag-filter" onclick="showRateCycle('25-26')" id="cycle-25-26">★ 07/01/25–06/30/26 (Current)</button>
+        <button class="tag-filter" onclick="showRateCycle('24-25')" id="cycle-24-25">07/01/24–06/30/25</button>
+        <button class="tag-filter" onclick="showRateCycle('23-24')" id="cycle-23-24">11/09/23–06/30/24</button>
+        <button class="tag-filter" onclick="showRateCycle('22-23')" id="cycle-22-23">07/01/22–06/30/23</button>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1rem;">Select a cycle above to view rates for that period — useful if you're disputing pay from a prior year.</p>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;">THEATRICAL AGREEMENT</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Role</th><th>Contract Type</th><th>Daily</th><th>Weekly</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="5">Day &amp; Weekly Performers — Theatrical</td></tr>
+            <tr><td>Performer</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td></td></tr>
+            <tr><td>Stunt Performer</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
+            <tr><td>Stunt Coordinator (less than flat deal)</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
+            <tr><td>Stunt Coordinator (Flat Deal)</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,682" data-23-24="$1,800" data-24-25="$1,872" data-25-26="$1,938">$1,938</td><td class="rate-cell" data-22-23="$6,636" data-23-24="$7,101" data-24-25="$7,385" data-25-26="$7,643">$7,643</td><td></td></tr>
+            <tr class="section-row"><td colspan="5">Stunt Performers — Term Contracts (Theatrical)</td></tr>
+            <tr><td>Stunt Performer (10–19 wks)</td><td>Theatrical Term</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
+            <tr><td>Stunt Performer (20+ wks)</td><td>Theatrical Term</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,683" data-23-24="$2,871" data-24-25="$2,986" data-25-26="$3,091">$3,091/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:1.5rem;">TELEVISION AGREEMENT</h3>
+      <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.75rem;">Applies to new series and TV programs commencing on or after 7/1/2014, and ongoing series under predecessor SAG TV Agreements.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Role</th><th>Contract Type</th><th>Daily</th><th>Weekly / Other</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="5">Day &amp; Weekly Performers — Television</td></tr>
+            <tr><td>Performer</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326/wk</td><td></td></tr>
+            <tr><td>Stunt Performer</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
+            <tr><td>Stunt Coordinator (less than flat deal)</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
+            <tr class="section-row"><td colspan="5">3-Day Performers — Television</td></tr>
+            <tr><td>Stunt Performer (½hr or 1hr show)</td><td>TV 3-Day</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,959" data-23-24="$3,166" data-24-25="$3,293" data-25-26="$3,408">$3,408</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr><td>Stunt Performer (1½hr or 2hr show)</td><td>TV 3-Day</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr class="section-row"><td colspan="5">Stunt Coordinator — Flat Deal (Television)</td></tr>
+            <tr><td>Flat Deal — Per Day</td><td>TV Flat Deal</td><td class="rate-cell" data-22-23="$1,339" data-23-24="$1,473" data-24-25="$1,569" data-25-26="$1,647">$1,647</td><td class="rate-tbd">—</td><td></td></tr>
+            <tr><td>Flat Deal — Per Week</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,146" data-23-24="$5,661" data-24-25="$6,029" data-25-26="$6,330">$6,330/wk</td><td></td></tr>
+            <tr><td>Flat Deal — 3 Day ½hr/1hr</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,629" data-23-24="$3,992" data-24-25="$4,251" data-25-26="$4,464">$4,464</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr><td>Flat Deal — 3 Day 1½hr/2hr</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,056" data-23-24="$4,462" data-24-25="$4,752" data-25-26="$4,990">$4,990</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr class="section-row"><td colspan="5">Flat Deal Series Rates — Television</td></tr>
+            <tr><td>½ Hour — 13/13</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>½ Hour — Less than 13, more than 6</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,300" data-23-24="$4,601" data-24-25="$4,785" data-25-26="$4,952">$4,952</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>1 Hour — 13/13</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,520" data-23-24="$4,836" data-24-25="$5,029" data-25-26="$5,205">$5,205</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>1 Hour — Less than 13, more than 6</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,042" data-23-24="$5,395" data-24-25="$5,611" data-25-26="$5,807">$5,807</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr class="section-row"><td colspan="5">Multiple Program Weekly — Stunt Performer (TV)</td></tr>
+            <tr><td>½ Hour and 1 Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,444" data-23-24="$4,755" data-24-25="$4,945" data-25-26="$5,118">$5,118/wk</td><td></td></tr>
+            <tr><td>1½ Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,927" data-23-24="$5,272" data-24-25="$5,483" data-25-26="$5,675">$5,675/wk</td><td></td></tr>
+            <tr><td>2 Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,468" data-23-24="$5,851" data-24-25="$6,085" data-25-26="$6,298">$6,298/wk</td><td></td></tr>
+            <tr class="section-row"><td colspan="5">"Legacy Exhibit A" Series (former AFTRA Network Code)</td></tr>
+            <tr><td>Performer / Stuntperson (Day)</td><td>Legacy Exhibit A</td><td class="rate-cell" data-22-23="$1,120" data-23-24="$1,198" data-24-25="$1,246" data-25-26="$1,290">$1,290</td><td class="rate-tbd">—</td><td style="font-size:0.78rem;color:var(--text-dim);">Slightly higher than standard TV</td></tr>
+            <tr><td>Stunt Performer (Weekly)</td><td>Legacy Exhibit A</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,177" data-23-24="$4,469" data-24-25="$4,648" data-25-26="$4,811">$4,811/wk</td><td></td></tr>
+            <tr><td>Stunt Coordinator (Flat Deal, weekly)</td><td>Legacy Exhibit A</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,329" data-23-24="$5,862" data-24-25="$6,243" data-25-26="$6,555">$6,555/wk</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="highlight"><p>⚠️ <strong>Note on contract type:</strong> Theatrical = films. Television = TV series, movies of the week, streaming. Legacy Exhibit A = dramatic series first produced under the old AFTRA Network Code (free TV, pay TV, or basic cable).</p></div>
+      <div class="alert alert-info" style="margin-top:1rem;">
+        <span class="alert-icon">📄</span>
+        <div>Source: Official SAG-AFTRA Theatrical Wage Table and Television Agreement Wage Tables. Low Budget, Modified Low Budget, Ultra Low Budget, and Student Film agreements are separate schedules — verify directly with SAG-AFTRA or your contract.</div>
+      </div>
+    </div>
+
+    <!-- OVERTIME -->
+    <div id="overtime" class="section">
+      <div class="section-header"><h1>Overtime Rules</h1><p>Overtime is one of the most frequently underpaid items. How it's calculated depends on your contract type.</p></div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Daily Contract — How Overtime Works</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>Pay is computed from <strong>time of first call to dismissal, excluding meal periods</strong>. OT is calculated in <strong>1/10th hourly units (6-minute increments)</strong>.</p>
+          <ul style="margin-top:0.5rem;">
+            <li>Hours 1–8: Straight time</li>
+            <li>Hours 9–10: <strong>1.5x</strong> your hourly rate</li>
+            <li>Hours 11+: <strong>2.0x</strong> your hourly rate</li>
+          </ul>
+          <p style="margin-top:0.6rem;"><strong>Money break (Theatrical &amp; TV Day Performers):</strong> 2x the minimum day performer rate. Performers earning over the money break receive 1.5x after 10 hours, based on the money break amount.</p>
+          <p style="margin-top:0.5rem;">Your <strong>hourly rate</strong> = daily rate ÷ 8. If you have a stunt adjustment, it must be included in that base before dividing.</p>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Overtime (Theatrical)</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 3-Day Contract — How Overtime Works (TV Only)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>The 3-day contract applies to Television only. Two types of overtime can apply:</p>
+          <ul>
+            <li><strong>Daily OT:</strong> 2x beyond 10 hours per day</li>
+            <li><strong>Cumulative OT:</strong> 1.5x beyond 24 cumulative straight-time hours over the 3-day period (or beyond 32 hours over 4 days if guaranteed)</li>
+            <li><strong>Days beyond guarantee:</strong> OT begins after 8 hours — 1.5x for hours 9–10, 2x after that</li>
+          </ul>
+          <p style="margin-top:0.6rem;"><strong>Money break:</strong> $3,000.</p>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Overtime (Theatrical &amp; Television)</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Weekly Contract — Schedule B &amp; C</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p><strong>Schedule B (guaranteed $6,200/week or less):</strong></p>
+          <ul>
+            <li>Daily OT: 2x beyond 10 hours per day</li>
+            <li>Weekly OT: 1.5x beyond <strong>44 hours</strong> (studio) or <strong>48 hours</strong> (overnight location)</li>
+          </ul>
+          <p style="margin-top:0.6rem;"><strong>Schedule C (guaranteed more than $6,200/week):</strong></p>
+          <ul>
+            <li>Daily OT: 2x beyond 10 hours per day, on a maximum basis of <strong>$5,500</strong></li>
+          </ul>
+          <p style="margin-top:0.6rem;"><strong>Money breaks:</strong> TV weekly = $4,400 &nbsp;|&nbsp; Theatrical weekly = $5,500</p>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Overtime (Theatrical &amp; Television)</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Overnight Location Weekly Contract</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <ul>
+            <li>Contract rate must be stated as the 5-day studio week rate — even if you're on location</li>
+            <li>The 6th day automatically triggers <strong>4 hours of overtime at straight-time rates</strong></li>
+            <li>All overtime is computed on the 5-day studio week rate</li>
+            <li>Schedule B weekly OT threshold increases from 44 to <strong>48 hours</strong> on overnight location workweeks</li>
+          </ul>
+          <div class="highlight"><p>The contract must show the 5-day rate even if location shooting is involved — a common source of accounting errors.</p></div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Schedule H (Stunt Players) vs. Schedule K (Stunt Coordinators)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Schedule H — Stunt Players:</strong> Part 1 covers daily terms; Parts 2 &amp; 3 cover weekly terms. Standard OT rules apply.</li>
+            <li><strong>Schedule K — Stunt Coordinators (Flat Rate): No overtime.</strong> Flat deal coordinators receive premium pay or penalty pay instead. Includes on-camera work.</li>
+            <li><strong>Schedule K — Non-Flat Rate:</strong> Paid per Schedule K Part 1 or Part 2.</li>
+          </ul>
+          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 6th &amp; 7th Day Rules</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>6th day = 1.5x</strong></li>
+            <li><strong>7th day = 2x</strong></li>
+            <li>If Saturday and Sunday are designated days off: Saturday = 1.5x, Sunday = 2x</li>
+            <li>Holidays = 2x</li>
+            <li>6th or 7th day premium is only owed if it is actually your 6th or 7th day of work</li>
+          </ul>
+          <p style="margin-top:0.6rem;"><strong>Workweek changes:</strong> May be shifted once by adding/eliminating a day off to sync with Saturday or Sunday. May also shift multiple times provided you receive no fewer than two consecutive days off. If shift results in more than four consecutive days off, consecutive employment pay begins on the fifth day.</p>
+          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Schedule A OT — Rates Above and Below 2x Scale</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Less than 2x scale rate:</strong> 1.5x for hours 9–10 (with max rate cap); 2x for all hours after that</li>
+            <li><strong>Over 2x scale rate:</strong> 1.5x for all hours worked after 8 hours (with max rate cap)</li>
+          </ul>
+          <p style="margin-top:0.5rem;">OT computed in <strong>1/10th hourly units (6-minute increments)</strong>. Travel OT capped at 1.5x max. Ordinary makeup removal (up to 15 min) does not count toward OT triggers.</p>
+          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+        </div>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:1rem;">
+        <span class="alert-icon">⚠️</span>
+        <div><strong>Key mistake to watch for:</strong> If you received a stunt adjustment, verify that it was added to your base rate before OT was calculated. If production only applied OT to your scale rate and ignored the adjustment, every overtime hour is underpaid.</div>
+      </div>
+    </div>
+
+    <!-- STUNT ADJUSTMENTS -->
+    <div id="stunt-adjustments" class="section">
+      <div class="section-header"><h1>Stunt Adjustments</h1><p>A stunt adjustment is extra pay on top of scale for performing a specific, negotiated stunt. It's one of the most frequently mishandled pay items.</p></div>
+      <div class="card">
+        <div class="card-title">What Is a Stunt Adjustment?</div>
+        <p>When you perform a specific stunt (a car hit, high fall, fire gag, etc.), you and the stunt coordinator negotiate an additional dollar amount beyond your scale rate for that gag. This is your <strong>stunt adjustment</strong>. It appears on your Exhibit G.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">How It Affects Overtime</div>
+        <p>Your stunt adjustment <strong>must be factored into your base rate</strong> before overtime is calculated.</p>
+        <ul style="margin-top:0.5rem;">
+          <li>Your OT hourly rate = (Scale Rate + Stunt Adjustment) ÷ Straight-Time Hours</li>
+          <li>If accounting only divides the scale rate, your 1.5x and 2.0x hours are all underpaid</li>
+          <li>Example: $1,246 scale + $800 adjustment = $2,046 base. Hourly = $2,046 ÷ 8 = $255.75/hr. OT at 1.5x = $383.63/hr — NOT $155.75/hr based on scale alone</li>
+        </ul>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div>Check your Exhibit G: if the 1.5x and 2.0x hourly rates look too low compared to your total daily pay, your adjustment was likely excluded from the OT calculation.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">What to Check on Your Paystub</div>
+        <ul>
+          <li>Is the stunt adjustment listed as a separate line item?</li>
+          <li>Was it included when the OT hourly rate was calculated?</li>
+          <li>Do the 1.5x and 2.0x rates on the Exhibit G reflect the combined base (scale + adjustment)?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WORKWEEK -->
+    <div id="workweek" class="section">
+      <div class="section-header"><h1>Workweek Rules</h1><p>The SAG-AFTRA workweek structure determines your 6th and 7th day premiums and triggers the location allowance on overnight locations.</p></div>
+      <div class="card">
+        <div class="card-title">Studio Workweek</div>
+        <p>The studio workweek consists of <strong>any 5 days out of 7 consecutive days</strong>, with the 6th and 7th days as regular days off. The Producer designates which days are work days.</p>
+        <p style="margin-top:0.6rem;"><strong>Premium rates when a performer works the 6th or 7th day:</strong></p>
+        <ul style="margin-top:0.4rem;">
+          <li><strong>6th day: 1.5x</strong></li>
+          <li><strong>7th day: 2x</strong></li>
+        </ul>
+        <p style="margin-top:0.6rem;font-size:0.83rem;color:var(--text-dim);">Note: There are exceptions to 6th day premium rules under SAG-AFTRA Low Budget theatrical agreements.</p>
+        <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Workweek</span>
+      </div>
+      <div class="card">
+        <div class="card-title">Shifting the Workweek</div>
+        <p>The production workweek may be shifted <strong>without penalty</strong> in two ways:</p>
+        <ul style="margin-top:0.4rem;">
+          <li>By adding one or two days off consecutive with the 6th and/or 7th days off in the prior workweek</li>
+          <li>By shifting from a workweek starting on a Tuesday to one starting on a Monday, provided the intervening Sunday is a day off</li>
+        </ul>
+        <div class="highlight"><p>If production changes your workweek in a way that costs you 6th or 7th day premium pay, verify that the shift was done properly under these rules.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Overnight Location Workweek &amp; Location Allowance</div>
+        <p>The overnight location workweek consists of <strong>any 6 days out of 7 consecutive days</strong>.</p>
+        <p style="margin-top:0.6rem;">The 6-day overnight location workweek — <strong>whether those 6 days are worked or not</strong> — automatically triggers an additional <strong>4 hours of straight-time salary</strong> for weekly performers. This is the <strong>"location allowance."</strong></p>
+        <div class="alert alert-warn" style="margin-top:0.75rem;">
+          <span class="alert-icon">⚠️</span>
+          <div>The location allowance is one of the most commonly missed payments on distant location shoots. If you were on a weekly contract at an overnight location and don't see an extra 4 hours of straight time on your Exhibit G, it was likely not paid.</div>
+        </div>
+        <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Workweek</span>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Reference</div>
+        <div class="table-wrap" style="margin-bottom:0;">
+          <table>
+            <thead><tr><th>Workweek Type</th><th>Work Days</th><th>6th Day</th><th>7th Day</th><th>Location Allowance</th></tr></thead>
+            <tbody>
+              <tr><td>Studio</td><td>Any 5 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-tbd">—</td></tr>
+              <tr><td>Overnight Location (Weekly)</td><td>Any 6 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-val">+4 hrs straight time</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEAL PENALTIES -->
+    <div id="meal-penalties" class="section">
+      <div class="section-header"><h1>Meal Penalties</h1><p>SAG-AFTRA rules require that you receive a meal break within 6 hours. If that window is missed, you're owed a meal penalty.</p></div>
+      <div class="card">
+        <div class="card-title">The Basic Rule</div>
+        <p>You must receive a meal break no later than <strong>6 hours after your call time</strong> (or after your previous meal break). If production goes past that point, a meal penalty begins accruing.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Meal Penalty Amounts — SAG-AFTRA Principal Performers</div>
+        <ul>
+          <li><strong>First ½ hour (or portion): $25.00</strong></li>
+          <li><strong>Second ½ hour (or portion): $35.00</strong></li>
+          <li><strong>Each succeeding ½ hour (or portion): $50.00</strong></li>
+        </ul>
+        <p style="margin-top:0.5rem;font-size:0.83rem;color:var(--text-dim);">Source: 2024 Jeffords Rules — SAG-AFTRA Meal Periods</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Non-Deductible (ND) Meal Rule</div>
+        <p>Any meal provided within 2 hours of your call time (at least 15 minutes, free of all activity, appropriate to time of day) is a <strong>non-deductible (ND) meal</strong>. An ND meal does NOT count as your meal break — the 6-hour meal window still runs from your crew call time.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Common Errors with Meal Penalties</div>
+        <ul>
+          <li><strong>Not paid at all</strong> — production missed the meal window but no penalty appears on your check</li>
+          <li><strong>Wrong amount</strong> — the penalty amount per increment was calculated incorrectly</li>
+          <li><strong>"Grace period" misuse</strong> — a 12-minute unplanned grace period is available if the 6-hour window hasn't been extended, but it cannot be scheduled or made automatic</li>
+          <li><strong>Travel time question</strong> — since travel time counts as work time, if travel pushes you past 6 hours without a meal, a penalty may be owed (check with SAG-AFTRA)</li>
+        </ul>
+      </div>
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Rest Periods, Forced Calls &amp; Turnarounds</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p><strong>SAG-AFTRA Daily Rest Periods:</strong></p>
+          <ul>
+            <li><strong>Studio Zone (Theatrical &amp; TV):</strong> 12 hours</li>
+            <li><strong>Location Outside Studio Zone (not overnight):</strong> May reduce to 10 hours for exterior photography days — once every fourth consecutive day</li>
+            <li><strong>Overnight Location (Theatrical):</strong> May reduce to 11 hours on up to two non-consecutive days per workweek</li>
+            <li><strong>Overnight Location (Television): NO reduction</strong> — full 12 hours required at all times</li>
+          </ul>
+          <p style="margin-top:0.75rem;"><strong>Weekly Rest Periods:</strong></p>
+          <ul>
+            <li>Standard: <strong>56 hours</strong> once per week</li>
+            <li>May reduce to <strong>54 hours</strong> if first call of new workweek is no earlier than 6 AM</li>
+            <li><strong>36 hours</strong> allowable on a six-day location workweek</li>
+          </ul>
+          <p style="margin-top:0.75rem;"><strong>Forced Call Penalties:</strong></p>
+          <ul>
+            <li><strong>Day Performers:</strong> Daily rate or <strong>$900</strong>, whichever is less — per violation</li>
+            <li><strong>3-Day and Weekly Performers:</strong> One day's pay or <strong>$950</strong>, whichever is less — per violation</li>
+          </ul>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Rest Periods &amp; Forced Calls (Theatrical &amp; Television)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAVEL -->
+    <div id="travel" class="section">
+      <div class="section-header"><h1>Travel Time &amp; Location Expenses</h1><p>Travel time to and from a distant location is treated as work time. Per diem and flight class rules are set by SAG-AFTRA contract.</p></div>
+      <div class="card">
+        <div class="card-title">Travel Time = Work Time</div>
+        <p>When you travel to or from a <strong>distant location</strong> (outside the studio zone requiring an overnight stay), that travel time counts as work time. It must appear on your Exhibit G — including triggering overtime if your total hours exceed thresholds. Travel-related overtime is capped at <strong>1.5x maximum</strong>.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Per Diem &amp; Accommodations</div>
+        <p>On overnight locations, the Producer must provide a per diem meal allowance, <strong>paid prior to the day or week of work</strong>. Per diem is only owed if meals are not provided by the Producer. Minimum amounts:</p>
+        <ul style="margin-top:0.5rem;">
+          <li>Breakfast: <strong>$12.00</strong></li>
+          <li>Lunch: <strong>$18.00</strong></li>
+          <li>Dinner: <strong>$30.00</strong></li>
+          <li><strong>Total: $60.00/day minimum</strong></li>
+        </ul>
+        <div class="highlight" style="margin-top:0.75rem;"><p><strong>Meal deduction rule:</strong> Regardless of call time, the first major meal served may only be deducted at the <strong>lunch rate ($18)</strong>.</p></div>
+        <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--text-dim);">The 2024 Jeffords Rules reference $70/day (effective 11/9/23) and $75/day (effective 11/9/25) — reflecting negotiated increases above the contractual minimum. Verify current rate with your payroll company or SAG-AFTRA.</p>
+        <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--text-dim);">When on overnight location for two weeks or more, a check cashing facility must be available if per diem is paid by check.</p>
+        <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Transportation and Location Expenses</span>
+      </div>
+      <div class="card">
+        <div class="card-title">Flight Class Rules</div>
+        <p>All flights shall be <strong>business class when available</strong>, or first class if business is not available.</p>
+        <p style="margin-top:0.5rem;"><strong>Coach class is acceptable only when:</strong></p>
+        <ul style="margin-top:0.3rem;">
+          <li>Domestic non-stop flights under 1,000 air miles</li>
+          <li>Non-stop flights between LA and Vancouver</li>
+          <li>Non-stop flights under 1,000 miles between the US and Vancouver or Toronto</li>
+          <li>A substantial number of the company is being transported</li>
+          <li>6 or more performers travel together on the same flight</li>
+          <li>Auditions and interviews</li>
+        </ul>
+        <div class="highlight" style="margin-top:0.75rem;"><p><strong>If you fly coach:</strong> Producer must provide <strong>elevated coach</strong> (Economy Plus, extended leg room) when available. You must be reimbursed for baggage fees and in-flight meals — submit receipts within <strong>30 days</strong>.</p></div>
+        <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Transportation and Location Expenses</span>
+      </div>
+      <div class="card">
+        <div class="card-title">Local vs. Distant vs. Regional Hire</div>
+        <ul>
+          <li><strong>Local Hire:</strong> No travel expenses or per diem owed</li>
+          <li><strong>Regional Hire (Modified Local):</strong> Mileage (not airfare) covered; sometimes lodging and per diem</li>
+          <li><strong>Distant Location:</strong> Full travel time as work time, per diem, lodging, and transportation all apply</li>
+        </ul>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div>Travel time is one of the most frequently omitted pay items. If you traveled to a distant location and don't see travel time on your Exhibit G, it was almost certainly not paid.</div>
+      </div>
+    </div>
+
+    <!-- FITTINGS -->
+    <div id="fittings" class="section">
+      <div class="section-header"><h1>Fittings</h1><p>Wardrobe fittings have specific payment rules that are often overlooked by production.</p></div>
+      <div class="card">
+        <div class="card-title">Wardrobe Fittings — Schedule A (Principal Performers)</div>
+        <p>For a fitting on a day <strong>prior to your work day</strong>: minimum <strong>1 hour pay</strong>; additional time in <strong>15-minute increments</strong>.</p>
+        <p style="margin-top:0.5rem;">For a fitting on the <strong>same day as your work call</strong>: fitting time is counted as part of your work time.</p>
+        <p style="margin-top:0.5rem;"><strong>Important exception:</strong> Day performers with a pay rate of <strong>$1,500 or more per day</strong> are not entitled to pay for a fitting on a day prior to work.</p>
+        <p style="margin-top:0.5rem;">If a wardrobe fitting or HMU test is paid but you are not ultimately called to work that day, you receive <strong>one day's pay</strong>.</p>
+        <a href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.75rem;display:inline-block;">→ Source: 2024 Jeffords Rules — SAG-AFTRA Fittings &amp; Rehearsals</a>
+      </div>
+    </div>
+
+    <!-- LATE PAYMENTS -->
+    <div id="late-payments" class="section">
+      <div class="section-header"><h1>Late Payments</h1><p>Production is required to pay on time. If they're late, penalties accrue — and you may be owed one penalty per missed payroll period, not just a one-time amount.</p></div>
+      <div class="card">
+        <div class="card-title">The Late Payment Penalty</div>
+        <p>SAG-AFTRA's standard late payment penalty is <strong>$10 per day</strong> (excluding Saturdays, Sundays, and holidays) up to a maximum of <strong>$200</strong>. Additional penalties may accrue if a formal written claim is filed through SAG-AFTRA.</p>
+        <a href="https://www.sagaftra.org/files/2014_sag-aftra_cba_1.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.6rem;display:inline-block;">→ SAG-AFTRA CBA</a>
+      </div>
+      <div class="card">
+        <div class="card-title">One Penalty Per Payroll Period</div>
+        <p>According to SAG's National Director of Entertainment, <strong>a performer should receive a separate late penalty for each payroll period that was paid late or incorrectly</strong>. If you were underpaid for three separate weeks, you may be owed three separate late payment penalties.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">How Long Do You Have to File?</div>
+        <p>Principal performers have <strong>6 months from the date the issue occurred</strong> to file a grievance. Do not delay.</p>
+        <a href="https://drive.google.com/file/d/1cSRmf3DIergjEuFKZBXzHEFB9T1vABGx/view?usp=sharing" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.6rem;display:inline-block;">→ SAG-AFTRA Grievance Filing Reference</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Reuse Pay — Late Payment Penalty</div>
+        <p>Production has <strong>60 business days</strong> from the exhibition date to issue reuse payment. If they miss this window, they owe an additional amount equal to the day performer minimum on top of the reuse payment.</p>
+        <a href="https://www.sagaftra.org/files/2014_sag-aftra_tv_agreement_7.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.6rem;display:inline-block;">→ SAG-AFTRA TV Agreement</a>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div>The 6-month grievance window starts from when the error occurred — not when you discovered it. Track your pay dates carefully.</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div id="faq" class="section">
+      <div class="section-header"><h1>Frequently Asked Questions</h1><p>Common questions with sourced answers from the SAG-AFTRA CBA and official guidance.</p></div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is the rate for a wardrobe fitting?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>For Schedule A principal performers, a fitting on a day prior to your work day earns a minimum of <strong>1 hour's pay</strong>, with additional time in <strong>15-minute increments</strong>. A fitting on the same day as your work call is counted as work time. Exception: performers earning $1,500/day or more are not entitled to fitting pay on a day prior to work. If you were paid for a fitting but not called to work, you are owed a full day's pay.</p>
+          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is SAG-AFTRA's late payment penalty?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p><strong>$10 per day</strong> (excluding Sat, Sun, holidays) up to a maximum of <strong>$200</strong>. A performer is owed a separate late penalty for each payroll period that was late or underpaid.</p>
+          <a class="source-link" href="https://www.sagaftra.org/files/2014_sag-aftra_cba_1.pdf" target="_blank">→ SAG-AFTRA CBA</a>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>How long do I have to file a grievance?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>Principal performers have <strong>6 months from the date the particulars occurred</strong> to file a grievance with SAG-AFTRA. Don't wait — this window closes quickly and cannot be extended.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is the penalty for a forced call (violated rest period)?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>Any violation of a daily or weekly rest period is a forced call. Penalties differ by contract type:</p>
+          <ul>
+            <li><strong>Day Performers:</strong> Daily rate or <strong>$900</strong>, whichever is less — per violation</li>
+            <li><strong>3-Day and Weekly Performers:</strong> One day's pay or <strong>$950</strong>, whichever is less — per violation</li>
+          </ul>
+          <p style="margin-top:0.5rem;"><strong>Key TV rule:</strong> On an overnight TV location, the 12-hour rest period cannot be reduced at all. On overnight Theatrical locations, it may be reduced to 11 hours on up to two non-consecutive days per workweek.</p>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Rest Periods &amp; Forced Calls</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is the rest period between shooting days?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Studio Zone (Theatrical &amp; TV):</strong> 12 hours</li>
+            <li><strong>Location Outside Studio Zone (not overnight):</strong> May reduce to 10 hours — once every fourth consecutive day, exterior days only</li>
+            <li><strong>Overnight Location (Theatrical):</strong> May reduce to 11 hours — up to two non-consecutive days per workweek</li>
+            <li><strong>Overnight Location (Television):</strong> No reduction — full 12 hours required at all times</li>
+          </ul>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Rest Periods &amp; Forced Calls</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is a "money break" and how does it affect my overtime?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>A "money break" is a rate threshold above which overtime is calculated on the money break amount rather than your full negotiated rate. This means <strong>your OT rate is capped</strong> if you earn above the threshold.</p>
+          <ul style="margin-top:0.5rem;">
+            <li><strong>Day Performer (Theatrical &amp; TV):</strong> 2x the minimum day rate</li>
+            <li><strong>3-Day Performer (TV):</strong> $3,000</li>
+            <li><strong>Weekly/Series (TV):</strong> $4,400</li>
+            <li><strong>Weekly/Series (Theatrical):</strong> $5,500</li>
+          </ul>
+          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Overtime (Theatrical &amp; Television)</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Are stunt riggers covered by commercial contracts?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>No. Stunt riggers on commercial productions are typically paid on a timecard rather than under the commercial performer contract. In rare cases, they may be paid as stunt performers, but this is uncommon.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>How long does production have to pay a reuse claim?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="accordion-body">
+          <p>Production has <strong>60 business days</strong> from the exhibition of the reused footage to issue payment. If they fail to pay within that window, they owe an additional penalty equal to the day performer minimum on top of the reuse payment.</p>
+          <a class="source-link" href="https://www.sagaftra.org/files/2014_sag-aftra_tv_agreement_7.pdf" target="_blank">→ SAG-AFTRA TV Agreement</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOCAB -->
+    <div id="vocab" class="section">
+      <div class="section-header"><h1>Glossary</h1><p>Key terms used in SAG-AFTRA contracts and on your Exhibit G, in plain language.</p></div>
+      <div class="vocab-grid">
+        <div class="vocab-card"><div class="vocab-word">Network</div><div class="vocab-def">ABC, CBS, or NBC. Network contracts have their own specific rate tables separate from Basic Cable or Theatrical agreements.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Basic Cable</div><div class="vocab-def">Exhibition of TV programs via a cable system where no special program charge is made beyond the general cable subscription fee. Has its own SAG-AFTRA rate schedule.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Local Hire</div><div class="vocab-def">You can work at the shooting location without production owing you travel expenses or per diem. You are responsible for getting yourself to set.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Regional Hire (Modified Local)</div><div class="vocab-def">Production covers mileage (but not airfare) and sometimes lodging and per diem. You're still typically on a day rate contract.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Distant Location / Overnight Location</div><div class="vocab-def">A shooting location outside the studio zone that requires an overnight stay. Travel time counts as work time; per diem is owed; rest periods are reduced only for Theatrical (not TV).</div></div>
+        <div class="vocab-card"><div class="vocab-word">Per Diem</div><div class="vocab-def">A daily meal allowance paid when on overnight location, only if meals are not provided by the Producer. SAG-AFTRA minimum: $12 + $18 + $30 = $60/day, paid in advance. Negotiated increases bring this to $70 (11/9/23) and $75 (11/9/25). Regardless of call time, the first major meal is deducted at the lunch rate only.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Exhibit G</div><div class="vocab-def">Your SAG-AFTRA timecard. Documents your hours worked, contract type, stunt adjustments, meal breaks, and how your pay was calculated. Always request a copy.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Stunt Adjustment</div><div class="vocab-def">Additional pay negotiated on top of your scale rate for performing a specific stunt gag. Must be included in the base rate for OT calculations.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Studio Zone</div><div class="vocab-def">A defined geographic area around a major studio. Work within the zone uses studio work rules; work outside triggers location work rules.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Forced Call</div><div class="vocab-def">When production calls you back to work before your rest period has fully elapsed. Day performers: daily rate or $900, whichever is less. 3-day/weekly performers: one day's pay or $950, whichever is less.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Flat Deal (Stunt Coordinator)</div><div class="vocab-def">A Stunt Coordinator contract type with its own minimum rate. Flat deal coordinators have NO overtime — they receive premium pay instead.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Location Allowance</div><div class="vocab-def">An additional 4 hours of straight-time salary automatically owed to weekly performers on a 6-day overnight location workweek — whether those 6 days are worked or not. One of the most commonly missed payments.</div><div class="vocab-source">Source: SAG-AFTRA Workweek</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule H</div><div class="vocab-def">The SAG-AFTRA schedule governing Stunt Players. Part 1 covers daily terms; Parts 2 &amp; 3 cover weekly terms. Standard overtime rules apply.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule K</div><div class="vocab-def">The SAG-AFTRA schedule governing Stunt Coordinators. Flat deal Stunt Coordinators under Schedule K have NO overtime — they receive premium pay or penalty pay instead.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Non-Deductible (ND) Meal</div><div class="vocab-def">A meal provided within 2 hours of your call time (at least 15 minutes, free of all activity). Does NOT count as your meal break — the 6-hour meal window still runs from your crew call time.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Loan-Out Corporation</div><div class="vocab-def">A personal corporation through which a performer provides their services. Pay can be issued to the corp instead of the individual. Production must pay the correct entity per your contract.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Reuse</div><div class="vocab-def">When footage of your performance is used again in a new context (recap episode, clip show, etc.), production owes you a reuse payment within 60 business days of exhibition.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Stunt Driving — 6 Qualifying Conditions</div><div class="vocab-def">Driving qualifies as a stunt when ANY of these exist: (1) wheels leave driving surface, (2) tire traction broken, (3) driver's vision substantially impaired, (4) speed greater than normally safe for conditions, (5) aircraft in close proximity creating hazard, (6) high speed or close proximity of two or more vehicles creating danger.<div class="vocab-source">Source: 2024 Jeffords Rules — SAG-AFTRA Hazardous Work</div></div></div>
+        <div class="vocab-card"><div class="vocab-word">CW Supplement</div><div class="vocab-def">The CW network has its own supplement/side agreement within the SAG-AFTRA framework. Some Nickelodeon productions also have special rate agreements.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Made for Pay TV</div><div class="vocab-def">A program produced for pay television (e.g., premium cable/streaming), with scripted narrative and running time of approximately 75+ minutes. Has its own contract rules.</div></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── RATE CYCLE SWITCHER ──
+function showRateCycle(cycle) {
+  document.querySelectorAll('.rate-cell').forEach(cell => {
+    const val = cell.getAttribute('data-' + cycle);
+    if (val) cell.textContent = val;
+  });
+  document.querySelectorAll('#rate-cycle-filters .tag-filter').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById('cycle-' + cycle);
+  if (activeBtn) activeBtn.classList.add('active');
+}
+document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
+
+// ── NAV ──
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${id}'`)) b.classList.add('active');
+  });
+  document.getElementById('search-results').classList.remove('active');
+  document.getElementById('search').value = '';
+  window.scrollTo(0, 0);
+}
+
+// ── ACCORDION ──
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+// ── COPY ──
+function copyTemplate(btn) {
+  const template = btn.parentElement;
+  const text = template.textContent.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+// ── SEARCH ──
+const searchData = [
+  { section: 'paystub-errors', title: 'Stunt Adjustment Not Paid', body: 'Stunt adjustment not paid missing stunt adjustment paystub error', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Meal Penalties Not Paid', body: 'Meal penalties not paid missing meal penalty paystub error', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Overtime Not Paid', body: 'Overtime not paid missing overtime OT paystub error', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Travel Time Not Paid', body: 'Travel time not paid missing travel paystub error', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Location Allowance Not Paid', body: 'Location allowance not paid overnight location weekly 4 hours straight time missing', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Fitting Not Paid', body: 'Wardrobe fitting not paid underpaid fittings paystub', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Late Check', body: 'Check is late never received payment not received late check', sectionName: 'Paystub Errors' },
+  { section: 'paystub-errors', title: 'Base Rate Incorrect', body: 'Base rate incorrect wrong rate scale rate error', sectionName: 'Paystub Errors' },
+  { section: 'rates', title: 'SAG-AFTRA Theatrical Rates', body: 'Scale rates SAG theatrical performer stunt performer stunt coordinator daily weekly', sectionName: 'Scale Rates' },
+  { section: 'rates', title: 'SAG-AFTRA Television Rates', body: 'Scale rates SAG TV television performer stunt performer stunt coordinator daily weekly 3-day', sectionName: 'Scale Rates' },
+  { section: 'workweek', title: 'Studio Workweek & 6th/7th Day Premiums', body: 'Studio workweek 5 days sixth day 1.5x seventh day 2x premium six seven consecutive', sectionName: 'Workweek Rules' },
+  { section: 'workweek', title: 'Overnight Location Workweek & Location Allowance', body: 'Overnight location workweek 6 days location allowance 4 hours straight time weekly performers distant', sectionName: 'Workweek Rules' },
+  { section: 'overtime', title: 'Daily Contract Overtime', body: 'Daily contract overtime 1.5x 2.0x time and a half double time hours 8 9 10 11 OT calculation money break', sectionName: 'Overtime Rules' },
+  { section: 'overtime', title: '3-Day Contract Overtime', body: '3 day contract three day overtime cumulative 24 hours TV', sectionName: 'Overtime Rules' },
+  { section: 'overtime', title: 'Weekly Contract Overtime Schedule B C', body: 'Weekly contract overtime 44 hours 48 hours schedule B C $4400 $5500 money break', sectionName: 'Overtime Rules' },
+  { section: 'overtime', title: 'Schedule H Stunt Players Schedule K Coordinators', body: 'Schedule H stunt players Schedule K stunt coordinators flat deal no overtime premium pay', sectionName: 'Overtime Rules' },
+  { section: 'stunt-adjustments', title: 'What Is a Stunt Adjustment?', body: 'Stunt adjustment what is stunt adjustment gag extra pay negotiated OT base rate', sectionName: 'Stunt Adjustments' },
+  { section: 'meal-penalties', title: 'Meal Penalty Rules & Amounts', body: 'Meal penalty 6 hours meal break $25 $35 $50 accruing missed meal ND non-deductible', sectionName: 'Meal Penalties' },
+  { section: 'meal-penalties', title: 'Rest Periods & Forced Calls', body: 'Rest period 12 hours 11 hours 10 hours studio zone location overnight forced call $900 $950', sectionName: 'Meal Penalties' },
+  { section: 'travel', title: 'Travel Time as Work Time', body: 'Travel time work time distant location compensable paid travel Exhibit G overnight', sectionName: 'Travel & Location Expenses' },
+  { section: 'travel', title: 'Per Diem Amounts', body: 'Per diem $60 $70 $75 breakfast lunch dinner $12 $18 $30 daily location expenses meals SAG minimum', sectionName: 'Travel & Location Expenses' },
+  { section: 'travel', title: 'Flight Class Rules', body: 'Flight class business class coach elevated economy plus baggage reimbursement 1000 miles Vancouver Toronto', sectionName: 'Travel & Location Expenses' },
+  { section: 'fittings', title: 'Wardrobe Fitting Pay', body: 'Fitting pay rate one hour 15 minute increments wardrobe prior to work same day $1500', sectionName: 'Fittings' },
+  { section: 'late-payments', title: 'Late Payment Penalty', body: 'Late payment penalty $10 per day $200 maximum SAG-AFTRA', sectionName: 'Late Payments' },
+  { section: 'late-payments', title: 'Grievance Filing Window', body: 'Grievance 6 months file claim principal performer deadline', sectionName: 'Late Payments' },
+  { section: 'late-payments', title: 'Reuse Pay Late Penalty', body: 'Reuse pay late 60 business days penalty recap footage', sectionName: 'Late Payments' },
+  { section: 'faq', title: 'FAQ — All Questions', body: 'FAQ frequently asked questions wardrobe fitting late payment rest period grievance reuse stunt rigger commercial money break forced call', sectionName: 'FAQ' },
+  { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
+  { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
+];
+
+function handleSearch(val) {
+  const q = val.trim().toLowerCase();
+  const resultsDiv = document.getElementById('search-results');
+  const sections = document.querySelectorAll('.section');
+  const list = document.getElementById('results-list');
+  if (!q) {
+    resultsDiv.classList.remove('active');
+    sections.forEach(s => { if (s.id !== 'search-results') s.classList.remove('active'); });
+    document.getElementById('home').classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    return;
+  }
+  const results = searchData.filter(item => item.title.toLowerCase().includes(q) || item.body.toLowerCase().includes(q));
+  sections.forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  resultsDiv.classList.add('active');
+  document.getElementById('search-summary').textContent = results.length > 0 ? `${results.length} result${results.length !== 1 ? 's' : ''} for "${val}"` : `No results found for "${val}"`;
+  function highlight(text, q) {
+    const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+  list.innerHTML = results.map(r => `
+    <div class="search-result-item" onclick="showSection('${r.section}')">
+      <div class="result-section">${r.sectionName}</div>
+      <div class="result-title">${highlight(r.title, q)}</div>
+      <div class="result-snippet">Click to open this section →</div>
+    </div>
+  `).join('') || '<div style="color:var(--text-muted);font-size:0.88rem;padding:1rem 0;">Try different keywords — e.g., "overtime", "meal penalty", "stunt adjustment", "late payment"</div>';
+}
+</script>
+</body>
+</html>
