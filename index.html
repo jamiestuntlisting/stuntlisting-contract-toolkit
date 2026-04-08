@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StuntListing.com — SAG-AFTRA Stunt Performer Toolkit</title>
+<title>StuntListing.com — Contract Toolkit</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -90,7 +90,7 @@
     display: flex; align-items: center; gap: 10px; width: 100%;
     padding: 9px 1.25rem; background: none; border: none;
     color: var(--text-muted); font-family: 'DM Sans', sans-serif;
-    font-size: 1rem; font-weight: 400; cursor: pointer;
+    font-size: 1.05rem; font-weight: 400; cursor: pointer;
     text-align: left; transition: all 0.15s; border-left: 3px solid transparent;
   }
   .nav-btn:hover { color: var(--text); background: var(--bg3); }
@@ -105,20 +105,20 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   .section-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-  .section-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.05em; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
-  .section-header p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+  .section-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 0.05em; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
+  .section-header p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
   /* ── CARDS ── */
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; transition: border-color 0.2s, background 0.2s; }
   .card:hover { background: var(--card-hover); border-color: #3a4060; }
-  .card-title { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-  .card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-  .card p, .card li { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+  .card-title { font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .card h3 { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+  .card p, .card li { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
   .card ul { padding-left: 1.2rem; }
   .card ul li { margin-bottom: 0.2rem; }
 
   /* ── ALERTS ── */
-  .alert { border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 0.87rem; line-height: 1.6; display: flex; gap: 12px; }
+  .alert { border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 1.02rem; line-height: 1.6; display: flex; gap: 12px; }
   .alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
   .alert-warn { background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.2); color: #d4a017; }
   .alert-info { background: rgba(74,144,226,0.08); border: 1px solid rgba(74,144,226,0.2); color: #7ab3e8; }
@@ -126,7 +126,7 @@
 
   /* ── TABLE ── */
   .table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 1rem; }
   thead th { background: var(--bg3); color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
   tbody tr { border-bottom: 1px solid var(--border); }
   tbody tr:hover { background: var(--bg3); }
@@ -139,14 +139,14 @@
 
   /* ── ACCORDION ── */
   .accordion { margin-bottom: 0.6rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .accordion-header { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--card); border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; cursor: pointer; text-align: left; transition: background 0.15s; gap: 12px; }
+  .accordion-header { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--card); border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 1.08rem; font-weight: 500; cursor: pointer; text-align: left; transition: background 0.15s; gap: 12px; }
   .accordion-header:hover { background: var(--card-hover); }
   .accordion-header.open { background: var(--card-hover); color: var(--accent); }
   .accordion-chevron { transition: transform 0.2s; flex-shrink: 0; color: var(--text-dim); }
   .accordion-header.open .accordion-chevron { transform: rotate(180deg); color: var(--accent); }
   .accordion-body { display: none; padding: 0 1.25rem 1rem; background: var(--card-hover); }
   .accordion-body.open { display: block; }
-  .accordion-body p, .accordion-body li { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
+  .accordion-body p, .accordion-body li { font-size: 1.02rem; color: var(--text-muted); line-height: 1.7; }
   .accordion-body ul { padding-left: 1.2rem; margin-top: 0.4rem; }
   .accordion-body li { margin-bottom: 0.3rem; }
   .accordion-body .source-link { display: inline-block; margin-top: 0.75rem; font-size: 0.78rem; color: var(--blue); text-decoration: none; font-family: 'DM Mono', monospace; }
@@ -158,11 +158,11 @@
   .error-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; display: flex; gap: 12px; align-items: flex-start; transition: border-color 0.2s; }
   .error-item:hover { border-color: var(--red); }
   .error-num { background: rgba(224,92,42,0.15); color: var(--red); font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 600; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .error-item h4 { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
-  .error-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+  .error-item h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+  .error-item p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
 
   /* ── EMAIL TEMPLATE ── */
-  .email-template { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; position: relative; margin-bottom: 1rem; }
+  .email-template { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; font-family: 'DM Mono', monospace; font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; position: relative; margin-bottom: 1rem; }
   .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--border); border: none; border-radius: 5px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; padding: 4px 10px; cursor: pointer; transition: all 0.15s; }
   .copy-btn:hover { background: var(--accent); color: var(--bg); }
 
@@ -181,21 +181,21 @@
   .hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(240,180,41,0.08) 0%, transparent 70%); pointer-events: none; }
   .hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.75rem; }
   .hero h2 span { color: var(--accent); }
-  .hero p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; max-width: 560px; }
+  .hero p { color: var(--text-muted); font-size: 1.08rem; line-height: 1.7; max-width: 560px; }
   .home-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
   @media (max-width: 680px) { .home-grid { grid-template-columns: 1fr 1fr; } }
   .home-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem; cursor: pointer; transition: all 0.2s; text-align: left; }
   .home-card:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--card-hover); }
   .home-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .home-card h4 { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
-  .home-card p { font-size: 0.77rem; color: var(--text-muted); line-height: 1.5; }
+  .home-card h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+  .home-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.5; }
 
   /* ── MISC ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
   .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .highlight { background: rgba(240,180,41,0.12); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 0.75rem 0; }
-  .highlight p { font-size: 0.87rem; color: var(--text); line-height: 1.6; }
+  .highlight p { font-size: 1.02rem; color: var(--text); line-height: 1.6; }
   .tag-filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
   .tag-filter { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
   .tag-filter:hover { border-color: var(--accent); color: var(--accent); }
@@ -203,9 +203,41 @@
   .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   @media (max-width: 640px) { .vocab-grid { grid-template-columns: 1fr; } }
   .vocab-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
-  .vocab-word { font-weight: 700; color: var(--accent); font-size: 0.92rem; margin-bottom: 0.4rem; }
-  .vocab-def { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+  .vocab-word { font-weight: 700; color: var(--accent); font-size: 1.08rem; margin-bottom: 0.4rem; }
+  .vocab-def { font-size: 0.98rem; color: var(--text-muted); line-height: 1.6; }
   .vocab-source { font-size: 0.73rem; color: var(--text-dim); margin-top: 0.4rem; font-family: 'DM Mono', monospace; }
+  /* ── STUNT DRIVING CHECK ── */
+  .sd-question {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+    cursor: pointer; transition: background 0.15s;
+    font-size: 1.02rem; color: var(--text-muted); line-height: 1.5;
+  }
+  .sd-question:first-child { border-top: 1px solid var(--border); }
+  .sd-question:hover { background: var(--bg3); }
+  .sd-question input { display: none; }
+  .sd-toggle {
+    width: 48px; height: 28px; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 14px; position: relative; flex-shrink: 0; transition: all 0.2s;
+  }
+  .sd-toggle::after {
+    content: ''; position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px; background: var(--text-dim);
+    border-radius: 50%; transition: all 0.2s;
+  }
+  .sd-question input:checked + .sd-toggle { background: var(--accent); border-color: var(--accent); }
+  .sd-question input:checked + .sd-toggle::after { left: 23px; background: var(--bg); }
+  .sd-question.active { color: var(--text); }
+
+  /* ── FORCED CALL OPTIONS ── */
+  .fc-option {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.6rem 1.5rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.15s;
+  }
+  .fc-option:hover { border-color: var(--accent); color: var(--text); }
+  .fc-option.active { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+
   main::-webkit-scrollbar { width: 6px; }
   main::-webkit-scrollbar-track { background: transparent; }
   main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -222,7 +254,7 @@
   <div class="header-badge">
     <span class="header-badge-top">SAG-AFTRA</span>
     <div class="header-badge-line"></div>
-    <span class="header-badge-bottom">Stunt Performer<br>Toolkit</span>
+    <span class="header-badge-bottom">Contract<br>Toolkit</span>
   </div>
 </header>
 
@@ -241,6 +273,9 @@
     <button class="nav-btn" onclick="showSection('travel')"><span class="nav-dot"></span>Travel &amp; Location Expenses</button>
     <button class="nav-btn" onclick="showSection('fittings')"><span class="nav-dot"></span>Fittings</button>
     <button class="nav-btn" onclick="showSection('late-payments')"><span class="nav-dot"></span>Late Payments</button>
+    <div class="nav-section-label">Tools</div>
+    <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Stunt Driving Check</button>
+    <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
     <div class="nav-section-label">Reference</div>
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
     <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
@@ -261,7 +296,7 @@
         <p>Ready-to-use language for contacting production accounting about missing or incorrect pay. Always attach your Exhibit G, paystub, and contract.</p>
       </div>
       <div class="alert alert-info">
-        <span class="alert-icon">💡</span>
+        <span class="alert-icon"></span>
         <div>Every email must: (1) clearly state in the first sentence what is missing or wrong, (2) include all relevant attachments, and (3) be forwardable as-is — production may pass it to their payroll service.</div>
       </div>
       <div class="card" style="margin-bottom:0.5rem;"><div class="card-title">Stunt Adjustment Not Paid</div></div>
@@ -335,24 +370,24 @@ Thank you,
         <p>SAG-AFTRA rules are complex — and production accounting often gets it wrong. This toolkit breaks down exactly how stunt performer pay is calculated so you can spot errors and recover missing payments.</p>
       </div>
       <div class="alert alert-warn">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div><strong>Principal performers have 6 months</strong> from when the error occurred to file a grievance with SAG-AFTRA. Don't wait — check your paystub as soon as it arrives.</div>
       </div>
       <h3 style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Jump to a Topic</h3>
       <div class="home-grid">
-        <button class="home-card" onclick="showSection('paystub-errors')"><div class="home-card-icon">🔍</div><h4>Paystub Errors</h4><p>Common mistakes and what to do about them</p></button>
-        <button class="home-card" onclick="showSection('rates')"><div class="home-card-icon">💰</div><h4>Scale Rates</h4><p>Minimum daily &amp; weekly rates by contract type</p></button>
-        <button class="home-card" onclick="showSection('overtime')"><div class="home-card-icon">⏱️</div><h4>Overtime</h4><p>How OT is calculated on daily &amp; weekly contracts</p></button>
-        <button class="home-card" onclick="showSection('stunt-adjustments')"><div class="home-card-icon">🎬</div><h4>Stunt Adjustments</h4><p>What they are and how they affect OT calculations</p></button>
-        <button class="home-card" onclick="showSection('meal-penalties')"><div class="home-card-icon">🍽️</div><h4>Meal Penalties</h4><p>When you're owed one and how they're calculated</p></button>
-        <button class="home-card" onclick="showSection('workweek')"><div class="home-card-icon">📆</div><h4>Workweek Rules</h4><p>Studio vs. overnight location workweeks &amp; location allowance</p></button>
-        <button class="home-card" onclick="showSection('travel')"><div class="home-card-icon">✈️</div><h4>Travel &amp; Location</h4><p>Per diem, flight class rules, travel time as work time</p></button>
-        <button class="home-card" onclick="showSection('late-payments')"><div class="home-card-icon">📅</div><h4>Late Payments</h4><p>Penalties owed when production pays late</p></button>
-        <button class="home-card" onclick="showSection('email-templates')"><div class="home-card-icon">✉️</div><h4>Email Templates</h4><p>Copy-paste templates to dispute missing pay</p></button>
+        <button class="home-card" onclick="showSection('paystub-errors')"><h4>Paystub Errors</h4><p>Common mistakes and what to do about them</p></button>
+        <button class="home-card" onclick="showSection('rates')"><h4>Scale Rates</h4><p>Minimum daily &amp; weekly rates by contract type</p></button>
+        <button class="home-card" onclick="showSection('overtime')"><h4>Overtime</h4><p>How OT is calculated on daily &amp; weekly contracts</p></button>
+        <button class="home-card" onclick="showSection('stunt-adjustments')"><h4>Stunt Adjustments</h4><p>What they are and how they affect OT calculations</p></button>
+        <button class="home-card" onclick="showSection('meal-penalties')"><h4>Meal Penalties</h4><p>When you're owed one and how they're calculated</p></button>
+        <button class="home-card" onclick="showSection('workweek')"><h4>Workweek Rules</h4><p>Studio vs. overnight location workweeks &amp; location allowance</p></button>
+        <button class="home-card" onclick="showSection('travel')"><h4>Travel &amp; Location</h4><p>Per diem, flight class rules, travel time as work time</p></button>
+        <button class="home-card" onclick="showSection('late-payments')"><h4>Late Payments</h4><p>Penalties owed when production pays late</p></button>
+        <button class="home-card" onclick="showSection('email-templates')"><h4>Email Templates</h4><p>Copy-paste templates to dispute missing pay</p></button>
       </div>
       <hr class="divider">
       <div class="alert alert-info">
-        <span class="alert-icon">💡</span>
+        <span class="alert-icon"></span>
         <div>Use the <strong>search bar above</strong> to find any topic quickly, or browse sections using the left navigation.</div>
       </div>
     </div>
@@ -361,7 +396,7 @@ Thank you,
     <div id="paystub-errors" class="section">
       <div class="section-header"><h1>Paystub Errors</h1><p>The most common mistakes production accounting makes — and the language to use when disputing them.</p></div>
       <div class="alert alert-warn">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div>Always attach your <strong>Exhibit G, paystub, and contract</strong> when contacting production about an error. The first sentence of any email should clearly state what is missing or incorrect.</div>
       </div>
       <div class="error-grid">
@@ -387,11 +422,11 @@ Thank you,
     <div id="rates" class="section">
       <div class="section-header"><h1>SAG-AFTRA Scale Rates</h1><p>Minimum rates from the official SAG-AFTRA Theatrical and Television Agreement Wage Tables. These are floors — you can always negotiate more, but production cannot pay less.</p></div>
       <div class="alert alert-success">
-        <span class="alert-icon">✅</span>
+        <span class="alert-icon"></span>
         <div>Rates updated from official SAG-AFTRA wage tables. Current cycle: <strong>07/01/25–06/30/26</strong>. Source: SAG-AFTRA Theatrical Wage Table &amp; Television Agreement Wage Tables.</div>
       </div>
       <div class="tag-filter-row" id="rate-cycle-filters">
-        <button class="tag-filter" onclick="showRateCycle('25-26')" id="cycle-25-26">★ 07/01/25–06/30/26 (Current)</button>
+        <button class="tag-filter" onclick="showRateCycle('25-26')" id="cycle-25-26">07/01/25–06/30/26 (Current)</button>
         <button class="tag-filter" onclick="showRateCycle('24-25')" id="cycle-24-25">07/01/24–06/30/25</button>
         <button class="tag-filter" onclick="showRateCycle('23-24')" id="cycle-23-24">11/09/23–06/30/24</button>
         <button class="tag-filter" onclick="showRateCycle('22-23')" id="cycle-22-23">07/01/22–06/30/23</button>
@@ -449,9 +484,9 @@ Thank you,
           </tbody>
         </table>
       </div>
-      <div class="highlight"><p>⚠️ <strong>Note on contract type:</strong> Theatrical = films. Television = TV series, movies of the week, streaming. Legacy Exhibit A = dramatic series first produced under the old AFTRA Network Code (free TV, pay TV, or basic cable).</p></div>
+      <div class="highlight"><p><strong>Note on contract type:</strong> Theatrical = films. Television = TV series, movies of the week, streaming. Legacy Exhibit A = dramatic series first produced under the old AFTRA Network Code (free TV, pay TV, or basic cable).</p></div>
       <div class="alert alert-info" style="margin-top:1rem;">
-        <span class="alert-icon">📄</span>
+        <span class="alert-icon"></span>
         <div>Source: Official SAG-AFTRA Theatrical Wage Table and Television Agreement Wage Tables. Low Budget, Modified Low Budget, Ultra Low Budget, and Student Film agreements are separate schedules — verify directly with SAG-AFTRA or your contract.</div>
       </div>
     </div>
@@ -461,7 +496,7 @@ Thank you,
       <div class="section-header"><h1>Overtime Rules</h1><p>Overtime is one of the most frequently underpaid items. How it's calculated depends on your contract type.</p></div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Daily Contract — How Overtime Works</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Daily Contract — How Overtime Works</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <p>Pay is computed from <strong>time of first call to dismissal, excluding meal periods</strong>. OT is calculated in <strong>1/10th hourly units (6-minute increments)</strong>.</p>
           <ul style="margin-top:0.5rem;">
@@ -476,7 +511,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 3-Day Contract — How Overtime Works (TV Only)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>3-Day Contract — How Overtime Works (TV Only)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <p>The 3-day contract applies to Television only. Two types of overtime can apply:</p>
           <ul>
@@ -490,7 +525,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Weekly Contract — Schedule B &amp; C</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Weekly Contract — Schedule B &amp; C</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <p><strong>Schedule B (guaranteed $6,200/week or less):</strong></p>
           <ul>
@@ -507,7 +542,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Overnight Location Weekly Contract</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Overnight Location Weekly Contract</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <ul>
             <li>Contract rate must be stated as the 5-day studio week rate — even if you're on location</li>
@@ -520,7 +555,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Schedule H (Stunt Players) vs. Schedule K (Stunt Coordinators)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Schedule H (Stunt Players) vs. Schedule K (Stunt Coordinators)</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <ul>
             <li><strong>Schedule H — Stunt Players:</strong> Part 1 covers daily terms; Parts 2 &amp; 3 cover weekly terms. Standard OT rules apply.</li>
@@ -532,7 +567,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 6th &amp; 7th Day Rules</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>6th &amp; 7th Day Rules</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <ul>
             <li><strong>6th day = 1.5x</strong></li>
@@ -547,7 +582,7 @@ Thank you,
       </div>
 
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Schedule A OT — Rates Above and Below 2x Scale</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Schedule A OT — Rates Above and Below 2x Scale</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <ul>
             <li><strong>Less than 2x scale rate:</strong> 1.5x for hours 9–10 (with max rate cap); 2x for all hours after that</li>
@@ -559,7 +594,7 @@ Thank you,
       </div>
 
       <div class="alert alert-warn" style="margin-top:1rem;">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div><strong>Key mistake to watch for:</strong> If you received a stunt adjustment, verify that it was added to your base rate before OT was calculated. If production only applied OT to your scale rate and ignored the adjustment, every overtime hour is underpaid.</div>
       </div>
     </div>
@@ -581,7 +616,7 @@ Thank you,
         </ul>
       </div>
       <div class="alert alert-warn">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div>Check your Exhibit G: if the 1.5x and 2.0x hourly rates look too low compared to your total daily pay, your adjustment was likely excluded from the OT calculation.</div>
       </div>
       <div class="card">
@@ -622,7 +657,7 @@ Thank you,
         <p>The overnight location workweek consists of <strong>any 6 days out of 7 consecutive days</strong>.</p>
         <p style="margin-top:0.6rem;">The 6-day overnight location workweek — <strong>whether those 6 days are worked or not</strong> — automatically triggers an additional <strong>4 hours of straight-time salary</strong> for weekly performers. This is the <strong>"location allowance."</strong></p>
         <div class="alert alert-warn" style="margin-top:0.75rem;">
-          <span class="alert-icon">⚠️</span>
+          <span class="alert-icon"></span>
           <div>The location allowance is one of the most commonly missed payments on distant location shoots. If you were on a weekly contract at an overnight location and don't see an extra 4 hours of straight time on your Exhibit G, it was likely not paid.</div>
         </div>
         <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Workweek</span>
@@ -671,7 +706,7 @@ Thank you,
         </ul>
       </div>
       <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Rest Periods, Forced Calls &amp; Turnarounds</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Rest Periods, Forced Calls &amp; Turnarounds</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <p><strong>SAG-AFTRA Daily Rest Periods:</strong></p>
           <ul>
@@ -741,7 +776,7 @@ Thank you,
         </ul>
       </div>
       <div class="alert alert-warn">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div>Travel time is one of the most frequently omitted pay items. If you traveled to a distant location and don't see travel time on your Exhibit G, it was almost certainly not paid.</div>
       </div>
     </div>
@@ -756,6 +791,104 @@ Thank you,
         <p style="margin-top:0.5rem;"><strong>Important exception:</strong> Day performers with a pay rate of <strong>$1,500 or more per day</strong> are not entitled to pay for a fitting on a day prior to work.</p>
         <p style="margin-top:0.5rem;">If a wardrobe fitting or HMU test is paid but you are not ultimately called to work that day, you receive <strong>one day's pay</strong>.</p>
         <a href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.75rem;display:inline-block;">→ Source: 2024 Jeffords Rules — SAG-AFTRA Fittings &amp; Rehearsals</a>
+      </div>
+    </div>
+
+    <!-- STUNT DRIVING CHECK -->
+    <div id="stunt-driving" class="section">
+      <div class="section-header"><h1>Is This Stunt Driving?</h1><p>Answer the questions below. If <strong>any</strong> answer is Yes, the driving qualifies as stunt driving under SAG-AFTRA rules.</p></div>
+
+      <div id="stunt-driving-result" style="text-align:center;padding:1.5rem 0 1rem;">
+        <div id="stunt-driving-answer" style="font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:0.04em;line-height:1;color:var(--text-dim);">No</div>
+        <div id="stunt-driving-sub" style="font-size:1rem;color:var(--text-dim);margin-top:0.25rem;">None of the conditions are met</div>
+      </div>
+
+      <div id="stunt-driving-questions">
+        <label class="sd-question"><span>Did any tires leave the driving surface?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Was tire traction broken?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Did the car skid or slide?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Was the driver's vision impaired substantially by dust, spray, lights, windshield covering, smoke, or something else?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Is the speed of the vehicle greater than is normally safe for the conditions of the driving surface?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Is the speed of the vehicle greater than is normally safe for such as obstacles or difficult terrain?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Is the car involved in off-road driving other than at low speeds?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Were any aircraft, fixed-wing or helicopter flown in close proximity to the vehicle?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Were vehicles driven in close proximity?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Were the vehicles driven at high speed?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+        <label class="sd-question"><span>Was the performer in the vehicle doubled for safety reasons?</span><input type="checkbox" onchange="updateStuntDriving()"><span class="sd-toggle"></span></label>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <button onclick="resetStuntDriving()" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.6rem 1.25rem;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.15s;">Reset All</button>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:1.5rem;">
+        <span class="alert-icon"></span>
+        <div>Source: SAG-AFTRA Codified Basic Agreement — Hazardous Work / Stunt Driving conditions.</div>
+      </div>
+    </div>
+
+    <!-- FORCED CALL CHECK -->
+    <div id="forced-call" class="section">
+      <div class="section-header"><h1>Is It a Forced Call?</h1><p>Answer the questions below to determine what rest period rules apply and whether a forced call penalty is owed.</p></div>
+
+      <div id="fc-result" style="text-align:center;padding:1.5rem 0 1rem;">
+        <div id="fc-type" style="font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:0.04em;line-height:1;color:var(--accent);margin-bottom:0.5rem;">Inside Studio Zone</div>
+        <div id="fc-answer" style="font-size:1.05rem;color:var(--text-muted);line-height:1.6;max-width:600px;margin:0 auto;"></div>
+      </div>
+
+      <div id="fc-questions">
+        <div class="sd-question" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
+          <span style="font-weight:600;color:var(--text);">What kind of show?</span>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="fc-option active" onclick="setFcShow('TV',this)" id="fc-tv">TV</button>
+            <button class="fc-option" onclick="setFcShow('Theatrical',this)" id="fc-theatrical">Theatrical</button>
+          </div>
+        </div>
+        <div class="sd-question" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
+          <span style="font-weight:600;color:var(--text);">Is this an overnight location?</span>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="fc-option" onclick="setFcOvernight('Yes',this)" id="fc-overnight-yes">Yes</button>
+            <button class="fc-option active" onclick="setFcOvernight('No',this)" id="fc-overnight-no">No</button>
+          </div>
+        </div>
+        <div class="sd-question" id="fc-zone-row" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
+          <span style="font-weight:600;color:var(--text);">Is the location outside the Studio Zone?</span>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="fc-option" onclick="setFcZone('Yes',this)" id="fc-zone-yes">Yes</button>
+            <button class="fc-option active" onclick="setFcZone('No',this)" id="fc-zone-no">No</button>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="card">
+        <div class="card-title">Overnight Location</div>
+        <p>Any location where the Producer requires the performer to remain away from his or her residence and be lodged overnight. It is understood that the Producer's offer of courtesy housing to a performer does not convert a location into an overnight location. Los Angeles and its environs are not considered to be "overnight locations."</p>
+      </div>
+      <div class="card">
+        <div class="card-title">LA Studio Zone</div>
+        <p>The Los Angeles studio zone shall include all territory within a radius of thirty (30) miles from the intersection of Beverly Boulevard and La Cienega Boulevard, Los Angeles, California, and shall also include Agua Dulce, Castaic (including Lake Castaic), Leo Carillo State Beach, Moorpark, Ontario International Airport, Piru and Pomona (including the Los Angeles County Fairgrounds) and such other territory (such as the present Columbia Ranch and Disney Ranch) as is generally recognized as being within the Los Angeles studio zone.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">LA Secondary Studio Zone</div>
+        <p>The Los Angeles secondary studio zone shall be the area extending ten (10) miles from the perimeter of the studio zone and including John Wayne Airport. It does not include any of the areas that fall within the definition of the Los Angeles studio zone. The Union shall not unreasonably deny waivers for locations, such as Lake Hughes, Elizabeth Lake and the Nikken Building in Irvine, that are outside the Los Angeles studio zone and the Los Angeles secondary studio zone, to be treated as within the Los Angeles secondary studio zone.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">NY Studio Zone</div>
+        <p>The New York studio zone shall encompass any location within a thirty (30) mile radius of Columbus Circle other than Sandy Hook, New Jersey.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Eight Mile NY Zone</div>
+        <p>The eight (8) mile New York Zone means all territory within a radius of eight (8) miles from Columbus Circle.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">San Francisco Studio Zone</div>
+        <p>The San Francisco studio zone shall include all territory within a radius of thirty (30) miles from the intersection of Market and Powell Streets.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Other Studio Zones</div>
+        <p>The Union and the Producers shall agree to recognize other studio zones on a similar basis to the established Los Angeles, New York and San Francisco studio zones set forth above. In default of such agreement, the territory to be considered a studio zone shall be determined by arbitration under Section 50 whenever the situation arises.</p>
       </div>
     </div>
 
@@ -782,7 +915,7 @@ Thank you,
         <a href="https://www.sagaftra.org/files/2014_sag-aftra_tv_agreement_7.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.6rem;display:inline-block;">→ SAG-AFTRA TV Agreement</a>
       </div>
       <div class="alert alert-warn">
-        <span class="alert-icon">⚠️</span>
+        <span class="alert-icon"></span>
         <div>The 6-month grievance window starts from when the error occurred — not when you discovered it. Track your pay dates carefully.</div>
       </div>
     </div>
@@ -886,14 +1019,40 @@ Thank you,
         <div class="vocab-card"><div class="vocab-word">Forced Call</div><div class="vocab-def">When production calls you back to work before your rest period has fully elapsed. Day performers: daily rate or $900, whichever is less. 3-day/weekly performers: one day's pay or $950, whichever is less.</div></div>
         <div class="vocab-card"><div class="vocab-word">Flat Deal (Stunt Coordinator)</div><div class="vocab-def">A Stunt Coordinator contract type with its own minimum rate. Flat deal coordinators have NO overtime — they receive premium pay instead.</div></div>
         <div class="vocab-card"><div class="vocab-word">Location Allowance</div><div class="vocab-def">An additional 4 hours of straight-time salary automatically owed to weekly performers on a 6-day overnight location workweek — whether those 6 days are worked or not. One of the most commonly missed payments.</div><div class="vocab-source">Source: SAG-AFTRA Workweek</div></div>
-        <div class="vocab-card"><div class="vocab-word">Schedule H</div><div class="vocab-def">The SAG-AFTRA schedule governing Stunt Players. Part 1 covers daily terms; Parts 2 &amp; 3 cover weekly terms. Standard overtime rules apply.</div></div>
-        <div class="vocab-card"><div class="vocab-word">Schedule K</div><div class="vocab-def">The SAG-AFTRA schedule governing Stunt Coordinators. Flat deal Stunt Coordinators under Schedule K have NO overtime — they receive premium pay or penalty pay instead.</div></div>
         <div class="vocab-card"><div class="vocab-word">Non-Deductible (ND) Meal</div><div class="vocab-def">A meal provided within 2 hours of your call time (at least 15 minutes, free of all activity). Does NOT count as your meal break — the 6-hour meal window still runs from your crew call time.</div></div>
         <div class="vocab-card"><div class="vocab-word">Loan-Out Corporation</div><div class="vocab-def">A personal corporation through which a performer provides their services. Pay can be issued to the corp instead of the individual. Production must pay the correct entity per your contract.</div></div>
         <div class="vocab-card"><div class="vocab-word">Reuse</div><div class="vocab-def">When footage of your performance is used again in a new context (recap episode, clip show, etc.), production owes you a reuse payment within 60 business days of exhibition.</div></div>
         <div class="vocab-card"><div class="vocab-word">Stunt Driving — 6 Qualifying Conditions</div><div class="vocab-def">Driving qualifies as a stunt when ANY of these exist: (1) wheels leave driving surface, (2) tire traction broken, (3) driver's vision substantially impaired, (4) speed greater than normally safe for conditions, (5) aircraft in close proximity creating hazard, (6) high speed or close proximity of two or more vehicles creating danger.<div class="vocab-source">Source: 2024 Jeffords Rules — SAG-AFTRA Hazardous Work</div></div></div>
         <div class="vocab-card"><div class="vocab-word">CW Supplement</div><div class="vocab-def">The CW network has its own supplement/side agreement within the SAG-AFTRA framework. Some Nickelodeon productions also have special rate agreements.</div></div>
         <div class="vocab-card"><div class="vocab-word">Made for Pay TV</div><div class="vocab-def">A program produced for pay television (e.g., premium cable/streaming), with scripted narrative and running time of approximately 75+ minutes. Has its own contract rules.</div></div>
+      </div>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin:2rem 0 1rem;">SCHEDULES &amp; AGREEMENTS</h3>
+      <div class="vocab-grid">
+        <div class="vocab-card"><div class="vocab-word">Schedule A — Daily Contract</div><div class="vocab-def">Day Performers.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule B — Weekly Contract</div><div class="vocab-def">Television freelance performers whose weekly guaranteed salary is $5,150 or less per week and who are guaranteed less than $32,000 per television picture and theatrical freelance performers whose weekly guaranteed salary is $6,350 or less per week and who are guaranteed less than $65,000 per theatrical picture.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule C — Weekly Contract over break</div><div class="vocab-def">Television freelance performers whose weekly guaranteed salary is more than $5,150 per week and who are guaranteed less than $32,000 per television picture and theatrical freelance performers whose weekly guaranteed salary is more than $6,350 per week and who are guaranteed less than $65,000 per theatrical picture.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule D — Multiple Picture Performers</div><div class="vocab-def">Multiple picture performers receiving $5,150 or less per week and guaranteed less than $32,000 per television picture or receiving $6,350 or less per week and guaranteed less than $60,000 per theatrical picture.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule E — Contract Performers</div><div class="vocab-def">Contract performers whose weekly guaranteed salary is $5,150 or less per week for television motion pictures or whose weekly guaranteed salary is $6,350 or less per week for theatrical motion pictures.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule F — Contract Performers over break</div><div class="vocab-def">Contract performers whose weekly guaranteed salary is in excess of $5,150 per week for television motion pictures or in excess of $6,350 per week for theatrical motion pictures; multiple picture performers receiving more than $5,150 per week or who are guaranteed $32,000 or more per television picture or receiving more than $6,350 per week or who are guaranteed $60,000 or more per theatrical motion picture; performers employed under "deal contracts," or otherwise, who are guaranteed $32,000 or more per television picture or who are guaranteed $65,000 or more per theatrical motion picture; performers employed in multi-part closed-end pictures receiving more than $4,650 per week and who are guaranteed $40,000 or more for the multi-part picture.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule G-1 — Singer - Daily Contract</div><div class="vocab-def">Professional singers employed by the day.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule G-2 — Singer - Weekly Contract</div><div class="vocab-def">Professional singers employed by the week on television motion pictures at $5,150 or less per week and professional singers employed by the week on theatrical motion pictures at $6,350 or less per week.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule H-1 — Stunt Performer - Daily Contract</div><div class="vocab-def">Stunt performers employed by the day.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule H-2 — Stunt Performer - Weekly Contract</div><div class="vocab-def">Stunt performers employed by the week on television motion pictures at $5,150 or less per week and stunt performers employed by the week on theatrical motion pictures at $6,350 or less per week.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule H-3 — Stunt Performer - Weekly Contract over break</div><div class="vocab-def">Stunt performers employed by the week on television motion pictures at more than $5,150 per week and stunt performers employed by the week on theatrical motion pictures at more than $6,350 per week.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule H-4 — Stunt Performer - Terms Contract</div><div class="vocab-def">Stunt performers employed under term contracts.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule I — Airplane Pilots</div><div class="vocab-def">Airplane pilots.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule J — Dancers</div><div class="vocab-def">Dancers.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule K-1 — Stunt Coordinator - Daily Contract less than Flat</div><div class="vocab-def">Stunt coordinators employed by the day at less than the flat deal minimum.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule K-2 — Stunt Coordinator - Weekly Contract less than Flat</div><div class="vocab-def">Stunt coordinators employed by the week at less than the flat deal minimum.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule K-3 — Stunt Coordinator - Flat</div><div class="vocab-def">Stunt coordinators employed under flat deal contracts.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule X — Background - West Coast</div><div class="vocab-def">Background actors employed in the Los Angeles, Sacramento, San Diego, San Francisco, Hawaii and Las Vegas zones.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule X1 — Background - Wet/Mud Work</div><div class="vocab-def">Sideletter regarding wet/mud work and extra performers wearing clothing not suited to climatic extremes.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Schedule X2 — Background - NYC</div><div class="vocab-def">Background actors employed on motion pictures based in New York and in the New York background actor zones.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Terms Contract</div><div class="vocab-def">Performer is employed for two (2) or more pictures per year or other specified period and the contract is exclusive with respect to his services in the production of motion pictures.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Codified Basic Agreement (CBA)</div><div class="vocab-def">Agreement made between SAG-AFTRA and AMPTP.</div></div>
+        <div class="vocab-card"><div class="vocab-word">AMPTP</div><div class="vocab-def">Alliance of Motion Picture and Television Producers.</div></div>
+        <div class="vocab-card"><div class="vocab-word">Memorandum of Agreement (MOA)</div><div class="vocab-def">Modifications to the Producer SAG-AFTRA Codified Basic Agreement of 2014 and the 2014 SAG-AFTRA Television Agreement.</div></div>
       </div>
     </div>
 
@@ -945,6 +1104,76 @@ function copyTemplate(btn) {
   });
 }
 
+// ── STUNT DRIVING CHECK ──
+function updateStuntDriving() {
+  const checks = document.querySelectorAll('#stunt-driving-questions input[type="checkbox"]');
+  const anyChecked = Array.from(checks).some(c => c.checked);
+  const answer = document.getElementById('stunt-driving-answer');
+  const sub = document.getElementById('stunt-driving-sub');
+  checks.forEach(c => c.closest('.sd-question').classList.toggle('active', c.checked));
+  if (anyChecked) {
+    answer.textContent = 'Yes';
+    answer.style.color = 'var(--accent)';
+    sub.textContent = 'This qualifies as stunt driving';
+    sub.style.color = 'var(--accent)';
+  } else {
+    answer.textContent = 'No';
+    answer.style.color = 'var(--text-dim)';
+    sub.textContent = 'None of the conditions are met';
+    sub.style.color = 'var(--text-dim)';
+  }
+}
+function resetStuntDriving() {
+  document.querySelectorAll('#stunt-driving-questions input[type="checkbox"]').forEach(c => { c.checked = false; });
+  document.querySelectorAll('#stunt-driving-questions .sd-question').forEach(q => q.classList.remove('active'));
+  updateStuntDriving();
+}
+
+// ── FORCED CALL CHECK ──
+let fcShow = 'TV', fcOvernight = 'No', fcZone = 'No';
+function setFcShow(val, btn) {
+  fcShow = val;
+  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateForcedCall();
+}
+function setFcOvernight(val, btn) {
+  fcOvernight = val;
+  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateForcedCall();
+}
+function setFcZone(val, btn) {
+  fcZone = val;
+  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateForcedCall();
+}
+function updateForcedCall() {
+  const zoneRow = document.getElementById('fc-zone-row');
+  const typeEl = document.getElementById('fc-type');
+  const answerEl = document.getElementById('fc-answer');
+  let type;
+  if (fcOvernight === 'Yes') {
+    zoneRow.style.display = 'none';
+    type = fcShow === 'TV' ? 'Overnight TV' : 'Overnight Theatrical';
+  } else {
+    zoneRow.style.display = '';
+    type = fcZone === 'Yes' ? 'Outside Studio Zone' : 'Inside Studio Zone';
+  }
+  typeEl.textContent = type;
+  if (type === 'Inside Studio Zone') {
+    answerEl.textContent = 'The performer is entitled to a 12 hour rest period from the time he is dismissed until the first call for the next day. This applies for makeup, wardrobe, hairdress, or any other purpose.';
+  } else if (type === 'Outside Studio Zone') {
+    answerEl.textContent = 'The rest period may be reduced from 12 to 10 hours where exterior photography is required on such location on the day before and the day after such reduced rest period. This is applicable once every fourth consecutive day.';
+  } else if (type === 'Overnight Theatrical') {
+    answerEl.textContent = 'The rest period may be reduced from 12 hours to 11 hours on any two non-consecutive days in a workweek.';
+  } else {
+    answerEl.textContent = 'There is no reduction of the 12 hour rest period.';
+  }
+}
+document.addEventListener('DOMContentLoaded', updateForcedCall);
+
 // ── SEARCH ──
 const searchData = [
   { section: 'paystub-errors', title: 'Stunt Adjustment Not Paid', body: 'Stunt adjustment not paid missing stunt adjustment paystub error', sectionName: 'Paystub Errors' },
@@ -976,6 +1205,8 @@ const searchData = [
   { section: 'faq', title: 'FAQ — All Questions', body: 'FAQ frequently asked questions wardrobe fitting late payment rest period grievance reuse stunt rigger commercial money break forced call', sectionName: 'FAQ' },
   { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
   { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
+  { section: 'forced-call', title: 'Is It a Forced Call?', body: 'Forced call rest period 12 hours 11 hours 10 hours overnight location studio zone TV theatrical penalty turnaround', sectionName: 'Forced Call Check' },
+  { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Stunt Driving Check' },
 ];
 
 function handleSearch(val) {
