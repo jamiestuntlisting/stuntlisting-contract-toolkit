@@ -491,6 +491,54 @@ Thank you,
     <!-- RATES -->
     <div id="rates" class="section">
       <div class="section-header"><h1>SAG-AFTRA Scale Rates</h1><p>Minimum rates from the official SAG-AFTRA Theatrical and Television Agreement Wage Tables. These are floors — you can always negotiate more, but production cannot pay less.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Find Your Rate</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="rate-finder">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Type of Production</label>
+            <select id="rf-type" onchange="updateRateFinder()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="theatrical">Movie (Theatrical)</option>
+              <option value="tv">TV</option>
+              <option value="commercial">Commercial</option>
+              <option value="newmedia">New Media / Internet</option>
+              <option value="student">Student Film</option>
+            </select>
+          </div>
+          <div id="rf-budget-wrap">
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Budget Level</label>
+            <select id="rf-budget" onchange="updateRateFinder()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="full">Full Scale</option>
+              <option value="low">Low Budget (under $2M)</option>
+              <option value="modlow">Moderate Low Budget (under $700K)</option>
+              <option value="ultra">Ultra Low Budget (under $300K)</option>
+              <option value="short">Short Project (under $50K)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Role</label>
+            <select id="rf-role" onchange="updateRateFinder()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="stunt">Stunt Performer</option>
+              <option value="coord">Stunt Coordinator</option>
+              <option value="performer">Performer</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Contract Duration</label>
+            <select id="rf-duration" onchange="updateRateFinder()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="daily">Daily</option>
+              <option value="3day">3-Day (TV only)</option>
+              <option value="weekly">Weekly</option>
+            </select>
+          </div>
+        </div>
+        <div id="rf-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Your Minimum Rate</div>
+          <div id="rf-rate" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$1,246</div>
+          <div id="rf-note" style="font-size:0.85rem;color:var(--text-dim);margin-top:0.25rem;">Daily — Stunt Performer — Full Scale Theatrical</div>
+        </div>
+      </div>
+
       <div class="alert alert-success">
         <span class="alert-icon"></span>
         <div>Rates updated from official SAG-AFTRA wage tables. Current cycle: <strong>07/01/25–06/30/26</strong>. Source: SAG-AFTRA Theatrical Wage Table &amp; Television Agreement Wage Tables.</div>
@@ -1264,6 +1312,73 @@ function showRateCycle(cycle) {
   if (activeBtn) activeBtn.classList.add('active');
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
+
+// ── RATE FINDER ──
+const rateData = {
+  theatrical: {
+    full:   { stunt: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$1,246',weekly:'$4,326','3day':'N/A'} },
+    low:    { stunt: {daily:'$810',weekly:'$2,812','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$810',weekly:'$2,812','3day':'N/A'} },
+    modlow: { stunt: {daily:'$436',weekly:'$1,514','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$436',weekly:'$1,514','3day':'N/A'} },
+    ultra:  { stunt: {daily:'$249',weekly:'Daily only','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'Daily only','3day':'N/A'} },
+    short:  { stunt: {daily:'$249',weekly:'Daily only','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'Daily only','3day':'N/A'} },
+  },
+  tv: {
+    full:   { stunt: {daily:'$1,246',weekly:'$4,646','3day':'$3,408'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$1,246',weekly:'$4,326','3day':'N/A'} },
+    low:    { stunt: {daily:'$810',weekly:'$2,812','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$810',weekly:'$2,812','3day':'N/A'} },
+    modlow: { stunt: {daily:'$436',weekly:'$1,514','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$436',weekly:'$1,514','3day':'N/A'} },
+    ultra:  { stunt: {daily:'$249',weekly:'Daily only','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'Daily only','3day':'N/A'} },
+    short:  { stunt: {daily:'$249',weekly:'Daily only','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'Daily only','3day':'N/A'} },
+  },
+  commercial: {
+    full: { stunt: {daily:'$822.30',weekly:'Session-based','3day':'N/A'}, coord: {daily:'$822.30',weekly:'Session-based','3day':'N/A'}, performer: {daily:'$822.30',weekly:'Session-based','3day':'N/A'} },
+  },
+  newmedia: {
+    full:   { stunt: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$1,246',weekly:'$4,646','3day':'N/A'} },
+    low:    { stunt: {daily:'$436',weekly:'$1,514','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$436',weekly:'$1,514','3day':'N/A'} },
+    modlow: { stunt: {daily:'$249',weekly:'N/A','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'N/A','3day':'N/A'} },
+    ultra:  { stunt: {daily:'$249',weekly:'N/A','3day':'N/A'}, coord: {daily:'$1,246',weekly:'$4,646','3day':'N/A'}, performer: {daily:'$249',weekly:'N/A','3day':'N/A'} },
+    short:  { stunt: {daily:'Negotiable',weekly:'N/A','3day':'N/A'}, coord: {daily:'Negotiable',weekly:'N/A','3day':'N/A'}, performer: {daily:'Negotiable',weekly:'N/A','3day':'N/A'} },
+  },
+  student: {
+    full: { stunt: {daily:'Negotiable',weekly:'N/A','3day':'N/A'}, coord: {daily:'Negotiable',weekly:'N/A','3day':'N/A'}, performer: {daily:'Negotiable',weekly:'N/A','3day':'N/A'} },
+  },
+};
+const budgetLabels = {full:'Full Scale',low:'Low Budget',modlow:'Moderate Low Budget',ultra:'Ultra Low Budget',short:'Short Project'};
+const typeLabels = {theatrical:'Theatrical',tv:'TV',commercial:'Commercial',newmedia:'New Media',student:'Student Film'};
+const roleLabels = {stunt:'Stunt Performer',coord:'Stunt Coordinator',performer:'Performer'};
+const durLabels = {daily:'Daily','3day':'3-Day',weekly:'Weekly'};
+
+function updateRateFinder() {
+  const type = document.getElementById('rf-type').value;
+  const budget = document.getElementById('rf-budget').value;
+  const role = document.getElementById('rf-role').value;
+  const dur = document.getElementById('rf-duration').value;
+  const budgetWrap = document.getElementById('rf-budget-wrap');
+  const budgetSel = document.getElementById('rf-budget');
+  // Show/hide budget based on type
+  if (type === 'commercial' || type === 'student') {
+    budgetWrap.style.opacity = '0.3';
+    budgetWrap.style.pointerEvents = 'none';
+  } else {
+    budgetWrap.style.opacity = '1';
+    budgetWrap.style.pointerEvents = 'auto';
+  }
+  // Show/hide 3-day option
+  const opt3 = document.querySelector('#rf-duration option[value="3day"]');
+  if (type !== 'tv') { opt3.disabled = true; if (dur === '3day') document.getElementById('rf-duration').value = 'daily'; }
+  else { opt3.disabled = false; }
+  // Look up rate
+  const effectiveBudget = (type === 'commercial' || type === 'student') ? 'full' : budget;
+  const effectiveDur = document.getElementById('rf-duration').value;
+  const typeRates = rateData[type];
+  const budgetRates = typeRates ? typeRates[effectiveBudget] : null;
+  const roleRates = budgetRates ? budgetRates[role] : null;
+  const rate = roleRates ? roleRates[effectiveDur] : 'N/A';
+  document.getElementById('rf-rate').textContent = rate || 'N/A';
+  document.getElementById('rf-rate').style.color = (rate && rate.startsWith('$')) ? 'var(--green)' : 'var(--text-dim)';
+  document.getElementById('rf-note').textContent = durLabels[effectiveDur] + ' — ' + roleLabels[role] + ' — ' + (type === 'commercial' || type === 'student' ? '' : budgetLabels[effectiveBudget] + ' ') + typeLabels[type];
+}
+document.addEventListener('DOMContentLoaded', updateRateFinder);
 
 // ── FACT CAROUSEL ──
 let factIndex = 0;
