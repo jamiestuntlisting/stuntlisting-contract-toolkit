@@ -275,6 +275,7 @@
     .section-header h1 { font-size: 2rem; }
     .hero h2 { font-size: 2.2rem; }
     .home-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .home-facts { grid-template-columns: 1fr !important; }
     .error-grid { grid-template-columns: 1fr; }
     .two-col { grid-template-columns: 1fr; }
     .vocab-grid { grid-template-columns: 1fr; }
@@ -325,9 +326,11 @@
     <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
     <div class="nav-section-label">Community</div>
     <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
+    <button class="nav-btn" onclick="showSection('sag-on-record')"><span class="nav-dot"></span>SAG On Record</button>
     <div class="nav-section-label">Reference</div>
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
     <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
+    <button class="nav-btn" onclick="showSection('important-links')"><span class="nav-dot"></span>Important Links</button>
     <div class="nav-section-label">Admin</div>
     <button class="nav-btn" onclick="showSection('paystub-errors')"><span class="nav-dot"></span>Paystub Errors</button>
     <button class="nav-btn" onclick="showSection('email-templates')"><span class="nav-dot"></span>Email Templates</button>
@@ -417,29 +420,40 @@ Thank you,
     <!-- HOME -->
     <div id="home" class="section active">
       <div class="hero">
-        <h2>KNOW WHAT<br>YOU'RE <span>OWED.</span></h2>
-        <p>SAG-AFTRA rules are complex — and production accounting often gets it wrong. This toolkit breaks down exactly how stunt performer pay is calculated so you can spot errors and recover missing payments.</p>
+        <h2>GET PAID<br>EVERY <span>CENT.</span></h2>
+        <p>Get real answers to SAG-AFTRA contract questions.</p>
       </div>
-      <div class="alert alert-warn">
-        <span class="alert-icon"></span>
-        <div><strong>Principal performers have 6 months</strong> from when the error occurred to file a grievance with SAG-AFTRA. Don't wait — check your paystub as soon as it arrives.</div>
+
+      <div class="home-facts" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;">
+        <div class="alert alert-warn" style="margin-bottom:0;">
+          <span class="alert-icon"></span>
+          <div><strong>6-month deadline.</strong> That's all the time you have to file a grievance from when the error occurred.</div>
+        </div>
+        <div class="alert alert-info" style="margin-bottom:0;">
+          <span class="alert-icon"></span>
+          <div><strong>$10/day.</strong> That's the late payment penalty — up to $200 per missed payroll period.</div>
+        </div>
+        <div class="alert alert-success" style="margin-bottom:0;">
+          <span class="alert-icon"></span>
+          <div><strong>$155.75/hr.</strong> Your minimum hourly rate at current scale ($1,246/day / 8).</div>
+        </div>
+        <div class="alert alert-warn" style="margin-bottom:0;">
+          <span class="alert-icon"></span>
+          <div><strong>4 extra hours.</strong> The location allowance owed on every overnight weekly contract — often missed.</div>
+        </div>
       </div>
+
       <h3 style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Jump to a Topic</h3>
       <div class="home-grid">
-        <button class="home-card" onclick="showSection('paystub-errors')"><h4>Paystub Errors</h4><p>Common mistakes and what to do about them</p></button>
-        <button class="home-card" onclick="showSection('rates')"><h4>Scale Rates</h4><p>Minimum daily &amp; weekly rates by contract type</p></button>
+        <button class="home-card" onclick="showSection('rates')"><h4>Rates</h4><p>Minimum daily &amp; weekly rates by contract type</p></button>
         <button class="home-card" onclick="showSection('overtime')"><h4>Overtime</h4><p>How OT is calculated on daily &amp; weekly contracts</p></button>
-        <button class="home-card" onclick="showSection('stunt-adjustments')"><h4>Stunt Adjustments</h4><p>What they are and how they affect OT calculations</p></button>
         <button class="home-card" onclick="showSection('meal-penalties')"><h4>Meal Penalties</h4><p>When you're owed one and how they're calculated</p></button>
-        <button class="home-card" onclick="showSection('workweek')"><h4>Workweek Rules</h4><p>Studio vs. overnight location workweeks &amp; location allowance</p></button>
-        <button class="home-card" onclick="showSection('travel')"><h4>Travel &amp; Location</h4><p>Per diem, flight class rules, travel time as work time</p></button>
+        <button class="home-card" onclick="showSection('rest-periods')"><h4>Rest Periods</h4><p>Daily &amp; weekly minimums and forced call penalties</p></button>
+        <button class="home-card" onclick="showSection('workweek')"><h4>Workweek Rules</h4><p>Studio vs. overnight location workweeks</p></button>
+        <button class="home-card" onclick="showSection('travel')"><h4>Travel &amp; Location</h4><p>Per diem, flight class rules, travel time</p></button>
+        <button class="home-card" onclick="showSection('fittings')"><h4>Fittings</h4><p>Wardrobe fitting pay rates and rules</p></button>
         <button class="home-card" onclick="showSection('late-payments')"><h4>Late Payments</h4><p>Penalties owed when production pays late</p></button>
-        <button class="home-card" onclick="showSection('email-templates')"><h4>Email Templates</h4><p>Copy-paste templates to dispute missing pay</p></button>
-      </div>
-      <hr class="divider">
-      <div class="alert alert-info">
-        <span class="alert-icon"></span>
-        <div>Use the <strong>search bar above</strong> to find any topic quickly, or browse sections using the left navigation.</div>
+        <button class="home-card" onclick="showSection('stunt-driving')"><h4>Stunt Driving</h4><p>Check if driving qualifies as a stunt</p></button>
       </div>
     </div>
 
@@ -988,6 +1002,42 @@ Thank you,
       </div>
     </div>
 
+    <!-- SAG ON RECORD -->
+    <div id="sag-on-record" class="section">
+      <div class="section-header"><h1>SAG On Record</h1><p>Direct statements from SAG-AFTRA representatives, cited from official emails and correspondence.</p></div>
+      <div class="alert alert-info">
+        <span class="alert-icon"></span>
+        <div>This section documents specific guidance received from SAG-AFTRA reps. Each entry includes the source and context. Have something to add? Contact us.</div>
+      </div>
+      <p style="color:var(--text-dim);font-size:0.95rem;margin-top:1rem;">Stories and citations coming soon. If you have official SAG correspondence that clarifies a rule, we'd like to include it here.</p>
+    </div>
+
+    <!-- IMPORTANT LINKS -->
+    <div id="important-links" class="section">
+      <div class="section-header"><h1>Important Links</h1><p>Key resources for filing claims, understanding your paperwork, and contacting SAG-AFTRA.</p></div>
+      <div class="card">
+        <div class="card-title">File a Claim with SAG-AFTRA</div>
+        <p>If production owes you money and won't pay, you can file a formal claim through SAG-AFTRA. Start by contacting your local office or business rep.</p>
+        <a href="https://www.sagaftra.org/membership-benefits/claim-filing" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">sagaftra.org/membership-benefits/claim-filing</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Exhibit G Explained (StudioBinder)</div>
+        <p>A clear breakdown of the SAG-AFTRA Exhibit G timecard — what each field means and how to read it.</p>
+        <a href="https://www.studiobinder.com/blog/exhibit-g-sag/" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">studiobinder.com/blog/exhibit-g-sag</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Call SAG-AFTRA</div>
+        <p>Reach SAG-AFTRA's main line for general inquiries, claim status, or to be connected with a business rep.</p>
+        <p style="margin-top:0.5rem;"><strong>Los Angeles:</strong> <a href="tel:+13239543300" style="color:var(--blue);">(323) 954-1600</a></p>
+        <p><strong>New York:</strong> <a href="tel:+12129441030" style="color:var(--blue);">(212) 944-1030</a></p>
+      </div>
+      <div class="card">
+        <div class="card-title">Email SAG-AFTRA — Pat Peres</div>
+        <p>For stunt performer pay disputes and contract questions, Pat Peres is a key contact at SAG-AFTRA.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:pat.peres@sagaftra.org" style="color:var(--blue);">pat.peres@sagaftra.org</a></p>
+      </div>
+    </div>
+
     <!-- FAQ -->
     <div id="faq" class="section">
       <div class="section-header"><h1>Frequently Asked Questions</h1><p>Common questions with sourced answers from the SAG-AFTRA CBA and official guidance.</p></div>
@@ -1286,6 +1336,8 @@ const searchData = [
   { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
   { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
   { section: 'forced-call', title: 'Is It a Forced Call?', body: 'Forced call rest period 12 hours 11 hours 10 hours overnight location studio zone TV theatrical penalty turnaround', sectionName: 'Forced Call Check' },
+  { section: 'sag-on-record', title: 'SAG On Record', body: 'SAG official guidance email correspondence business rep on record statement', sectionName: 'SAG On Record' },
+  { section: 'important-links', title: 'Important Links', body: 'File claim SAG-AFTRA Exhibit G StudioBinder Pat Peres email phone call contact grievance', sectionName: 'Important Links' },
   { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
   { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Stunt Driving Check' },
 ];
