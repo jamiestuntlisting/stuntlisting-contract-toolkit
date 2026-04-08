@@ -944,23 +944,30 @@ Thank you,
         <a href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.75rem;display:inline-block;">→ Source: 2024 Jeffords Rules — SAG-AFTRA Fittings &amp; Rehearsals</a>
       </div>
       <div class="card">
-        <div class="card-title">Fitting Rate Calculator (Current Scale)</div>
-        <p>Based on the current day rate of <strong>$1,246</strong> (07/01/25–06/30/26):</p>
-        <div class="table-wrap" style="margin-top:0.75rem;margin-bottom:0;">
-          <table>
-            <thead><tr><th>Fitting Duration</th><th>Pay Owed</th></tr></thead>
-            <tbody>
-              <tr><td>1 hour (minimum)</td><td class="rate-val">$155.75</td></tr>
-              <tr><td>1 hr 15 min</td><td class="rate-val">$194.69</td></tr>
-              <tr><td>1 hr 30 min</td><td class="rate-val">$233.63</td></tr>
-              <tr><td>1 hr 45 min</td><td class="rate-val">$272.56</td></tr>
-              <tr><td>2 hours</td><td class="rate-val">$311.50</td></tr>
-              <tr><td>3 hours</td><td class="rate-val">$467.25</td></tr>
-              <tr><td>4 hours</td><td class="rate-val">$623.00</td></tr>
-            </tbody>
-          </table>
+        <div class="card-title">Fitting Pay Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Day Rate ($)</label>
+            <input type="number" id="fit-rate" value="1246" oninput="calcFitting()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Fitting Duration</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <select id="fit-hrs" onchange="calcFitting()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+                <option value="1">1 hr</option><option value="2">2 hrs</option><option value="3">3 hrs</option><option value="4">4 hrs</option><option value="5">5 hrs</option><option value="6">6 hrs</option><option value="7">7 hrs</option><option value="8">8 hrs</option>
+              </select>
+              <select id="fit-min" onchange="calcFitting()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+                <option value="0">0 min</option><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <p style="margin-top:0.75rem;font-size:0.88rem;color:var(--text-dim);">Hourly rate = $1,246 / 8 = <strong>$155.75/hr</strong>. Each additional 15-min increment = <strong>$38.94</strong>.</p>
+        <div id="fit-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Fitting Pay Owed</div>
+          <div id="fit-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$155.75</div>
+          <div id="fit-breakdown" style="font-size:0.85rem;color:var(--text-dim);margin-top:0.25rem;">$1,246 / 8 = $155.75/hr — 1 hr minimum</div>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-dim);">Fitting pay is calculated in 15-minute increments after the first hour. If your day rate is $1,500+ you are not entitled to fitting pay on a day prior to work.</p>
       </div>
     </div>
 
@@ -1313,6 +1320,21 @@ function showRateCycle(cycle) {
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
 
+// ── FITTING CALCULATOR ──
+function calcFitting() {
+  const dayRate = parseFloat(document.getElementById('fit-rate').value) || 0;
+  const hrs = parseInt(document.getElementById('fit-hrs').value) || 1;
+  const min = parseInt(document.getElementById('fit-min').value) || 0;
+  const hourly = dayRate / 8;
+  const quarter = hourly / 4;
+  const totalQuarters = Math.max(4, hrs * 4 + min / 15); // minimum 1 hour = 4 quarters
+  const total = totalQuarters * quarter;
+  const durText = hrs + ' hr' + (min > 0 ? ' ' + min + ' min' : '');
+  document.getElementById('fit-total').textContent = '$' + total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('fit-breakdown').textContent = '$' + dayRate.toFixed(0) + ' / 8 = $' + hourly.toFixed(2) + '/hr — ' + durText + (totalQuarters === 4 ? ' (minimum)' : '');
+}
+document.addEventListener('DOMContentLoaded', calcFitting);
+
 // ── RATE FINDER ──
 const rateData = {
   theatrical: {
@@ -1411,9 +1433,19 @@ function showSection(id) {
   });
   document.getElementById('search-results').classList.remove('active');
   document.getElementById('search').value = '';
+  history.replaceState(null, '', '#' + id);
   closeNav();
   window.scrollTo(0, 0);
 }
+// Load section from URL hash on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) showSection(hash);
+});
+window.addEventListener('hashchange', function() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) showSection(hash);
+});
 
 // ── ACCORDION ──
 function toggleAccordion(btn) {
