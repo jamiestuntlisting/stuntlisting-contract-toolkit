@@ -266,6 +266,7 @@
     <button class="nav-btn" onclick="showSection('rates')"><span class="nav-dot"></span>Rates</button>
     <button class="nav-btn" onclick="showSection('overtime')"><span class="nav-dot"></span>Overtime Rules</button>
     <button class="nav-btn" onclick="showSection('meal-penalties')"><span class="nav-dot"></span>Meal Penalties</button>
+    <button class="nav-btn" onclick="showSection('rest-periods')"><span class="nav-dot"></span>Rest Periods</button>
     <button class="nav-btn" onclick="showSection('workweek')"><span class="nav-dot"></span>Workweek Rules</button>
     <div class="nav-section-label">Additional Pay</div>
     <button class="nav-btn" onclick="showSection('travel')"><span class="nav-dot"></span>Travel &amp; Location Expenses</button>
@@ -675,29 +676,38 @@ Thank you,
           <li><strong>Travel time question</strong> — since travel time counts as work time, if travel pushes you past 6 hours without a meal, a penalty may be owed (check with SAG-AFTRA)</li>
         </ul>
       </div>
-      <div class="accordion">
-        <button class="accordion-header" onclick="toggleAccordion(this)"><span>Rest Periods, Forced Calls &amp; Turnarounds</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="accordion-body">
-          <p><strong>SAG-AFTRA Daily Rest Periods:</strong></p>
-          <ul>
-            <li><strong>Studio Zone (Theatrical &amp; TV):</strong> 12 hours</li>
-            <li><strong>Location Outside Studio Zone (not overnight):</strong> May reduce to 10 hours for exterior photography days — once every fourth consecutive day</li>
-            <li><strong>Overnight Location (Theatrical):</strong> May reduce to 11 hours on up to two non-consecutive days per workweek</li>
-            <li><strong>Overnight Location (Television): NO reduction</strong> — full 12 hours required at all times</li>
-          </ul>
-          <p style="margin-top:0.75rem;"><strong>Weekly Rest Periods:</strong></p>
-          <ul>
-            <li>Standard: <strong>56 hours</strong> once per week</li>
-            <li>May reduce to <strong>54 hours</strong> if first call of new workweek is no earlier than 6 AM</li>
-            <li><strong>36 hours</strong> allowable on a six-day location workweek</li>
-          </ul>
-          <p style="margin-top:0.75rem;"><strong>Forced Call Penalties:</strong></p>
-          <ul>
-            <li><strong>Day Performers:</strong> Daily rate or <strong>$900</strong>, whichever is less — per violation</li>
-            <li><strong>3-Day and Weekly Performers:</strong> One day's pay or <strong>$950</strong>, whichever is less — per violation</li>
-          </ul>
-          <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Rest Periods &amp; Forced Calls (Theatrical &amp; Television)</span>
-        </div>
+    </div>
+
+    <!-- REST PERIODS -->
+    <div id="rest-periods" class="section">
+      <div class="section-header"><h1>Rest Periods, Forced Calls &amp; Turnarounds</h1><p>Minimum rest between shooting days. Violations trigger forced call penalties.</p></div>
+      <div class="card">
+        <div class="card-title">Daily Rest Periods</div>
+        <ul>
+          <li><strong>Studio Zone (Theatrical &amp; TV):</strong> 12 hours</li>
+          <li><strong>Location Outside Studio Zone (not overnight):</strong> May reduce to 10 hours for exterior photography days — once every fourth consecutive day</li>
+          <li><strong>Overnight Location (Theatrical):</strong> May reduce to 11 hours on up to two non-consecutive days per workweek</li>
+          <li><strong>Overnight Location (Television): NO reduction</strong> — full 12 hours required at all times</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Weekly Rest Periods</div>
+        <ul>
+          <li>Standard: <strong>56 hours</strong> once per week</li>
+          <li>May reduce to <strong>54 hours</strong> if first call of new workweek is no earlier than 6 AM</li>
+          <li><strong>36 hours</strong> allowable on a six-day location workweek</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Forced Call Penalties</div>
+        <ul>
+          <li><strong>Day Performers:</strong> Daily rate or <strong>$900</strong>, whichever is less — per violation</li>
+          <li><strong>3-Day and Weekly Performers:</strong> One day's pay or <strong>$950</strong>, whichever is less — per violation</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon"></span>
+        <div>Source: SAG-AFTRA Rest Periods &amp; Forced Calls (Theatrical &amp; Television)</div>
       </div>
     </div>
 
@@ -1165,7 +1175,7 @@ const searchData = [
   { section: 'overtime', title: 'Schedule H Stunt Players Schedule K Coordinators', body: 'Schedule H stunt players Schedule K stunt coordinators flat deal no overtime premium pay', sectionName: 'Overtime Rules' },
   { section: 'vocab', title: 'Stunt Adjustment', body: 'Stunt adjustment what is stunt adjustment gag extra pay negotiated OT base rate overtime calculation', sectionName: 'Glossary' },
   { section: 'meal-penalties', title: 'Meal Penalty Rules & Amounts', body: 'Meal penalty 6 hours meal break $25 $35 $50 accruing missed meal ND non-deductible', sectionName: 'Meal Penalties' },
-  { section: 'meal-penalties', title: 'Rest Periods & Forced Calls', body: 'Rest period 12 hours 11 hours 10 hours studio zone location overnight forced call $900 $950', sectionName: 'Meal Penalties' },
+  { section: 'rest-periods', title: 'Rest Periods & Forced Calls', body: 'Rest period 12 hours 11 hours 10 hours studio zone location overnight forced call $900 $950 turnaround', sectionName: 'Rest Periods' },
   { section: 'travel', title: 'Travel Time as Work Time', body: 'Travel time work time distant location compensable paid travel Exhibit G overnight', sectionName: 'Travel & Location Expenses' },
   { section: 'travel', title: 'Per Diem Amounts', body: 'Per diem $60 $70 $75 breakfast lunch dinner $12 $18 $30 daily location expenses meals SAG minimum', sectionName: 'Travel & Location Expenses' },
   { section: 'travel', title: 'Flight Class Rules', body: 'Flight class business class coach elevated economy plus baggage reimbursement 1000 miles Vancouver Toronto', sectionName: 'Travel & Location Expenses' },
