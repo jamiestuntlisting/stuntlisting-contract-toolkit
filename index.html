@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StuntListing.com — Contract Toolkit</title>
+<title>StuntListing Contract Toolkit for SAG-AFTRA</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -249,6 +249,10 @@
   main::-webkit-scrollbar-track { background: transparent; }
   main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
+  /* ── FACT CAROUSEL ── */
+  .fact-slide { display: none; }
+  .fact-slide.active { display: flex; }
+
   /* ── HAMBURGER ── */
   .hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px; flex-shrink: 0; }
   .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; }
@@ -302,7 +306,7 @@
   <div class="header-badge">
     <span class="header-badge-top">SAG-AFTRA</span>
     <div class="header-badge-line"></div>
-    <span class="header-badge-bottom">Contract<br>Toolkit</span>
+    <span class="header-badge-bottom">Contract Toolkit<br>for SAG-AFTRA</span>
   </div>
 </header>
 
@@ -424,22 +428,23 @@ Thank you,
         <p>Get real answers to SAG-AFTRA contract questions.</p>
       </div>
 
-      <div class="home-facts" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;">
-        <div class="alert alert-warn" style="margin-bottom:0;">
-          <span class="alert-icon"></span>
+      <div class="fact-carousel" style="position:relative;margin-bottom:1.5rem;">
+        <div class="fact-slide active alert alert-warn" style="margin-bottom:0;">
           <div><strong>6-month deadline.</strong> That's all the time you have to file a grievance from when the error occurred.</div>
         </div>
-        <div class="alert alert-info" style="margin-bottom:0;">
-          <span class="alert-icon"></span>
+        <div class="fact-slide alert alert-info" style="margin-bottom:0;">
           <div><strong>$10/day.</strong> That's the late payment penalty — up to $200 per missed payroll period.</div>
         </div>
-        <div class="alert alert-success" style="margin-bottom:0;">
-          <span class="alert-icon"></span>
+        <div class="fact-slide alert alert-success" style="margin-bottom:0;">
           <div><strong>$155.75/hr.</strong> Your minimum hourly rate at current scale ($1,246/day / 8).</div>
         </div>
-        <div class="alert alert-warn" style="margin-bottom:0;">
-          <span class="alert-icon"></span>
+        <div class="fact-slide alert alert-warn" style="margin-bottom:0;">
           <div><strong>4 extra hours.</strong> The location allowance owed on every overnight weekly contract — often missed.</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:0.75rem;">
+          <button onclick="cycleFactSlide(-1)" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--text-muted);cursor:pointer;font-size:1rem;">&larr;</button>
+          <span id="fact-counter" style="font-size:0.8rem;color:var(--text-dim);">1 / 4</span>
+          <button onclick="cycleFactSlide(1)" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--text-muted);cursor:pointer;font-size:1rem;">&rarr;</button>
         </div>
       </div>
 
@@ -550,9 +555,63 @@ Thank you,
         </table>
       </div>
       <div class="highlight"><p><strong>Note on contract type:</strong> Theatrical = films. Television = TV series, movies of the week, streaming. Legacy Exhibit A = dramatic series first produced under the old AFTRA Network Code (free TV, pay TV, or basic cable).</p></div>
-      <div class="alert alert-info" style="margin-top:1rem;">
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:2rem;">LOW BUDGET AGREEMENTS</h3>
+      <p style="font-size:0.88rem;color:var(--text-dim);margin-bottom:0.75rem;">Stunt coordinator rates do NOT scale down — they remain at full theatrical scale ($1,246/day, $4,646/week) across all low budget tiers. P&amp;H contribution is 21%.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agreement</th><th>Budget Cap</th><th>Day Rate</th><th>Weekly Rate</th></tr></thead>
+          <tbody>
+            <tr><td>Low Budget Theatrical</td><td>Under $2M</td><td class="rate-val">$810</td><td class="rate-val">$2,812</td></tr>
+            <tr><td>Moderate Low Budget (formerly Modified)</td><td>Under $700K</td><td class="rate-val">$436</td><td class="rate-val">$1,514</td></tr>
+            <tr><td>Ultra Low Budget</td><td>Under $300K</td><td class="rate-val">$249</td><td class="rate-tbd">Daily only</td></tr>
+            <tr><td>Short Project (under 40 min)</td><td>Under $50K</td><td class="rate-val">$249</td><td class="rate-tbd">Daily only</td></tr>
+            <tr><td>Student Film (under 35 min)</td><td>Under $35K</td><td class="rate-tbd">Negotiable</td><td class="rate-tbd">N/A</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:2rem;">COMMERCIALS</h3>
+      <p style="font-size:0.88rem;color:var(--text-dim);margin-bottom:0.75rem;">2025 Commercials Contract (effective 04/01/25). Commercials use session fees + residuals, not daily/weekly rates. P&amp;H is 20.5%.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Session Fee (8 hrs)</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>On-Camera Principal (National)</td><td class="rate-val">$822.30</td><td>Stunt performers paid at or above this minimum</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.5rem;">Wage increases: 5% (Year 1), 4% (Year 2), 3% (Year 3). The Low Budget Digital Waiver ($100K/day budget cap) excludes productions involving stunts or hazardous work.</p>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:2rem;">NEW MEDIA / INTERNET</h3>
+      <p style="font-size:0.88rem;color:var(--text-dim);margin-bottom:0.75rem;">For productions with initial exhibition on new media platforms. Rates mirror theatrical low budget tiers at corresponding budget levels.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Budget Tier</th><th>Day Rate</th><th>Weekly Rate</th></tr></thead>
+          <tbody>
+            <tr><td>Under $20K (Micro Budget)</td><td class="rate-tbd">Negotiable</td><td class="rate-tbd">N/A</td></tr>
+            <tr><td>Under $50K</td><td class="rate-val">$249</td><td class="rate-tbd">N/A</td></tr>
+            <tr><td>Under $300K</td><td class="rate-val">$249</td><td class="rate-tbd">N/A</td></tr>
+            <tr><td>$300K–$700K</td><td class="rate-val">$436</td><td class="rate-val">$1,514</td></tr>
+            <tr><td>$700K+</td><td class="rate-val">$1,246</td><td class="rate-val">$4,646</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:2rem;">SPECIAL CONTRACTS</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Production / Network</th><th>Day Rate</th><th>Weekly Rate</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Saturday Night Live (SNL)</td><td class="rate-tbd">—</td><td class="rate-tbd">—</td><td style="font-size:0.85rem;color:var(--text-dim);">Operates under Network Television Code side letter. Rates not publicly available; likely at or above standard TV scale.</td></tr>
+            <tr><td>Disney (Film &amp; TV)</td><td class="rate-tbd">—</td><td class="rate-tbd">—</td><td style="font-size:0.85rem;color:var(--text-dim);">Uses standard SAG-AFTRA Theatrical/TV agreements as AMPTP signatory. Any studio-specific side letters are confidential.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:1.5rem;">
         <span class="alert-icon"></span>
-        <div>Source: Official SAG-AFTRA Theatrical Wage Table and Television Agreement Wage Tables. Low Budget, Modified Low Budget, Ultra Low Budget, and Student Film agreements are separate schedules — verify directly with SAG-AFTRA or your contract.</div>
+        <div>Sources: SAG-AFTRA Theatrical Wage Tables, SAG-AFTRA Low Budget Agreements, 2025 Commercials Contract Rate Sheets. Rates shown are minimums — overscale negotiation is standard. Verify current rates with SAG-AFTRA or your contract.</div>
       </div>
     </div>
 
@@ -1190,6 +1249,16 @@ function showRateCycle(cycle) {
   if (activeBtn) activeBtn.classList.add('active');
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
+
+// ── FACT CAROUSEL ──
+let factIndex = 0;
+function cycleFactSlide(dir) {
+  const slides = document.querySelectorAll('.fact-slide');
+  slides[factIndex].classList.remove('active');
+  factIndex = (factIndex + dir + slides.length) % slides.length;
+  slides[factIndex].classList.add('active');
+  document.getElementById('fact-counter').textContent = (factIndex + 1) + ' / ' + slides.length;
+}
 
 // ── MOBILE NAV ──
 function toggleNav() {
