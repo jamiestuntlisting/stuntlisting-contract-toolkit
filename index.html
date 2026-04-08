@@ -208,26 +208,33 @@
   .vocab-source { font-size: 0.73rem; color: var(--text-dim); margin-top: 0.4rem; font-family: 'DM Mono', monospace; }
   /* ── STUNT DRIVING CHECK ── */
   .sd-question {
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+    padding: 0.6rem 1rem; border-bottom: 1px solid var(--border);
     cursor: pointer; transition: background 0.15s;
-    font-size: 1.02rem; color: var(--text-muted); line-height: 1.5;
+    font-size: 0.92rem; color: var(--text-muted); line-height: 1.4;
   }
   .sd-question:first-child { border-top: 1px solid var(--border); }
   .sd-question:hover { background: var(--bg3); }
   .sd-question input { display: none; }
   .sd-toggle {
-    width: 48px; height: 28px; background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 14px; position: relative; flex-shrink: 0; transition: all 0.2s;
+    width: 36px; height: 20px; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; position: relative; flex-shrink: 0; transition: all 0.2s;
   }
   .sd-toggle::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 20px; height: 20px; background: var(--text-dim);
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; background: var(--text-dim);
     border-radius: 50%; transition: all 0.2s;
   }
   .sd-question input:checked + .sd-toggle { background: var(--accent); border-color: var(--accent); }
-  .sd-question input:checked + .sd-toggle::after { left: 23px; background: var(--bg); }
+  .sd-question input:checked + .sd-toggle::after { left: 18px; background: var(--bg); }
   .sd-question.active { color: var(--text); }
+
+  /* ── REAL TALK TAGS ── */
+  .rt-tag {
+    background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.25);
+    border-radius: 12px; padding: 2px 10px; font-size: 0.78rem; color: var(--accent);
+    font-weight: 500;
+  }
 
   /* ── FORCED CALL OPTIONS ── */
   .fc-option {
@@ -275,6 +282,8 @@
     <div class="nav-section-label">Tools</div>
     <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Stunt Driving Check</button>
     <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
+    <div class="nav-section-label">Community</div>
+    <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
     <div class="nav-section-label">Reference</div>
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
     <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
@@ -797,9 +806,9 @@ Thank you,
     <div id="stunt-driving" class="section">
       <div class="section-header"><h1>Is This Stunt Driving?</h1><p>Answer the questions below. If <strong>any</strong> answer is Yes, the driving qualifies as stunt driving under SAG-AFTRA rules.</p></div>
 
-      <div id="stunt-driving-result" style="text-align:center;padding:1.5rem 0 1rem;">
-        <div id="stunt-driving-answer" style="font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:0.04em;line-height:1;color:var(--text-dim);">No</div>
-        <div id="stunt-driving-sub" style="font-size:1rem;color:var(--text-dim);margin-top:0.25rem;">None of the conditions are met</div>
+      <div id="stunt-driving-result" style="text-align:center;padding:0.75rem 0 0.5rem;">
+        <div id="stunt-driving-answer" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:0.04em;line-height:1;color:var(--text-dim);">No</div>
+        <div id="stunt-driving-sub" style="font-size:0.88rem;color:var(--text-dim);margin-top:0.15rem;">None of the conditions are met</div>
       </div>
 
       <div id="stunt-driving-questions">
@@ -916,6 +925,25 @@ Thank you,
       <div class="alert alert-warn">
         <span class="alert-icon"></span>
         <div>The 6-month grievance window starts from when the error occurred — not when you discovered it. Track your pay dates carefully.</div>
+      </div>
+    </div>
+
+    <!-- REAL TALK -->
+    <div id="real-talk" class="section">
+      <div class="section-header"><h1>Real Talk</h1><p>First-person stories from stunt performers who learned the rules the hard way. Names included with permission.</p></div>
+
+      <div class="card" style="position:relative;">
+        <div class="card-title">The $100 Reuse Fee</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
+          <span class="rt-tag">reuse fee</span>
+          <span class="rt-tag">SAG business rep</span>
+          <span class="rt-tag">late-night TV</span>
+        </div>
+        <p>I once worked on a weekly late-night show where I performed an acrobatic stunt. Later, they reused an image of me from that performance in a recap segment — nothing elaborate, just a still shot of me mid-act. When I realized they hadn't sent any payment for that reuse, it didn't sit right with me. From my understanding, even using a single image like that should qualify for a reuse fee.</p>
+        <p style="margin-top:0.5rem;">So I reached out to SAG and spoke with a business rep, who then contacted the production on my behalf. Eventually, they came back with a payment of $100. Not a full day rate — just $100.</p>
+        <p style="margin-top:0.5rem;">Honestly, it didn't feel right. It wasn't just about the money, though that amount felt low — it was also the principle. They had reused my work without proper compensation, and the resolution didn't reflect that. On top of that, I couldn't shake the feeling that by filing the claim, I might have strained my relationship with that production.</p>
+        <p style="margin-top:0.5rem;">What made it worse was how it was handled. The business rep treated the $100 like it was a big win, but to me, it felt like the production got off easy for breaking a rule. In the end, the whole situation left a bad taste in my mouth. It felt like more trouble than it was worth — and like I hadn't really been backed up the way I should have been.</p>
+        <p style="margin-top:0.75rem;color:var(--accent);font-weight:600;">— James Northrup</p>
       </div>
     </div>
 
@@ -1206,6 +1234,7 @@ const searchData = [
   { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
   { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
   { section: 'forced-call', title: 'Is It a Forced Call?', body: 'Forced call rest period 12 hours 11 hours 10 hours overnight location studio zone TV theatrical penalty turnaround', sectionName: 'Forced Call Check' },
+  { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
   { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Stunt Driving Check' },
 ];
 
