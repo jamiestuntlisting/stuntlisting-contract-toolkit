@@ -275,8 +275,11 @@
     }
     nav.open { transform: translateX(0); }
 
-    main { padding: 1.25rem 1rem; max-width: 100%; }
+    main { padding: 1.25rem 1rem; max-width: 100%; overflow-x: hidden; }
+    .section { max-width: 100%; overflow-x: hidden; }
+    .card { max-width: 100%; overflow-x: hidden; }
     .section-header h1 { font-size: 2rem; }
+    .section-header p { font-size: 0.95rem; }
     .hero h2 { font-size: 2.2rem; }
     .home-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .home-facts { grid-template-columns: 1fr !important; }
@@ -284,6 +287,12 @@
     .two-col { grid-template-columns: 1fr; }
     .vocab-grid { grid-template-columns: 1fr; }
     .table-wrap { margin-left: -1rem; margin-right: -1rem; padding: 0 1rem; }
+    #rate-finder { grid-template-columns: 1fr !important; }
+    #rate-finder select { max-width: 100%; }
+    .tag-filter-row { flex-wrap: wrap; }
+    .alert { font-size: 0.92rem; }
+    .fc-option { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    .sd-question { font-size: 0.88rem; }
   }
   @media (max-width: 480px) {
     .home-grid { grid-template-columns: 1fr; }
