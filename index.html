@@ -262,7 +262,6 @@
   <nav>
     <div class="nav-section-label">Start Here</div>
     <button class="nav-btn active" onclick="showSection('home')"><span class="nav-dot"></span>Overview</button>
-    <button class="nav-btn" onclick="showSection('paystub-errors')"><span class="nav-dot"></span>Paystub Errors</button>
     <div class="nav-section-label">Pay &amp; Rates</div>
     <button class="nav-btn" onclick="showSection('rates')"><span class="nav-dot"></span>Scale Rates</button>
     <button class="nav-btn" onclick="showSection('overtime')"><span class="nav-dot"></span>Overtime Rules</button>
@@ -280,6 +279,8 @@
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
     <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
     <button class="nav-btn" onclick="showSection('email-templates')"><span class="nav-dot"></span>Email Templates</button>
+    <div class="nav-section-label">Admin</div>
+    <button class="nav-btn" onclick="showSection('paystub-errors')"><span class="nav-dot"></span>Paystub Errors</button>
   </nav>
 
   <main>
@@ -433,54 +434,54 @@ Thank you,
       </div>
       <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:1rem;">Select a cycle above to view rates for that period — useful if you're disputing pay from a prior year.</p>
 
-      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;">THEATRICAL AGREEMENT</h3>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;">THEATRICAL AGREEMENT</h3>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Role</th><th>Contract Type</th><th>Daily</th><th>Weekly</th><th>Notes</th></tr></thead>
+          <thead><tr><th>Role</th><th>Daily</th><th>Weekly</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr class="section-row"><td colspan="5">Day &amp; Weekly Performers — Theatrical</td></tr>
-            <tr><td>Performer</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td></td></tr>
-            <tr><td>Stunt Performer</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
-            <tr><td>Stunt Coordinator (less than flat deal)</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
-            <tr><td>Stunt Coordinator (Flat Deal)</td><td>Theatrical</td><td class="rate-cell" data-22-23="$1,682" data-23-24="$1,800" data-24-25="$1,872" data-25-26="$1,938">$1,938</td><td class="rate-cell" data-22-23="$6,636" data-23-24="$7,101" data-24-25="$7,385" data-25-26="$7,643">$7,643</td><td></td></tr>
-            <tr class="section-row"><td colspan="5">Stunt Performers — Term Contracts (Theatrical)</td></tr>
-            <tr><td>Stunt Performer (10–19 wks)</td><td>Theatrical Term</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
-            <tr><td>Stunt Performer (20+ wks)</td><td>Theatrical Term</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,683" data-23-24="$2,871" data-24-25="$2,986" data-25-26="$3,091">$3,091/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
+            <tr class="section-row"><td colspan="4">Day &amp; Weekly Performers</td></tr>
+            <tr><td>Performer</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td></td></tr>
+            <tr><td>Stunt Performer</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
+            <tr><td>Stunt Coordinator (less than flat deal)</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646</td><td></td></tr>
+            <tr><td>Stunt Coordinator (Flat Deal)</td><td class="rate-cell" data-22-23="$1,682" data-23-24="$1,800" data-24-25="$1,872" data-25-26="$1,938">$1,938</td><td class="rate-cell" data-22-23="$6,636" data-23-24="$7,101" data-24-25="$7,385" data-25-26="$7,643">$7,643</td><td></td></tr>
+            <tr class="section-row"><td colspan="4">Stunt Performers — Term Contracts</td></tr>
+            <tr><td>Stunt Performer (10–19 wks)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
+            <tr><td>Stunt Performer (20+ wks)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,683" data-23-24="$2,871" data-24-25="$2,986" data-25-26="$3,091">$3,091/wk</td><td style="font-size:0.78rem;color:var(--text-dim);">Per week guaranteed</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:1.5rem;">TELEVISION AGREEMENT</h3>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.75rem;margin-top:1.5rem;">TELEVISION AGREEMENT</h3>
       <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.75rem;">Applies to new series and TV programs commencing on or after 7/1/2014, and ongoing series under predecessor SAG TV Agreements.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Role</th><th>Contract Type</th><th>Daily</th><th>Weekly / Other</th><th>Notes</th></tr></thead>
+          <thead><tr><th>Role</th><th>Daily</th><th>Weekly / Other</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr class="section-row"><td colspan="5">Day &amp; Weekly Performers — Television</td></tr>
-            <tr><td>Performer</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326/wk</td><td></td></tr>
-            <tr><td>Stunt Performer</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
-            <tr><td>Stunt Coordinator (less than flat deal)</td><td>TV</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
-            <tr class="section-row"><td colspan="5">3-Day Performers — Television</td></tr>
-            <tr><td>Stunt Performer (½hr or 1hr show)</td><td>TV 3-Day</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,959" data-23-24="$3,166" data-24-25="$3,293" data-25-26="$3,408">$3,408</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
-            <tr><td>Stunt Performer (1½hr or 2hr show)</td><td>TV 3-Day</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
-            <tr class="section-row"><td colspan="5">Stunt Coordinator — Flat Deal (Television)</td></tr>
-            <tr><td>Flat Deal — Per Day</td><td>TV Flat Deal</td><td class="rate-cell" data-22-23="$1,339" data-23-24="$1,473" data-24-25="$1,569" data-25-26="$1,647">$1,647</td><td class="rate-tbd">—</td><td></td></tr>
-            <tr><td>Flat Deal — Per Week</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,146" data-23-24="$5,661" data-24-25="$6,029" data-25-26="$6,330">$6,330/wk</td><td></td></tr>
-            <tr><td>Flat Deal — 3 Day ½hr/1hr</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,629" data-23-24="$3,992" data-24-25="$4,251" data-25-26="$4,464">$4,464</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
-            <tr><td>Flat Deal — 3 Day 1½hr/2hr</td><td>TV Flat Deal</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,056" data-23-24="$4,462" data-24-25="$4,752" data-25-26="$4,990">$4,990</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
-            <tr class="section-row"><td colspan="5">Flat Deal Series Rates — Television</td></tr>
-            <tr><td>½ Hour — 13/13</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
-            <tr><td>½ Hour — Less than 13, more than 6</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,300" data-23-24="$4,601" data-24-25="$4,785" data-25-26="$4,952">$4,952</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
-            <tr><td>1 Hour — 13/13</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,520" data-23-24="$4,836" data-24-25="$5,029" data-25-26="$5,205">$5,205</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
-            <tr><td>1 Hour — Less than 13, more than 6</td><td>TV Series</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,042" data-23-24="$5,395" data-24-25="$5,611" data-25-26="$5,807">$5,807</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
-            <tr class="section-row"><td colspan="5">Multiple Program Weekly — Stunt Performer (TV)</td></tr>
-            <tr><td>½ Hour and 1 Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,444" data-23-24="$4,755" data-24-25="$4,945" data-25-26="$5,118">$5,118/wk</td><td></td></tr>
-            <tr><td>1½ Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,927" data-23-24="$5,272" data-24-25="$5,483" data-25-26="$5,675">$5,675/wk</td><td></td></tr>
-            <tr><td>2 Hour</td><td>TV Multiple Program</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,468" data-23-24="$5,851" data-24-25="$6,085" data-25-26="$6,298">$6,298/wk</td><td></td></tr>
-            <tr class="section-row"><td colspan="5">"Legacy Exhibit A" Series (former AFTRA Network Code)</td></tr>
-            <tr><td>Performer / Stuntperson (Day)</td><td>Legacy Exhibit A</td><td class="rate-cell" data-22-23="$1,120" data-23-24="$1,198" data-24-25="$1,246" data-25-26="$1,290">$1,290</td><td class="rate-tbd">—</td><td style="font-size:0.78rem;color:var(--text-dim);">Slightly higher than standard TV</td></tr>
-            <tr><td>Stunt Performer (Weekly)</td><td>Legacy Exhibit A</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,177" data-23-24="$4,469" data-24-25="$4,648" data-25-26="$4,811">$4,811/wk</td><td></td></tr>
-            <tr><td>Stunt Coordinator (Flat Deal, weekly)</td><td>Legacy Exhibit A</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,329" data-23-24="$5,862" data-24-25="$6,243" data-25-26="$6,555">$6,555/wk</td><td></td></tr>
+            <tr class="section-row"><td colspan="4">Day &amp; Weekly Performers</td></tr>
+            <tr><td>Performer</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326/wk</td><td></td></tr>
+            <tr><td>Stunt Performer</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
+            <tr><td>Stunt Coordinator (less than flat deal)</td><td class="rate-cell" data-22-23="$1,082" data-23-24="$1,158" data-24-25="$1,204" data-25-26="$1,246">$1,246</td><td class="rate-cell" data-22-23="$4,034" data-23-24="$4,316" data-24-25="$4,489" data-25-26="$4,646">$4,646/wk</td><td></td></tr>
+            <tr class="section-row"><td colspan="4">3-Day Performers</td></tr>
+            <tr><td>Stunt Performer (½hr or 1hr show)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$2,959" data-23-24="$3,166" data-24-25="$3,293" data-25-26="$3,408">$3,408</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr><td>Stunt Performer (1½hr or 2hr show)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,225" data-23-24="$3,451" data-24-25="$3,589" data-25-26="$3,715">$3,715</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr class="section-row"><td colspan="4">Stunt Coordinator — Flat Deal</td></tr>
+            <tr><td>Flat Deal — Per Day</td><td class="rate-cell" data-22-23="$1,339" data-23-24="$1,473" data-24-25="$1,569" data-25-26="$1,647">$1,647</td><td class="rate-tbd">—</td><td></td></tr>
+            <tr><td>Flat Deal — Per Week</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,146" data-23-24="$5,661" data-24-25="$6,029" data-25-26="$6,330">$6,330/wk</td><td></td></tr>
+            <tr><td>Flat Deal — 3 Day ½hr/1hr</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,629" data-23-24="$3,992" data-24-25="$4,251" data-25-26="$4,464">$4,464</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr><td>Flat Deal — 3 Day 1½hr/2hr</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,056" data-23-24="$4,462" data-24-25="$4,752" data-25-26="$4,990">$4,990</td><td style="font-size:0.78rem;color:var(--text-dim);">3-day rate</td></tr>
+            <tr class="section-row"><td colspan="4">Flat Deal Series Rates</td></tr>
+            <tr><td>½ Hour — 13/13</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$3,756" data-23-24="$4,019" data-24-25="$4,180" data-25-26="$4,326">$4,326</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>½ Hour — Less than 13, more than 6</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,300" data-23-24="$4,601" data-24-25="$4,785" data-25-26="$4,952">$4,952</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>1 Hour — 13/13</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,520" data-23-24="$4,836" data-24-25="$5,029" data-25-26="$5,205">$5,205</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr><td>1 Hour — Less than 13, more than 6</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,042" data-23-24="$5,395" data-24-25="$5,611" data-25-26="$5,807">$5,807</td><td style="font-size:0.78rem;color:var(--text-dim);">Per episode</td></tr>
+            <tr class="section-row"><td colspan="4">Multiple Program Weekly — Stunt Performer</td></tr>
+            <tr><td>½ Hour and 1 Hour</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,444" data-23-24="$4,755" data-24-25="$4,945" data-25-26="$5,118">$5,118/wk</td><td></td></tr>
+            <tr><td>1½ Hour</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,927" data-23-24="$5,272" data-24-25="$5,483" data-25-26="$5,675">$5,675/wk</td><td></td></tr>
+            <tr><td>2 Hour</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,468" data-23-24="$5,851" data-24-25="$6,085" data-25-26="$6,298">$6,298/wk</td><td></td></tr>
+            <tr class="section-row"><td colspan="4">"Legacy Exhibit A" Series (former AFTRA Network Code)</td></tr>
+            <tr><td>Performer / Stuntperson (Day)</td><td class="rate-cell" data-22-23="$1,120" data-23-24="$1,198" data-24-25="$1,246" data-25-26="$1,290">$1,290</td><td class="rate-tbd">—</td><td style="font-size:0.78rem;color:var(--text-dim);">Slightly higher than standard TV</td></tr>
+            <tr><td>Stunt Performer (Weekly)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$4,177" data-23-24="$4,469" data-24-25="$4,648" data-25-26="$4,811">$4,811/wk</td><td></td></tr>
+            <tr><td>Stunt Coordinator (Flat Deal, weekly)</td><td class="rate-tbd">—</td><td class="rate-cell" data-22-23="$5,329" data-23-24="$5,862" data-24-25="$6,243" data-25-26="$6,555">$6,555/wk</td><td></td></tr>
           </tbody>
         </table>
       </div>
