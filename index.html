@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StuntListing Contract Toolkit for SAG-AFTRA</title>
+<title>StuntListing Contract Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -26,14 +26,28 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
+  /* ── DISCLAIMER BAR ── */
+  .disclaimer-bar {
+    background: var(--bg3); border-bottom: 1px solid var(--border);
+    text-align: center; padding: 6px 1rem; font-size: 0.78rem;
+    color: var(--text-dim); line-height: 1.4;
+  }
+  .disclaimer-bar a { color: var(--accent); text-decoration: none; }
+  .disclaimer-bar a:hover { text-decoration: underline; }
+
   /* ── HEADER ── */
+  .header-subtitle {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+    letter-spacing: 0.08em; color: var(--accent); white-space: nowrap;
+    margin-left: -1rem;
+  }
   header {
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     position: sticky; top: 0; z-index: 100;
     display: flex; align-items: center; gap: 2rem;
-    height: 96px;
+    height: 64px;
   }
   .logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -70,13 +84,13 @@
   }
 
   /* ── LAYOUT ── */
-  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 96px); }
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 64px); }
 
   /* ── SIDEBAR ── */
   nav {
     background: var(--bg2); border-right: 1px solid var(--border);
-    padding: 1.5rem 0; position: sticky; top: 96px;
-    height: calc(100vh - 96px); overflow-y: auto;
+    padding: 1.5rem 0; position: sticky; top: 64px;
+    height: calc(100vh - 64px); overflow-y: auto;
   }
   nav::-webkit-scrollbar { width: 4px; }
   nav::-webkit-scrollbar-track { background: transparent; }
@@ -261,15 +275,16 @@
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     .hamburger { display: flex; align-items: center; }
-    header { padding: 0 1rem; gap: 0.75rem; height: 60px; }
-    .logo { font-size: 2.2rem; }
-    .header-badge { display: none; }
+    header { padding: 0 1rem; gap: 0.5rem; height: 56px; }
+    .logo { font-size: 2rem; }
+    .header-subtitle { display: none; }
+    .disclaimer-bar { font-size: 0.7rem; padding: 4px 0.5rem; }
     #search { font-size: 0.85rem; padding: 7px 10px 7px 34px; }
     .search-wrap svg { left: 10px; }
 
     .layout { grid-template-columns: 1fr; }
     nav {
-      position: fixed; top: 60px; left: 0; bottom: 0; width: 260px;
+      position: fixed; top: 56px; left: 0; bottom: 0; width: 260px;
       transform: translateX(-100%); transition: transform 0.25s ease;
       z-index: 200; height: auto;
     }
@@ -307,19 +322,16 @@
 </head>
 <body>
 
+<div class="disclaimer-bar">Not affiliated with SAG-AFTRA. Think something's off? <a href="mailto:info@stuntlisting.com">info@stuntlisting.com</a></div>
 <header>
   <button class="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
   <a href="#" class="logo" onclick="showSection('home')"><span style="color:#ffffff;">STUNT</span><span style="color:#e02020;">LISTING</span></a>
+  <span class="header-subtitle">Contract Guide</span>
   <div class="search-wrap">
     <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="text" id="search" placeholder="Search topics, rules, keywords…" oninput="handleSearch(this.value)">
-  </div>
-  <div class="header-badge">
-    <span class="header-badge-top">SAG-AFTRA</span>
-    <div class="header-badge-line"></div>
-    <span class="header-badge-bottom">Contract Toolkit<br>for SAG-AFTRA</span>
   </div>
 </header>
 
@@ -341,6 +353,7 @@
     <div class="nav-section-label">Tools</div>
     <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Is It Stunt Driving?</button>
     <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
+    <button class="nav-btn" onclick="showSection('studio-zones')"><span class="nav-dot"></span>Studio Zones</button>
     <div class="nav-section-label">Community</div>
     <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
     <button class="nav-btn" onclick="showSection('sag-on-record')"><span class="nav-dot"></span>SAG On Record</button>
@@ -439,6 +452,7 @@ Thank you,
       <div class="hero">
         <h2>GET PAID<br>EVERY <span>CENT.</span></h2>
         <p>Get real answers to SAG-AFTRA contract questions.</p>
+        <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-dim);line-height:1.6;">This guide was built due to the lack of organized, accessible contract information for working stunt performers. It has been sourced from SAG-AFTRA guidance and working stunt professionals. Is it perfectly accurate? Mostly — just like what you'd get from SAG. Our mission is to give you a reliable, easy-to-use resource.</p>
       </div>
 
       <div class="fact-carousel" style="position:relative;margin-bottom:1.5rem;">
@@ -1183,6 +1197,61 @@ Thank you,
       </div>
     </div>
 
+    <!-- STUDIO ZONES -->
+    <div id="studio-zones" class="section">
+      <div class="section-header"><h1>Studio Zones</h1><p>Check if your basecamp or shooting location falls within a studio zone. Studio zone determines travel pay, per diem, and overnight location rules.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Zone Map — New York (30-mile radius from Columbus Circle)</div>
+        <div style="display:grid;grid-template-columns:1fr;gap:0.75rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Basecamp / Location Address</label>
+            <div style="display:flex;gap:0.5rem;">
+              <input type="text" id="sz-address" placeholder="Enter address to check..." style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <button onclick="searchZoneAddress()" style="background:var(--accent);border:none;border-radius:8px;padding:8px 16px;color:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;white-space:nowrap;">Check</button>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem;">
+          <button class="sz-zone-btn fc-option active" data-lat="40.76806" data-lng="-73.98194" onclick="this.parentElement.querySelectorAll('.fc-option').forEach(b=>b.classList.remove('active'));this.classList.add('active');szMap&&szMap.setCenter({lat:40.76806,lng:-73.98194})&&szMap.setZoom(9);">New York</button>
+          <button class="sz-zone-btn fc-option" data-lat="34.07359" data-lng="-118.37079" onclick="this.parentElement.querySelectorAll('.fc-option').forEach(b=>b.classList.remove('active'));this.classList.add('active');szMap&&szMap.setCenter({lat:34.07359,lng:-118.37079})&&szMap.setZoom(9);">Los Angeles</button>
+          <button class="sz-zone-btn fc-option" data-lat="37.78429" data-lng="-122.40801" onclick="this.parentElement.querySelectorAll('.fc-option').forEach(b=>b.classList.remove('active'));this.classList.add('active');szMap&&szMap.setCenter({lat:37.78429,lng:-122.40801})&&szMap.setZoom(9);">San Francisco</button>
+        </div>
+        <div style="margin-top:0.5rem;border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+          <div id="sz-map" style="width:100%;height:400px;background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:0.9rem;">Loading map...</div>
+        </div>
+        <div id="sz-result" style="margin-top:0.75rem;padding:0.75rem;background:var(--bg3);border-radius:8px;text-align:center;display:none;">
+          <div id="sz-status" style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--accent);"></div>
+          <div id="sz-detail" style="font-size:0.88rem;color:var(--text-muted);margin-top:0.25rem;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">New York Studio Zone</div>
+        <p>Any location within a <strong>30-mile radius of Columbus Circle</strong>, other than Sandy Hook, New Jersey.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Eight Mile New York Zone</div>
+        <p>All territory within a <strong>radius of 8 miles from Columbus Circle</strong>.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Los Angeles Studio Zone</div>
+        <p>All territory within a <strong>30-mile radius from the intersection of Beverly Boulevard and La Cienega Boulevard</strong>, Los Angeles, California. Also includes Agua Dulce, Castaic (including Lake Castaic), Leo Carillo State Beach, Moorpark, Ontario International Airport, Piru and Pomona (including the Los Angeles County Fairgrounds) and such other territory (such as the present Columbia Ranch and Disney Ranch) as is generally recognized as being within the zone.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">LA Secondary Studio Zone</div>
+        <p>The area extending <strong>10 miles from the perimeter</strong> of the LA studio zone, including John Wayne Airport. Does not include areas within the primary LA studio zone. Waivers available for locations like Lake Hughes, Elizabeth Lake, and the Nikken Building in Irvine.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">San Francisco Studio Zone</div>
+        <p>All territory within a <strong>30-mile radius from the intersection of Market and Powell Streets</strong>.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Other Studio Zones</div>
+        <p>The Union and Producers may agree to recognize other studio zones on a similar basis. In default of agreement, the territory shall be determined by arbitration under Section 50.</p>
+      </div>
+    </div>
+
     <!-- LATE PAYMENTS -->
     <div id="late-payments" class="section">
       <div class="section-header"><h1>Late Payments</h1><p>Production is required to pay on time. If they're late, penalties accrue — and you may be owed one penalty per missed payroll period, not just a one-time amount.</p></div>
@@ -1532,6 +1601,88 @@ function showRateCycle(cycle) {
   if (activeBtn) activeBtn.classList.add('active');
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
+
+// ── STUDIO ZONE MAP ──
+let szMap, szCircleNY, szCircleNY8, szCircleLA, szCircleSF, szMarker;
+const zones = [
+  { name: 'NY Studio Zone (30mi)', lat: 40.76806, lng: -73.98194, radius: 48280, color: '#4a90e2' },
+  { name: 'NY 8-Mile Zone', lat: 40.76806, lng: -73.98194, radius: 12875, color: '#3dd68c' },
+  { name: 'LA Studio Zone (30mi)', lat: 34.07359, lng: -118.37079, radius: 48280, color: '#e05c2a' },
+  { name: 'SF Studio Zone (30mi)', lat: 37.78429, lng: -122.40801, radius: 48280, color: '#f0b429' },
+];
+function initSzMap() {
+  szMap = new google.maps.Map(document.getElementById('sz-map'), {
+    center: { lat: 40.76806, lng: -73.98194 },
+    zoom: 9,
+    styles: [
+      { elementType: 'geometry', stylers: [{ color: '#1a1e28' }] },
+      { elementType: 'labels.text.stroke', stylers: [{ color: '#1a1e28' }] },
+      { elementType: 'labels.text.fill', stylers: [{ color: '#7a849e' }] },
+      { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2a2f42' }] },
+      { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0d0f14' }] },
+    ],
+  });
+  zones.forEach(z => {
+    new google.maps.Circle({
+      map: szMap, center: { lat: z.lat, lng: z.lng },
+      radius: z.radius, fillColor: z.color, fillOpacity: 0.1,
+      strokeColor: z.color, strokeOpacity: 0.6, strokeWeight: 2,
+    });
+  });
+  // Zone select buttons
+  document.querySelectorAll('.sz-zone-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const lat = parseFloat(this.dataset.lat);
+      const lng = parseFloat(this.dataset.lng);
+      szMap.setCenter({ lat, lng });
+      szMap.setZoom(9);
+    });
+  });
+}
+function searchZoneAddress() {
+  const addr = document.getElementById('sz-address').value.trim();
+  if (!addr || !szMap) return;
+  const geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ address: addr }, function(results, status) {
+    if (status !== 'OK' || !results[0]) {
+      document.getElementById('sz-result').style.display = 'block';
+      document.getElementById('sz-status').textContent = 'Address not found';
+      document.getElementById('sz-status').style.color = 'var(--text-dim)';
+      document.getElementById('sz-detail').textContent = 'Try a more specific address.';
+      return;
+    }
+    const loc = results[0].geometry.location;
+    if (szMarker) szMarker.setMap(null);
+    szMarker = new google.maps.Marker({ map: szMap, position: loc });
+    szMap.setCenter(loc);
+    szMap.setZoom(11);
+    // Check distance to each zone center
+    let inZones = [];
+    zones.forEach(z => {
+      const d = google.maps.geometry.spherical.computeDistanceBetween(loc, new google.maps.LatLng(z.lat, z.lng));
+      if (d <= z.radius) inZones.push(z.name + ' (' + (d / 1609.34).toFixed(1) + ' mi from center)');
+    });
+    const resultEl = document.getElementById('sz-result');
+    resultEl.style.display = 'block';
+    if (inZones.length > 0) {
+      document.getElementById('sz-status').textContent = 'INSIDE STUDIO ZONE';
+      document.getElementById('sz-status').style.color = 'var(--green)';
+      document.getElementById('sz-detail').textContent = inZones.join(', ');
+    } else {
+      document.getElementById('sz-status').textContent = 'OUTSIDE ALL STUDIO ZONES';
+      document.getElementById('sz-status').style.color = 'var(--red)';
+      document.getElementById('sz-detail').textContent = 'This location is outside the standard studio zones. Overnight location rules, travel pay, and per diem may apply.';
+    }
+  });
+}
+// Load Google Maps
+(function() {
+  const s = document.createElement('script');
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&libraries=geometry&callback=initSzMap';
+  s.async = true;
+  s.defer = true;
+  document.head.appendChild(s);
+})();
 
 // ── MEAL PENALTY CALCULATOR ──
 function calcMealPenalty() {
@@ -1942,6 +2093,7 @@ const searchData = [
   { section: 'faq', title: 'FAQ — All Questions', body: 'FAQ frequently asked questions wardrobe fitting late payment rest period grievance reuse stunt rigger commercial money break forced call', sectionName: 'FAQ' },
   { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
   { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
+  { section: 'studio-zones', title: 'Studio Zones Map', body: 'Studio zone map NY New York LA Los Angeles San Francisco 30 mile radius Columbus Circle Beverly La Cienega basecamp address', sectionName: 'Studio Zones' },
   { section: 'forced-call', title: 'Is It a Forced Call?', body: 'Forced call rest period 12 hours 11 hours 10 hours overnight location studio zone TV theatrical penalty turnaround', sectionName: 'Forced Call Check' },
   { section: 'sag-on-record', title: 'SAG On Record — Dressing Rooms', body: 'Dressing room stunt coordinator studio location cast room TV Agreement', sectionName: 'SAG On Record' },
   { section: 'sag-on-record', title: 'SAG On Record — Cross-Boarding', body: 'Cross-boarding cross board episode pay stunt coordinator two episodes same day', sectionName: 'SAG On Record' },
