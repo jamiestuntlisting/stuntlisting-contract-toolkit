@@ -288,6 +288,7 @@
     .vocab-grid { grid-template-columns: 1fr; }
     .table-wrap { margin-left: -1rem; margin-right: -1rem; padding: 0 1rem; }
     #rate-finder { grid-template-columns: 1fr !important; }
+    #ot-calc { grid-template-columns: 1fr !important; }
     #rate-finder select { max-width: 100%; }
     .tag-filter-row { flex-wrap: wrap; }
     .alert { font-size: 0.92rem; }
@@ -675,6 +676,45 @@ Thank you,
     <!-- OVERTIME -->
     <div id="overtime" class="section">
       <div class="section-header"><h1>Overtime Rules</h1><p>Overtime is one of the most frequently underpaid items. How it's calculated depends on your contract type.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Overtime Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="ot-calc">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Contract Type</label>
+            <select id="ot-type" onchange="calcOT()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly (Schedule B)</option>
+              <option value="weeklyC">Weekly (Schedule C)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Day Rate ($)</label>
+            <input type="number" id="ot-rate" value="1246" oninput="calcOT()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Stunt Adjustment ($)</label>
+            <input type="number" id="ot-adj" value="0" oninput="calcOT()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Hours Worked</label>
+            <input type="number" id="ot-hours" value="8" step="0.5" min="1" max="24" oninput="calcOT()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+        </div>
+        <div id="ot-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);">Total Day Pay</div>
+              <div id="ot-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$1,246.00</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);">Hourly Rate</div>
+              <div id="ot-hourly" style="font-family:'DM Mono',monospace;font-size:1.2rem;color:var(--text);font-weight:500;">$155.75</div>
+            </div>
+          </div>
+          <div id="ot-breakdown" style="margin-top:0.75rem;font-size:0.88rem;color:var(--text-muted);line-height:1.7;"></div>
+        </div>
+      </div>
 
       <div class="accordion">
         <button class="accordion-header" onclick="toggleAccordion(this)"><span>Daily Contract — How Overtime Works</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -1407,6 +1447,62 @@ function showRateCycle(cycle) {
   if (activeBtn) activeBtn.classList.add('active');
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
+
+// ── OVERTIME CALCULATOR ──
+function calcOT() {
+  const type = document.getElementById('ot-type').value;
+  const dayRate = parseFloat(document.getElementById('ot-rate').value) || 0;
+  const adj = parseFloat(document.getElementById('ot-adj').value) || 0;
+  const hours = parseFloat(document.getElementById('ot-hours').value) || 0;
+  const base = dayRate + adj;
+  const hourly = base / 8;
+  let total = 0;
+  let lines = [];
+  if (type === 'daily') {
+    const st = Math.min(hours, 8);
+    const ot15 = Math.min(Math.max(hours - 8, 0), 2);
+    const ot20 = Math.max(hours - 10, 0);
+    const stPay = base;
+    const ot15Pay = ot15 * hourly * 1.5;
+    const ot20Pay = ot20 * hourly * 2.0;
+    total = stPay + ot15Pay + ot20Pay;
+    lines.push(st + ' hrs straight time: $' + stPay.toFixed(2));
+    if (ot15 > 0) lines.push(ot15 + ' hrs at 1.5x ($' + (hourly*1.5).toFixed(2) + '/hr): $' + ot15Pay.toFixed(2));
+    if (ot20 > 0) lines.push(ot20 + ' hrs at 2.0x ($' + (hourly*2).toFixed(2) + '/hr): $' + ot20Pay.toFixed(2));
+  } else if (type === 'weekly') {
+    // Schedule B: daily OT 2x after 10hrs; we show single day
+    const st = Math.min(hours, 8);
+    const stPay = base;
+    const ot20hrs = Math.max(hours - 10, 0);
+    const midHrs = Math.min(Math.max(hours - 8, 0), 2);
+    const midPay = midHrs * hourly; // hours 9-10 at straight time for weekly
+    const ot20Pay = ot20hrs * hourly * 2.0;
+    total = stPay + midPay + ot20Pay;
+    lines.push(st + ' hrs straight time: $' + stPay.toFixed(2));
+    if (midHrs > 0) lines.push(midHrs + ' hrs (9-10) at straight time: $' + midPay.toFixed(2));
+    if (ot20hrs > 0) lines.push(ot20hrs + ' hrs at 2.0x ($' + (hourly*2).toFixed(2) + '/hr): $' + ot20Pay.toFixed(2));
+    lines.push('Note: Weekly OT also kicks in beyond 44 hrs/week (studio) or 48 hrs/week (location)');
+  } else {
+    // Schedule C: daily OT 2x after 10hrs on max basis of $5,500
+    const cappedBase = Math.min(base, 5500/5*1); // use actual rate
+    const st = Math.min(hours, 10);
+    const stPay = base; // full day guarantee
+    const ot20hrs = Math.max(hours - 10, 0);
+    const otHourly = Math.min(hourly, 5500/8/5);
+    const ot20Pay = ot20hrs * hourly * 2.0;
+    total = stPay + ot20Pay;
+    lines.push(st + ' hrs straight time: $' + stPay.toFixed(2));
+    if (ot20hrs > 0) lines.push(ot20hrs + ' hrs at 2.0x ($' + (hourly*2).toFixed(2) + '/hr): $' + ot20Pay.toFixed(2));
+    lines.push('Note: Schedule C daily OT is 2x after 10 hrs on a maximum basis of $5,500');
+  }
+  document.getElementById('ot-total').textContent = '$' + total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('ot-hourly').textContent = '$' + hourly.toFixed(2) + '/hr';
+  document.getElementById('ot-breakdown').innerHTML = lines.map(l => '<div>' + l + '</div>').join('');
+  if (adj > 0) {
+    document.getElementById('ot-breakdown').innerHTML += '<div style="margin-top:0.4rem;color:var(--accent);font-weight:500;">Base includes $' + adj.toFixed(0) + ' stunt adjustment: $' + dayRate.toFixed(0) + ' + $' + adj.toFixed(0) + ' = $' + base.toFixed(0) + '</div>';
+  }
+}
+document.addEventListener('DOMContentLoaded', calcOT);
 
 // ── FITTING CALCULATOR ──
 function calcFitting() {
