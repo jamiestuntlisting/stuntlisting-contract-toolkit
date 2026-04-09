@@ -289,6 +289,9 @@
     .table-wrap { margin-left: -1rem; margin-right: -1rem; padding: 0 1rem; }
     #rate-finder { grid-template-columns: 1fr !important; }
     #ot-calc { grid-template-columns: 1fr !important; }
+    #mp-calc { grid-template-columns: 1fr !important; }
+    #rp-calc { grid-template-columns: 1fr !important; }
+    #lp-calc { grid-template-columns: 1fr !important; }
     #rate-finder select { max-width: 100%; }
     .tag-filter-row { flex-wrap: wrap; }
     .alert { font-size: 0.92rem; }
@@ -336,7 +339,7 @@
     <button class="nav-btn" onclick="showSection('fittings')"><span class="nav-dot"></span>Fittings</button>
     <button class="nav-btn" onclick="showSection('late-payments')"><span class="nav-dot"></span>Late Payments</button>
     <div class="nav-section-label">Tools</div>
-    <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Stunt Driving Check</button>
+    <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Is It Stunt Driving?</button>
     <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
     <div class="nav-section-label">Community</div>
     <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
@@ -823,6 +826,18 @@ Thank you,
     <!-- WORKWEEK -->
     <div id="workweek" class="section">
       <div class="section-header"><h1>Workweek Rules</h1><p>The SAG-AFTRA workweek structure determines your 6th and 7th day premiums and triggers the location allowance on overnight locations.</p></div>
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Quick Reference</div>
+        <div class="table-wrap" style="margin-bottom:0;">
+          <table>
+            <thead><tr><th>Workweek Type</th><th>Work Days</th><th>6th Day</th><th>7th Day</th><th>Location Allowance</th></tr></thead>
+            <tbody>
+              <tr><td>Studio</td><td>Any 5 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-tbd">—</td></tr>
+              <tr><td>Overnight Location (Weekly)</td><td>Any 6 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-val">+4 hrs straight time</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="card">
         <div class="card-title">Studio Workweek</div>
         <p>The studio workweek consists of <strong>any 5 days out of 7 consecutive days</strong>, with the 6th and 7th days as regular days off. The Producer designates which days are work days.</p>
@@ -853,23 +868,45 @@ Thank you,
         </div>
         <span style="font-size:0.78rem;color:var(--text-dim);">Source: SAG-AFTRA Workweek</span>
       </div>
-      <div class="card">
-        <div class="card-title">Quick Reference</div>
-        <div class="table-wrap" style="margin-bottom:0;">
-          <table>
-            <thead><tr><th>Workweek Type</th><th>Work Days</th><th>6th Day</th><th>7th Day</th><th>Location Allowance</th></tr></thead>
-            <tbody>
-              <tr><td>Studio</td><td>Any 5 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-tbd">—</td></tr>
-              <tr><td>Overnight Location (Weekly)</td><td>Any 6 of 7</td><td class="rate-val">1.5x</td><td class="rate-val">2x</td><td class="rate-val">+4 hrs straight time</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
 
     <!-- MEAL PENALTIES -->
     <div id="meal-penalties" class="section">
       <div class="section-header"><h1>Meal Penalties</h1><p>SAG-AFTRA rules require that you receive a meal break within 6 hours. If that window is missed, you're owed a meal penalty.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Meal Penalty Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="mp-calc">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Start of Work (or last meal)</label>
+            <input type="time" id="mp-start" value="07:00" onchange="calcMealPenalty()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Meal break given at</label>
+            <input type="time" id="mp-meal" value="13:30" onchange="calcMealPenalty()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Was an ND meal served?</label>
+            <select id="mp-nd" onchange="calcMealPenalty()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="no">No</option>
+              <option value="yes">Yes (does NOT reset the 6-hr clock)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Use 12-min grace period?</label>
+            <select id="mp-grace" onchange="calcMealPenalty()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="no">No</option>
+              <option value="yes">Yes (unplanned only)</option>
+            </select>
+          </div>
+        </div>
+        <div id="mp-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Meal Penalty Owed</div>
+          <div id="mp-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$0.00</div>
+          <div id="mp-detail" style="font-size:0.88rem;color:var(--text-muted);margin-top:0.25rem;line-height:1.6;"></div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-title">The Basic Rule</div>
         <p>You must receive a meal break no later than <strong>6 hours after your call time</strong> (or after your previous meal break). If production goes past that point, a meal penalty begins accruing.</p>
@@ -900,23 +937,55 @@ Thank you,
 
     <!-- REST PERIODS -->
     <div id="rest-periods" class="section">
-      <div class="section-header"><h1>Rest Periods, Forced Calls &amp; Turnarounds</h1><p>Minimum rest between shooting days. Violations trigger forced call penalties.</p></div>
-      <div class="card">
-        <div class="card-title">Daily Rest Periods</div>
-        <ul>
-          <li><strong>Studio Zone (Theatrical &amp; TV):</strong> 12 hours</li>
-          <li><strong>Location Outside Studio Zone (not overnight):</strong> May reduce to 10 hours for exterior photography days — once every fourth consecutive day</li>
-          <li><strong>Overnight Location (Theatrical):</strong> May reduce to 11 hours on up to two non-consecutive days per workweek</li>
-          <li><strong>Overnight Location (Television): NO reduction</strong> — full 12 hours required at all times</li>
-        </ul>
+      <div class="section-header"><h1>Rest Periods &amp; Forced Calls</h1><p>Minimum rest between shooting days. Violations trigger forced call penalties.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">What's My Rest Period?</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="rp-calc">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Dismissed at</label>
+            <input type="time" id="rp-dismiss" value="21:00" onchange="calcRestPeriod()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Next call at</label>
+            <input type="time" id="rp-call" value="07:00" onchange="calcRestPeriod()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Location Type</label>
+            <select id="rp-loc" onchange="calcRestPeriod()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="studio">Studio Zone</option>
+              <option value="outside">Outside Studio Zone (not overnight)</option>
+              <option value="overnight-tv">Overnight Location — TV</option>
+              <option value="overnight-th">Overnight Location — Theatrical</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Contract Type</label>
+            <select id="rp-contract" onchange="calcRestPeriod()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="day">Day Performer</option>
+              <option value="weekly">3-Day / Weekly Performer</option>
+            </select>
+          </div>
+        </div>
+        <div id="rp-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div id="rp-status" style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;line-height:1;color:var(--green);">OK</div>
+          <div id="rp-detail" style="font-size:0.92rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.6;"></div>
+        </div>
       </div>
+
       <div class="card">
-        <div class="card-title">Weekly Rest Periods</div>
-        <ul>
-          <li>Standard: <strong>56 hours</strong> once per week</li>
-          <li>May reduce to <strong>54 hours</strong> if first call of new workweek is no earlier than 6 AM</li>
-          <li><strong>36 hours</strong> allowable on a six-day location workweek</li>
-        </ul>
+        <div class="card-title">Quick Reference</div>
+        <div class="table-wrap" style="margin-bottom:0;">
+          <table>
+            <thead><tr><th>Location</th><th>Rest Period</th><th>Reduction Allowed?</th></tr></thead>
+            <tbody>
+              <tr><td>Studio Zone</td><td class="rate-val">12 hours</td><td>No</td></tr>
+              <tr><td>Outside Studio Zone (not overnight)</td><td class="rate-val">12 hours</td><td>To 10 hrs — once every 4th day, exterior only</td></tr>
+              <tr><td>Overnight Location — Theatrical</td><td class="rate-val">12 hours</td><td>To 11 hrs — 2 non-consecutive days/week</td></tr>
+              <tr><td>Overnight Location — TV</td><td class="rate-val">12 hours</td><td>No reduction allowed</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="card">
         <div class="card-title">Forced Call Penalties</div>
@@ -924,10 +993,6 @@ Thank you,
           <li><strong>Day Performers:</strong> Daily rate or <strong>$900</strong>, whichever is less — per violation</li>
           <li><strong>3-Day and Weekly Performers:</strong> One day's pay or <strong>$950</strong>, whichever is less — per violation</li>
         </ul>
-      </div>
-      <div class="alert alert-info">
-        <span class="alert-icon"></span>
-        <div>Source: SAG-AFTRA Rest Periods &amp; Forced Calls (Theatrical &amp; Television)</div>
       </div>
     </div>
 
@@ -1121,6 +1186,26 @@ Thank you,
     <!-- LATE PAYMENTS -->
     <div id="late-payments" class="section">
       <div class="section-header"><h1>Late Payments</h1><p>Production is required to pay on time. If they're late, penalties accrue — and you may be owed one penalty per missed payroll period, not just a one-time amount.</p></div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">Late Payment Penalty Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="lp-calc">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Date production agreed check is late</label>
+            <input type="date" id="lp-start" onchange="calcLatePay()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Date check was received (or today)</label>
+            <input type="date" id="lp-end" onchange="calcLatePay()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:0.95rem;">
+          </div>
+        </div>
+        <div id="lp-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Penalty Owed</div>
+          <div id="lp-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$0.00</div>
+          <div id="lp-detail" style="font-size:0.88rem;color:var(--text-muted);margin-top:0.25rem;line-height:1.6;"></div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-title">The Late Payment Penalty</div>
         <p>SAG-AFTRA's standard late payment penalty is <strong>$10 per day</strong> (excluding Saturdays, Sundays, and holidays) up to a maximum of <strong>$200</strong>. The penalty is calculated from the date production is informed that the check is late <strong>and</strong> they agree the check is late — not from the original due date. Additional penalties may accrue if a formal written claim is filed through SAG-AFTRA.</p>
@@ -1448,6 +1533,113 @@ function showRateCycle(cycle) {
 }
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
 
+// ── MEAL PENALTY CALCULATOR ──
+function calcMealPenalty() {
+  const start = document.getElementById('mp-start').value;
+  const meal = document.getElementById('mp-meal').value;
+  const grace = document.getElementById('mp-grace').value === 'yes';
+  if (!start || !meal) return;
+  const [sh,sm] = start.split(':').map(Number);
+  const [mh,mm] = meal.split(':').map(Number);
+  let startMin = sh * 60 + sm;
+  let mealMin = mh * 60 + mm;
+  if (mealMin <= startMin) mealMin += 1440; // next day
+  const elapsed = mealMin - startMin;
+  const threshold = 360 + (grace ? 12 : 0); // 6 hrs + optional 12 min grace
+  const overMin = elapsed - threshold;
+  let total = 0;
+  let detail = '';
+  const hrs = Math.floor(elapsed / 60);
+  const mins = elapsed % 60;
+  if (overMin <= 0) {
+    detail = hrs + 'h ' + mins + 'm elapsed — within the ' + (grace ? '6 hr 12 min (with grace)' : '6 hour') + ' window. No penalty.';
+  } else {
+    // Count half-hour increments
+    const halfHours = Math.ceil(overMin / 30);
+    let penalties = [];
+    for (let i = 0; i < halfHours; i++) {
+      if (i === 0) { total += 25; penalties.push('1st ½ hr: $25'); }
+      else if (i === 1) { total += 35; penalties.push('2nd ½ hr: $35'); }
+      else { total += 50; penalties.push(ordinal(i+1) + ' ½ hr: $50'); }
+    }
+    detail = hrs + 'h ' + mins + 'm elapsed — ' + overMin + ' min past the ' + (grace ? '6:12' : '6:00') + ' threshold.<br>' + penalties.join(' + ');
+  }
+  document.getElementById('mp-total').textContent = '$' + total.toFixed(2);
+  document.getElementById('mp-total').style.color = total > 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('mp-detail').innerHTML = detail;
+}
+function ordinal(n) { const s = ['th','st','nd','rd']; const v = n % 100; return n + (s[(v-20)%10]||s[v]||s[0]); }
+document.addEventListener('DOMContentLoaded', calcMealPenalty);
+
+// ── REST PERIOD CALCULATOR ──
+function calcRestPeriod() {
+  const dismiss = document.getElementById('rp-dismiss').value;
+  const call = document.getElementById('rp-call').value;
+  const loc = document.getElementById('rp-loc').value;
+  const contract = document.getElementById('rp-contract').value;
+  if (!dismiss || !call) return;
+  const [dh,dm] = dismiss.split(':').map(Number);
+  const [ch,cm] = call.split(':').map(Number);
+  let dismissMin = dh * 60 + dm;
+  let callMin = ch * 60 + cm;
+  if (callMin <= dismissMin) callMin += 1440;
+  const restHrs = (callMin - dismissMin) / 60;
+  let required = 12;
+  let note = '';
+  if (loc === 'studio') { required = 12; note = 'Studio zone: 12 hours required, no reduction.'; }
+  else if (loc === 'outside') { required = 10; note = 'Outside studio zone: may reduce to 10 hrs (exterior, once every 4th day). Standard is 12 hrs.'; }
+  else if (loc === 'overnight-th') { required = 11; note = 'Overnight theatrical: may reduce to 11 hrs (2 non-consecutive days/week). Standard is 12 hrs.'; }
+  else { required = 12; note = 'Overnight TV: NO reduction allowed. Full 12 hours required.'; }
+  const statusEl = document.getElementById('rp-status');
+  const detailEl = document.getElementById('rp-detail');
+  const penalty = contract === 'day' ? '$900' : '$950';
+  if (restHrs >= 12) {
+    statusEl.textContent = 'OK — ' + restHrs.toFixed(1) + ' hours rest';
+    statusEl.style.color = 'var(--green)';
+    detailEl.textContent = note;
+  } else if (restHrs >= required) {
+    statusEl.textContent = 'OK (reduced) — ' + restHrs.toFixed(1) + ' hours rest';
+    statusEl.style.color = 'var(--accent)';
+    detailEl.textContent = note;
+  } else {
+    statusEl.textContent = 'FORCED CALL — ' + restHrs.toFixed(1) + ' hours rest';
+    statusEl.style.color = 'var(--red)';
+    detailEl.innerHTML = 'Required: ' + required + ' hrs. Shortfall: ' + (required - restHrs).toFixed(1) + ' hrs.<br>Penalty: daily rate or ' + penalty + ', whichever is less.<br>' + note;
+  }
+}
+document.addEventListener('DOMContentLoaded', calcRestPeriod);
+
+// ── LATE PAYMENT CALCULATOR ──
+function calcLatePay() {
+  const startStr = document.getElementById('lp-start').value;
+  const endStr = document.getElementById('lp-end').value;
+  if (!startStr || !endStr) return;
+  const start = new Date(startStr + 'T00:00:00');
+  const end = new Date(endStr + 'T00:00:00');
+  if (end <= start) {
+    document.getElementById('lp-total').textContent = '$0.00';
+    document.getElementById('lp-detail').textContent = 'End date must be after start date.';
+    return;
+  }
+  let bizDays = 0;
+  const holidays = []; // could add federal holidays
+  let d = new Date(start);
+  d.setDate(d.getDate() + 1); // penalty starts the day after
+  while (d <= end) {
+    const day = d.getDay();
+    if (day !== 0 && day !== 6) bizDays++;
+    d.setDate(d.getDate() + 1);
+  }
+  const penalty = Math.min(bizDays * 10, 200);
+  document.getElementById('lp-total').textContent = '$' + penalty.toFixed(2);
+  document.getElementById('lp-total').style.color = penalty > 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('lp-detail').innerHTML = bizDays + ' business days (excl. Sat/Sun) x $10/day = $' + (bizDays * 10) + (bizDays * 10 > 200 ? ' → capped at <strong>$200</strong>' : '') + '<br>Note: Federal holidays should also be excluded — adjust manually if needed.';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('lp-end').value = today;
+});
+
 // ── OVERTIME CALCULATOR ──
 function calcOT() {
   const type = document.getElementById('ot-type').value;
@@ -1757,7 +1949,7 @@ const searchData = [
   { section: 'sag-on-record', title: 'SAG On Record — Promos vs Recaps', body: 'Promo preview recap reuse fee residuals trailer episode promote reuse payment', sectionName: 'SAG On Record' },
   { section: 'important-links', title: 'Important Links', body: 'File claim SAG-AFTRA Exhibit G StudioBinder Pat Peres email phone call contact grievance', sectionName: 'Important Links' },
   { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
-  { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Stunt Driving Check' },
+  { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Is It Stunt Driving?' },
 ];
 
 function handleSearch(val) {
