@@ -358,6 +358,7 @@
     <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
     <button class="nav-btn" onclick="showSection('sag-on-record')"><span class="nav-dot"></span>SAG On Record</button>
     <div class="nav-section-label">Reference</div>
+    <button class="nav-btn" onclick="showSection('exhibit-g')"><span class="nav-dot"></span>Exhibit G Explained</button>
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
     <button class="nav-btn" onclick="showSection('vocab')"><span class="nav-dot"></span>Glossary</button>
     <button class="nav-btn" onclick="showSection('important-links')"><span class="nav-dot"></span>Important Links</button>
@@ -1366,29 +1367,25 @@ Thank you,
       <div class="section-header"><h1>Important Links</h1><p>Key resources for filing claims, understanding your paperwork, and contacting SAG-AFTRA.</p></div>
       <div class="card">
         <div class="card-title">File a Claim with SAG-AFTRA</div>
-        <p>If production owes you money and won't pay, you can file a formal claim through SAG-AFTRA. Start by contacting your local office or business rep.</p>
-        <a href="https://www.sagaftra.org/contracts-industry-resources/filing-claim-inquiry" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">sagaftra.org/contracts-industry-resources/filing-claim-inquiry</a>
+        <p>If production owes you money and won't pay, you can file a formal claim through SAG-AFTRA.</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.6rem;">
+          <a href="https://www.sagaftra.org/sites/default/files/sa_documents/claim_inquiry_form_theatrical_television_new_media_principal_la_9_46.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;">L.A. Principal Performer Claim Inquiry Form (PDF)</a>
+          <a href="https://www.sagaftra.org/sites/default/files/sa_documents/claim_inquiry_form_theatrical_television_new_media_principal_ny_9_47.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;">N.Y. Principal Performer Claim Inquiry Form (PDF)</a>
+          <a href="https://claimsinquiry.sagaftra.org/create/performer/new" target="_blank" style="color:var(--blue);font-size:0.92rem;">Commercials Claim Inquiry (Online Portal)</a>
+          <a href="https://www.sagaftra.org/residual-inquiry-form" target="_blank" style="color:var(--blue);font-size:0.92rem;">Residuals Claim Inquiry</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Contact SAG-AFTRA</div>
+        <p style="margin-top:0.25rem;"><strong>Los Angeles:</strong> <a href="tel:+13239541600" style="color:var(--blue);">(323) 954-1600</a></p>
+        <p><strong>New York:</strong> <a href="tel:+12129441030" style="color:var(--blue);">(212) 944-1030</a></p>
+        <p style="margin-top:0.5rem;"><strong>Pat Perez</strong> — stunt performer pay disputes &amp; contract questions<br><a href="mailto:Pat.Perez@sagaftra.org" style="color:var(--blue);">Pat.Perez@sagaftra.org</a></p>
+        <p style="margin-top:0.5rem;"><strong>Stunts &amp; Safety Department</strong> — safety concerns &amp; unsafe working conditions<br><a href="mailto:sssd@sagaftra.org" style="color:var(--blue);">sssd@sagaftra.org</a></p>
       </div>
       <div class="card">
         <div class="card-title">Exhibit G Explained (StudioBinder)</div>
         <p>A clear breakdown of the SAG-AFTRA Exhibit G timecard — what each field means and how to read it.</p>
         <a href="https://www.studiobinder.com/blog/how-to-fill-out-a-sag-exhibit-g-form/" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">studiobinder.com/blog/how-to-fill-out-a-sag-exhibit-g-form</a>
-      </div>
-      <div class="card">
-        <div class="card-title">Call SAG-AFTRA</div>
-        <p>Reach SAG-AFTRA's main line for general inquiries, claim status, or to be connected with a business rep.</p>
-        <p style="margin-top:0.5rem;"><strong>Los Angeles:</strong> <a href="tel:+13239543300" style="color:var(--blue);">(323) 954-1600</a></p>
-        <p><strong>New York:</strong> <a href="tel:+12129441030" style="color:var(--blue);">(212) 944-1030</a></p>
-      </div>
-      <div class="card">
-        <div class="card-title">Email SAG-AFTRA — Pat Perez</div>
-        <p>For stunt performer pay disputes and contract questions, Pat Perez is a key contact at SAG-AFTRA.</p>
-        <p style="margin-top:0.5rem;"><a href="mailto:Pat.Perez@sagaftra.org" style="color:var(--blue);">Pat.Perez@sagaftra.org</a></p>
-      </div>
-      <div class="card">
-        <div class="card-title">SAG-AFTRA Stunts &amp; Safety Department</div>
-        <p>For safety concerns, stunt-related questions, and reporting unsafe working conditions on set.</p>
-        <p style="margin-top:0.5rem;"><a href="mailto:sssd@sagaftra.org" style="color:var(--blue);">sssd@sagaftra.org</a></p>
       </div>
       <div class="card">
         <div class="card-title">SAG-AFTRA Codified Basic Agreement (CBA)</div>
@@ -1404,6 +1401,98 @@ Thank you,
         <div class="card-title">2023–2026 Memorandum of Agreement (MOA)</div>
         <p>The modifications to the CBA and Television Agreement negotiated in the 2023 contract cycle.</p>
         <a href="https://www.sagaftra.org/sites/default/files/2023_Theatrical_Television_MOA.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">2023 Theatrical &amp; Television MOA (PDF)</a>
+      </div>
+    </div>
+
+    <!-- EXHIBIT G EXPLAINED -->
+    <div id="exhibit-g" class="section">
+      <div class="section-header"><h1>Exhibit G Explained</h1><p>Your SAG-AFTRA timecard, field by field. This is the document that records everything about your work day — and what your pay is based on.</p></div>
+
+      <div class="card">
+        <div class="card-title">Top of the Form — Production Info</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Picture Title</strong> — The title of the film or working title. It should match all other SAG paperwork for the show.</div>
+          <div><strong style="color:var(--accent);">Company</strong> — The production company.</div>
+          <div><strong style="color:var(--accent);">Shooting Location</strong> — Today's location.</div>
+          <div><strong style="color:var(--accent);">Production Number</strong> — Copy this from all of the other SAG paperwork from this production.</div>
+          <div><strong style="color:var(--accent);">Date</strong> — Today's date.</div>
+          <div><strong style="color:var(--accent);">Contact</strong> — The name of the person filling out the report.</div>
+          <div><strong style="color:var(--accent);">Phone Number</strong> — The number of the person filling out the report.</div>
+          <div><strong style="color:var(--accent);">Is Today a Day Off</strong> — Production designates 2 days off out of seven (sometimes one). Is this one of them?</div>
+          <div><strong style="color:var(--accent);">Production Type</strong> — What are you shooting. MP is motion picture (aka movie).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Grid — Cast &amp; Status (Left to Right)</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Cast</strong> — The actor's name.</div>
+          <div><strong style="color:var(--accent);">Minor?</strong> — Are they currently a minor child? Y for yes, N for no.</div>
+          <div><strong style="color:var(--accent);">Character</strong> — The name of the role being played by the actor whose name is under Cast.</div>
+          <div><strong style="color:var(--accent);">Status (the L-shaped dropdown)</strong> — What are they doing?
+            <div style="margin-top:0.4rem;padding-left:1rem;display:flex;flex-direction:column;gap:0.25rem;font-size:0.92rem;">
+              <div><strong>W</strong> — Work (acting)</div>
+              <div><strong>R</strong> — Rehearsal (no cameras)</div>
+              <div><strong>FT</strong> — Fitting (trying on wardrobe, no camera)</div>
+              <div><strong>TR</strong> — Travel day (flying to/from locations)</div>
+              <div><strong>Hold</strong> — Held that day (told not to take other jobs) but did not work</div>
+              <div><strong>T</strong> — Test (testing hair, makeup, costumes with a camera but not acting)</div>
+              <div style="margin-top:0.3rem;color:var(--text-muted);">Add <strong>S</strong> for Start on the first day and <strong>F</strong> for Finish on the last day. First work day is <strong>SW</strong>, last is <strong>WF</strong>, all others are <strong>W</strong>. A one-day gig is <strong>SWF</strong>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Grid — Times</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Report Makeup/Wardrobe</strong> — The time the actor arrived for makeup &amp; wardrobe — as in physically showed up for this to happen.</div>
+          <div><strong style="color:var(--accent);">Report on Set</strong> — The time the actor got to set after leaving makeup, etc.</div>
+          <div><strong style="color:var(--accent);">Dismiss on Set</strong> — The time the actor was let go from set for the day.</div>
+          <div><strong style="color:var(--accent);">Dismiss Makeup/Wardrobe</strong> — The time the actor was finished having makeup, etc. taken off and dismissed.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Grid — Meals</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">ND Meal</strong> — Non-deductible meal. You can't be charged a penalty for it. This is the meal provided when actors arrive.
+            <div style="margin-top:0.3rem;padding-left:1rem;font-size:0.92rem;">
+              <div><strong>In</strong> — The time the actor was first allowed at it.</div>
+              <div><strong>Out</strong> — The time the actor finished.</div>
+            </div>
+          </div>
+          <div><strong style="color:var(--accent);">1st Meal</strong> — Due 6 hours after ND meal out time. This is "lunch."
+            <div style="margin-top:0.3rem;padding-left:1rem;font-size:0.92rem;">
+              <div><strong>Start</strong> — When the actor got to the place the meal was being served and joined the line for food.</div>
+              <div><strong>Finish</strong> — When the meal time was over.</div>
+            </div>
+          </div>
+          <div><strong style="color:var(--accent);">2nd Meal</strong> — Due 6 hours after 1st meal finished. This is "dinner." Start and Finish same as above.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Grid — Travel</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Travel Time</strong> — Time spent traveling.</div>
+          <div><strong style="color:var(--accent);">Leave for Location</strong> — The time the actor left for location that day.</div>
+          <div><strong style="color:var(--accent);">Arrive at Location</strong> — The time the actor got to location that day.</div>
+          <div><strong style="color:var(--accent);">Leave Location</strong> — The time the actor physically left the location that day.</div>
+          <div><strong style="color:var(--accent);">Arrive at Studio</strong> — If the actor was sent to a studio, the time they got there.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">The Grid — Special Items</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Stunt Adj.</strong> — The stunt adjustment the actor will receive for stunts performed that day. No stunts, no adjustment.</div>
+          <div><strong style="color:var(--accent);">Minors Tutoring Time</strong> — The time the minor child spent with the teacher or tutor. Adults don't get this.</div>
+          <div><strong style="color:var(--accent);">No. Outfits Provided</strong> — The number of outfits the actor brought to set with them that day at the request of production.</div>
+          <div><strong style="color:var(--accent);">Forced Call</strong> — Was today a forced call? Generally 12 hours are needed between leaving set and being required to return the next day. If the proper amount of time isn't given, it's a forced call. <a href="#" onclick="showSection('forced-call');return false;" style="color:var(--blue);">Check with our Forced Call calculator →</a></div>
+          <div><strong style="color:var(--accent);">MPVs</strong> — Meal Period Violations. The number of violations which occurred that day.</div>
+          <div><strong style="color:var(--accent);">Performer's Signature</strong> — The actor <strong>must</strong> sign this form for it to be valid.</div>
+        </div>
       </div>
     </div>
 
@@ -2017,6 +2106,7 @@ const searchData = [
   { section: 'sag-on-record', title: 'SAG On Record — Per Diem', body: 'Per diem cash taxes non-salary overnight location CBA TV Agreement payroll check taxable', sectionName: 'SAG On Record' },
   { section: 'sag-on-record', title: 'SAG On Record — Promos vs Recaps', body: 'Promo preview recap reuse fee residuals trailer episode promote reuse payment', sectionName: 'SAG On Record' },
   { section: 'important-links', title: 'Important Links', body: 'File claim SAG-AFTRA Exhibit G StudioBinder Pat Peres email phone call contact grievance', sectionName: 'Important Links' },
+  { section: 'exhibit-g', title: 'Exhibit G Explained', body: 'Exhibit G timecard field by field picture title company shooting location production number cast minor character status work rehearsal fitting travel hold test makeup wardrobe report dismiss ND meal 1st meal 2nd meal travel time stunt adjustment forced call MPV meal period violation signature', sectionName: 'Exhibit G Explained' },
   { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
   { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Is It Stunt Driving?' },
 ];
