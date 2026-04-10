@@ -247,8 +247,9 @@
   .rt-tag {
     background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.25);
     border-radius: 12px; padding: 2px 10px; font-size: 0.78rem; color: var(--accent);
-    font-weight: 500;
+    font-weight: 500; cursor: pointer; transition: background 0.15s;
   }
+  .rt-tag:hover { background: rgba(240,180,41,0.25); }
 
   /* ── FORCED CALL OPTIONS ── */
   .fc-option {
@@ -355,8 +356,9 @@
     <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Is It Stunt Driving?</button>
     <button class="nav-btn" onclick="showSection('studio-zones')"><span class="nav-dot"></span>Studio Zones</button>
     <div class="nav-section-label">Community</div>
-    <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
+    <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>SAG Stories</button>
     <button class="nav-btn" onclick="showSection('sag-on-record')"><span class="nav-dot"></span>SAG On Record</button>
+    <button class="nav-btn" onclick="showSection('contract-ideas')"><span class="nav-dot"></span>Contract Ideas</button>
     <div class="nav-section-label">Reference</div>
     <button class="nav-btn" onclick="showSection('exhibit-g')"><span class="nav-dot"></span>Exhibit G Explained</button>
     <button class="nav-btn" onclick="showSection('faq')"><span class="nav-dot"></span>FAQ</button>
@@ -365,6 +367,7 @@
     <div class="nav-section-label">Admin</div>
     <button class="nav-btn" onclick="showSection('paystub-errors')"><span class="nav-dot"></span>Paystub Errors</button>
     <button class="nav-btn" onclick="showSection('email-templates')"><span class="nav-dot"></span>Email Templates</button>
+    <button class="nav-btn" onclick="showSection('manage-stories')"><span class="nav-dot"></span>Manage Stories</button>
   </nav>
 
   <main>
@@ -372,6 +375,29 @@
     <div id="search-results">
       <div class="section-header"><h1>Search Results</h1><p id="search-summary"></p></div>
       <div id="results-list"></div>
+    </div>
+
+    <!-- MANAGE STORIES -->
+    <div id="manage-stories" class="section">
+      <div class="section-header"><h1>Manage Stories</h1><p>Edit or delete user-submitted SAG Stories and SAG On Record entries saved in your browser.</p></div>
+
+      <div class="card">
+        <div class="card-title">SAG Stories</div>
+        <div id="admin-rt-list" style="margin-top:0.5rem;"></div>
+        <p id="admin-rt-empty" style="color:var(--text-dim);font-size:0.88rem;">No user-submitted stories.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">SAG On Record</div>
+        <div id="admin-sor-list" style="margin-top:0.5rem;"></div>
+        <p id="admin-sor-empty" style="color:var(--text-dim);font-size:0.88rem;">No user-submitted responses.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Contract Ideas</div>
+        <div id="admin-ci-list" style="margin-top:0.5rem;"></div>
+        <p id="admin-ci-empty" style="color:var(--text-dim);font-size:0.88rem;">No user-submitted ideas.</p>
+      </div>
     </div>
 
     <!-- EMAIL TEMPLATES -->
@@ -1120,17 +1146,26 @@ Thank you,
         </div>
       </div>
 
+      <div class="card" style="border-left:3px solid var(--accent);">
+        <div class="card-title">Why Studio Zones Matter</div>
+        <p>If your shooting location is <strong>inside</strong> the studio zone, production is not required to provide travel pay, per diem, or overnight accommodations. You're expected to get yourself to and from set.</p>
+        <p style="margin-top:0.5rem;">If your location is <strong>outside</strong> the studio zone and requires an overnight stay, it becomes an <strong>overnight location</strong> — and production must provide travel pay, per diem, lodging, and your travel time counts as work time.</p>
+        <p style="margin-top:0.5rem;">The zone also affects <strong>rest period rules</strong> (10-hour reduced rest is only available at certain outside-zone locations) and <strong>workweek rules</strong> (overnight locations use a 6-day workweek instead of 5).</p>
+      </div>
+
       <div class="card">
         <div class="card-title">New York Studio Zone</div>
-        <p>Any location within a <strong>30-mile radius of Columbus Circle</strong>, other than Sandy Hook, New Jersey.</p>
+        <p>Any location within a <strong>30-mile radius of Columbus Circle</strong>, other than Sandy Hook, New Jersey. This is the zone that applies to principal performers and stunt performers.</p>
       </div>
       <div class="card">
         <div class="card-title">Los Angeles Studio Zone</div>
-        <p>All territory within a <strong>30-mile radius from the intersection of Beverly Boulevard and La Cienega Boulevard</strong>, Los Angeles, California. Also includes Agua Dulce, Castaic (including Lake Castaic), Leo Carillo State Beach, Moorpark, Ontario International Airport, Piru and Pomona (including the Los Angeles County Fairgrounds) and such other territory (such as the present Columbia Ranch and Disney Ranch) as is generally recognized as being within the zone.</p>
+        <p>All territory within a <strong>30-mile radius from the intersection of Beverly Boulevard and La Cienega Boulevard</strong>, Los Angeles, California. Also includes Agua Dulce, Castaic (including Lake Castaic), Leo Carillo State Beach, Moorpark, Ontario International Airport, Piru and Pomona (including the Los Angeles County Fairgrounds) and other territory generally recognized as being within the zone.</p>
       </div>
       <div class="card">
-        <div class="card-title">LA Secondary Studio Zone</div>
-        <p>The area extending <strong>10 miles from the perimeter</strong> of the LA studio zone, including John Wayne Airport. Does not include areas within the primary LA studio zone. Waivers available for locations like Lake Hughes, Elizabeth Lake, and the Nikken Building in Irvine.</p>
+        <div class="card-title">LA Secondary Studio Zone — Why LA Has Two</div>
+        <p>LA is the only city with a <strong>secondary zone</strong> — a ring extending <strong>10 miles beyond the perimeter</strong> of the primary 30-mile zone, including John Wayne Airport.</p>
+        <p style="margin-top:0.5rem;">The secondary zone exists because LA-area productions frequently shoot at locations that are just outside the 30-mile radius. Rather than triggering full overnight location rules for these nearby locations, the secondary zone creates a middle ground: production may still owe mileage or other allowances, but the full overnight location package (per diem, lodging, travel time as work time) does not automatically apply.</p>
+        <p style="margin-top:0.5rem;">Waivers are available for locations like Lake Hughes, Elizabeth Lake, and the Nikken Building in Irvine to be treated as within the secondary zone.</p>
       </div>
       <div class="card">
         <div class="card-title">San Francisco Studio Zone</div>
@@ -1194,10 +1229,21 @@ Thank you,
     <div id="residuals" class="section">
       <div class="section-header"><h1>Residuals</h1><p>Residuals are payments owed to performers when their work is reused, rerun, or distributed on additional platforms. They are one of the most valuable — and most misunderstood — parts of SAG-AFTRA compensation.</p></div>
 
+      <div class="card" style="margin-bottom:1.5rem;border-left:3px solid var(--accent);">
+        <div class="card-title">The Basic Residual Rules</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div><strong style="color:var(--accent);">TV:</strong> Residuals are owed every time an episode reruns, is licensed to another network, moves to streaming, or is distributed on home video or internationally. Network reruns follow a step-down schedule. Cable and streaming residuals are based on the distributor's gross revenue or the platform's subscriber count.</div>
+          <div><strong style="color:var(--accent);">Movies:</strong> Residuals are owed when a theatrical film is exhibited beyond its initial domestic theatrical release — including foreign theatrical, TV broadcast, streaming, and home video. Each window generates separate residuals based on the distributor's gross receipts.</div>
+          <div><strong style="color:var(--accent);">Reuse:</strong> If footage from your performance is used in a different context — a recap, clip show, or another production — that's a reuse fee, separate from residuals. Both can be owed.</div>
+          <div><strong style="color:var(--accent);">Timeline:</strong> Production has <strong>60 business days</strong> from the exhibition date to pay. After that, late penalties apply at <strong>$10/day up to $200</strong>.</div>
+          <div><strong style="color:var(--accent);">Who pays:</strong> Residuals are processed and distributed by SAG-AFTRA based on reports from distributors — not directly from the production company. Commercial residuals are the exception: they are mailed directly by payroll companies.</div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-title">What Are Residuals?</div>
         <p>Residuals are additional compensation paid to performers when a production is exhibited beyond its initial use. Your original session fee covers the first airing or exhibition window. Every subsequent use — reruns, streaming, home video, foreign distribution — triggers a residual payment.</p>
-        <p style="margin-top:0.5rem;">Residuals are calculated as a percentage of your original session fee, and the percentage varies by media type, market, and number of airings.</p>
+        <p style="margin-top:0.5rem;">How residuals are calculated depends on the media type. Network TV reruns use a step-down schedule based on the applicable minimum. Most other platforms — cable, streaming, theatrical, home video — base residuals on the <strong>distributor's gross revenue</strong>, not your session fee. Your individual share is proportional to your session fee relative to total cast compensation.</p>
       </div>
 
       <div class="card">
@@ -1234,35 +1280,29 @@ Thank you,
       </div>
 
       <div class="card" style="margin-top:1.5rem;">
-        <div class="card-title">Residual Estimator</div>
-        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Estimate your residual payment based on media type and session fee. These are approximations based on SAG-AFTRA minimums — actual residuals depend on distributor gross, subscriber counts, and contract specifics.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="res-calc">
+        <div class="card-title">What You'd Need to Calculate Your Residuals</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Residual calculations are not simple math — they depend on information that performers rarely have access to. Here's what you'd need for each type:</p>
+        <div style="display:grid;grid-template-columns:1fr;gap:0.75rem;">
           <div>
-            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Media Type</label>
-            <select id="res-type" onchange="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
-              <option value="network">Network TV Rerun</option>
-              <option value="basic_cable">Basic Cable</option>
-              <option value="streaming">Streaming (SVOD)</option>
-              <option value="pay_tv">Pay TV / Premium Cable</option>
-              <option value="theatrical_domestic">Theatrical (Domestic)</option>
-              <option value="home_video">Home Video / DVD</option>
-              <option value="free_tv">Free TV (Syndication)</option>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Select Media Type</label>
+            <select id="res-type" onchange="showResidualInfo()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <optgroup label="Television">
+                <option value="network_tv">Network TV Rerun</option>
+                <option value="basic_cable">Basic Cable</option>
+                <option value="pay_tv">Pay TV / Premium Cable</option>
+                <option value="streaming_tv">Streaming / SVOD (TV Series)</option>
+                <option value="syndication">Free TV (Syndication)</option>
+              </optgroup>
+              <optgroup label="Theatrical (Movies)">
+                <option value="theatrical_domestic">Theatrical — Domestic</option>
+                <option value="theatrical_foreign">Theatrical — Foreign</option>
+                <option value="streaming_film">Streaming / SVOD (Film)</option>
+                <option value="home_video">Home Video / DVD</option>
+              </optgroup>
             </select>
           </div>
-          <div>
-            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Session Fee ($)</label>
-            <input type="number" id="res-fee" value="1246" oninput="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
-          </div>
-          <div>
-            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Rerun / Use Number</label>
-            <input type="number" id="res-run" value="1" min="1" max="13" oninput="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
-          </div>
         </div>
-        <div id="res-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
-          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Estimated Residual</div>
-          <div id="res-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$0.00</div>
-          <div id="res-detail" style="font-size:0.88rem;color:var(--text-muted);margin-top:0.25rem;line-height:1.6;"></div>
-        </div>
+        <div id="res-info" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;line-height:1.7;"></div>
       </div>
 
       <div class="card">
@@ -1276,11 +1316,16 @@ Thank you,
       </div>
     </div>
 
-    <!-- REAL TALK -->
+    <!-- SAG STORIES -->
     <div id="real-talk" class="section">
-      <div class="section-header"><h1>Real Talk</h1><p>First-person stories from stunt performers who learned the rules the hard way. Names included with permission.</p></div>
+      <div class="section-header"><h1>SAG Stories</h1><p>First-person stories from stunt performers who learned the rules the hard way. Names included with permission.</p></div>
+      <div id="rt-filter-bar" style="display:none;margin-bottom:1rem;padding:0.6rem 1rem;background:var(--bg3);border-radius:8px;display:none;align-items:center;gap:0.5rem;font-size:0.88rem;">
+        <span style="color:var(--text-dim);">Showing:</span>
+        <span id="rt-filter-tag" style="color:var(--accent);font-weight:600;"></span>
+        <button onclick="clearTagFilter('rt')" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;color:var(--text-dim);font-size:0.82rem;cursor:pointer;margin-left:auto;">Show All</button>
+      </div>
 
-      <div class="card" style="position:relative;">
+      <div class="card" style="position:relative;" data-tags="reuse fee,SAG business rep,late-night TV">
         <div class="card-title">The $100 Reuse Fee</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
           <span class="rt-tag">reuse fee</span>
@@ -1328,8 +1373,13 @@ Thank you,
         <span class="alert-icon"></span>
         <div>This section documents specific guidance received from SAG-AFTRA reps. Each entry includes the source and context. Note: The language of some conversations may have been edited for clarity and readability.</div>
       </div>
+      <div id="sor-filter-bar" style="display:none;margin-bottom:1rem;padding:0.6rem 1rem;background:var(--bg3);border-radius:8px;align-items:center;gap:0.5rem;font-size:0.88rem;">
+        <span style="color:var(--text-dim);">Showing:</span>
+        <span id="sor-filter-tag" style="color:var(--accent);font-weight:600;"></span>
+        <button onclick="clearTagFilter('sor')" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;color:var(--text-dim);font-size:0.82rem;cursor:pointer;margin-left:auto;">Show All</button>
+      </div>
 
-      <div class="card" style="margin-top:1rem;">
+      <div class="card" style="margin-top:1rem;" data-tags="dressing room,stunt coordinator,studio location">
         <div class="card-title">Dressing Rooms for Stunt Coordinators</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
           <span class="rt-tag">dressing room</span>
@@ -1344,7 +1394,7 @@ Thank you,
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-tags="cross-boarding,stunt coordinator,episode pay">
         <div class="card-title">Cross-Boarding: Pay Per Episode for Stunt Coordinators</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
           <span class="rt-tag">cross-boarding</span>
@@ -1363,7 +1413,7 @@ Thank you,
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-tags="per diem,cash payment,taxes,overnight location">
         <div class="card-title">Per Diem: Cash, Taxes, and Contract Language</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
           <span class="rt-tag">per diem</span>
@@ -1381,7 +1431,7 @@ Thank you,
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-tags="reuse fee,promo,recap,preview,residuals">
         <div class="card-title">Promos vs. Recaps: When Is Reuse Pay Owed?</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
           <span class="rt-tag">reuse fee</span>
@@ -1435,6 +1485,57 @@ Thank you,
       </div>
     </div>
 
+    <!-- CONTRACT IDEAS -->
+    <div id="contract-ideas" class="section">
+      <div class="section-header"><h1>Contract Ideas</h1><p>What should change in the next SAG-AFTRA contract? Submit your ideas and vote on others. Every voice counts when it's time to negotiate.</p></div>
+
+      <div class="card" style="margin-bottom:1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Sort By</label>
+            <select id="ci-sort" onchange="renderContractIdeas()" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;">
+              <option value="votes">Most Votes</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="ci-list"></div>
+
+      <div class="card" style="margin-top:1.5rem;border:1px dashed var(--border);">
+        <div class="card-title">Submit an Idea</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">What would you change in the next contract? Your idea will appear on this page and others can vote on it.</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Title</label>
+            <input type="text" id="ci-title" placeholder="e.g. Higher stunt adjustment minimums" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Description</label>
+            <textarea id="ci-desc" rows="4" placeholder="Explain the problem and what the contract should say..." style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Category</label>
+            <select id="ci-category" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="Pay & Rates">Pay & Rates</option>
+              <option value="Safety">Safety</option>
+              <option value="Working Conditions">Working Conditions</option>
+              <option value="Residuals & Reuse">Residuals & Reuse</option>
+              <option value="Overtime & Hours">Overtime & Hours</option>
+              <option value="Benefits">Benefits</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Name</label>
+            <input type="text" id="ci-name" placeholder="First and last name" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <button onclick="submitContractIdea()" style="align-self:flex-start;background:var(--accent);border:none;border-radius:8px;padding:10px 24px;color:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">Submit Idea</button>
+        </div>
+      </div>
+    </div>
+
     <!-- IMPORTANT LINKS -->
     <div id="important-links" class="section">
       <div class="section-header"><h1>Important Links</h1><p>Key resources for filing claims, understanding your paperwork, and contacting SAG-AFTRA.</p></div>
@@ -1481,90 +1582,17 @@ Thank you,
     <div id="exhibit-g" class="section">
       <div class="section-header"><h1>Exhibit G Explained</h1><p>Your SAG-AFTRA timecard, field by field. This is the document that records everything about your work day — and what your pay is based on.</p></div>
 
-      <div class="card">
-        <div class="card-title">Top of the Form — Production Info</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">Picture Title</strong> — The title of the film or working title. It should match all other SAG paperwork for the show.</div>
-          <div><strong style="color:var(--accent);">Company</strong> — The production company.</div>
-          <div><strong style="color:var(--accent);">Shooting Location</strong> — Today's location.</div>
-          <div><strong style="color:var(--accent);">Production Number</strong> — Copy this from all of the other SAG paperwork from this production.</div>
-          <div><strong style="color:var(--accent);">Date</strong> — Today's date.</div>
-          <div><strong style="color:var(--accent);">Contact</strong> — The name of the person filling out the report.</div>
-          <div><strong style="color:var(--accent);">Phone Number</strong> — The number of the person filling out the report.</div>
-          <div><strong style="color:var(--accent);">Is Today a Day Off</strong> — Production designates 2 days off out of seven (sometimes one). Is this one of them?</div>
-          <div><strong style="color:var(--accent);">Production Type</strong> — What are you shooting. MP is motion picture (aka movie).</div>
-        </div>
-      </div>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1rem;">Tap any field to see what it means.</p>
 
-      <div class="card">
-        <div class="card-title">The Grid — Cast &amp; Status (Left to Right)</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">Cast</strong> — The actor's name.</div>
-          <div><strong style="color:var(--accent);">Minor?</strong> — Are they currently a minor child? Y for yes, N for no.</div>
-          <div><strong style="color:var(--accent);">Character</strong> — The name of the role being played by the actor whose name is under Cast.</div>
-          <div><strong style="color:var(--accent);">Status (the L-shaped dropdown)</strong> — What are they doing?
-            <div style="margin-top:0.4rem;padding-left:1rem;display:flex;flex-direction:column;gap:0.25rem;font-size:0.92rem;">
-              <div><strong>W</strong> — Work (acting)</div>
-              <div><strong>R</strong> — Rehearsal (no cameras)</div>
-              <div><strong>FT</strong> — Fitting (trying on wardrobe, no camera)</div>
-              <div><strong>TR</strong> — Travel day (flying to/from locations)</div>
-              <div><strong>Hold</strong> — Held that day (told not to take other jobs) but did not work</div>
-              <div><strong>T</strong> — Test (testing hair, makeup, costumes with a camera but not acting)</div>
-              <div style="margin-top:0.3rem;color:var(--text-muted);">Add <strong>S</strong> for Start on the first day and <strong>F</strong> for Finish on the last day. First work day is <strong>SW</strong>, last is <strong>WF</strong>, all others are <strong>W</strong>. A one-day gig is <strong>SWF</strong>.</div>
+      <div id="eg-widget">
+        <div id="eg-def" style="display:none;padding:1rem;background:var(--bg3);border-left:3px solid var(--accent);border-radius:8px;margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div id="eg-def-title" style="font-weight:700;color:var(--accent);font-size:1.05rem;"></div>
+              <div id="eg-def-body" style="margin-top:0.4rem;color:var(--text);line-height:1.6;"></div>
             </div>
+            <button onclick="closeEgDef()" style="background:none;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;padding:0 0 0 0.5rem;line-height:1;">&times;</button>
           </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">The Grid — Times</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">Report Makeup/Wardrobe</strong> — The time the actor arrived for makeup &amp; wardrobe — as in physically showed up for this to happen.</div>
-          <div><strong style="color:var(--accent);">Report on Set</strong> — The time the actor got to set after leaving makeup, etc.</div>
-          <div><strong style="color:var(--accent);">Dismiss on Set</strong> — The time the actor was let go from set for the day.</div>
-          <div><strong style="color:var(--accent);">Dismiss Makeup/Wardrobe</strong> — The time the actor was finished having makeup, etc. taken off and dismissed.</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">The Grid — Meals</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">ND Meal</strong> — Non-deductible meal. You can't be charged a penalty for it. This is the meal provided when actors arrive.
-            <div style="margin-top:0.3rem;padding-left:1rem;font-size:0.92rem;">
-              <div><strong>In</strong> — The time the actor was first allowed at it.</div>
-              <div><strong>Out</strong> — The time the actor finished.</div>
-            </div>
-          </div>
-          <div><strong style="color:var(--accent);">1st Meal</strong> — Due 6 hours after ND meal out time. This is "lunch."
-            <div style="margin-top:0.3rem;padding-left:1rem;font-size:0.92rem;">
-              <div><strong>Start</strong> — When the actor got to the place the meal was being served and joined the line for food.</div>
-              <div><strong>Finish</strong> — When the meal time was over.</div>
-            </div>
-          </div>
-          <div><strong style="color:var(--accent);">2nd Meal</strong> — Due 6 hours after 1st meal finished. This is "dinner." Start and Finish same as above.</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">The Grid — Travel</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">Travel Time</strong> — Time spent traveling.</div>
-          <div><strong style="color:var(--accent);">Leave for Location</strong> — The time the actor left for location that day.</div>
-          <div><strong style="color:var(--accent);">Arrive at Location</strong> — The time the actor got to location that day.</div>
-          <div><strong style="color:var(--accent);">Leave Location</strong> — The time the actor physically left the location that day.</div>
-          <div><strong style="color:var(--accent);">Arrive at Studio</strong> — If the actor was sent to a studio, the time they got there.</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">The Grid — Special Items</div>
-        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-          <div><strong style="color:var(--accent);">Stunt Adj.</strong> — The stunt adjustment the actor will receive for stunts performed that day. No stunts, no adjustment.</div>
-          <div><strong style="color:var(--accent);">Minors Tutoring Time</strong> — The time the minor child spent with the teacher or tutor. Adults don't get this.</div>
-          <div><strong style="color:var(--accent);">No. Outfits Provided</strong> — The number of outfits the actor brought to set with them that day at the request of production.</div>
-          <div><strong style="color:var(--accent);">Forced Call</strong> — Was today a forced call? Generally 12 hours are needed between leaving set and being required to return the next day. If the proper amount of time isn't given, it's a forced call. <a href="#" onclick="showSection('rest-periods');return false;" style="color:var(--blue);">Check with our Rest Period calculator →</a></div>
-          <div><strong style="color:var(--accent);">MPVs</strong> — Meal Period Violations. The number of violations which occurred that day.</div>
-          <div><strong style="color:var(--accent);">Performer's Signature</strong> — The actor <strong>must</strong> sign this form for it to be valid.</div>
         </div>
       </div>
     </div>
@@ -1723,10 +1751,9 @@ function showRateCycle(cycle) {
 document.addEventListener('DOMContentLoaded', () => showRateCycle('25-26'));
 
 // ── STUDIO ZONE MAP ──
-let szMap, szCircleNY, szCircleNY8, szCircleLA, szCircleSF, szMarker;
+let szMap, szCircleNY, szCircleLA, szCircleSF, szMarker;
 const zones = [
   { name: 'NY Studio Zone (30mi)', lat: 40.76806, lng: -73.98194, radius: 48280, color: '#4a90e2' },
-  { name: 'NY 8-Mile Zone', lat: 40.76806, lng: -73.98194, radius: 12875, color: '#3dd68c' },
   { name: 'LA Studio Zone (30mi)', lat: 34.07359, lng: -118.37079, radius: 48280, color: '#e05c2a' },
   { name: 'SF Studio Zone (30mi)', lat: 37.78429, lng: -122.40801, radius: 48280, color: '#f0b429' },
 ];
@@ -2102,7 +2129,7 @@ function renderRealTalkStories() {
   const container = document.getElementById('rt-user-stories');
   if (!container) return;
   container.innerHTML = stories.map(s => `
-    <div class="card" style="position:relative;margin-top:1rem;">
+    <div class="card" style="position:relative;margin-top:1rem;" data-tags="${s.tags.map(t => escapeHtml(t)).join(',')}">
       <div class="card-title">${escapeHtml(s.title)}</div>
       <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
         ${s.tags.map(t => `<span class="rt-tag">${escapeHtml(t)}</span>`).join('')}
@@ -2112,6 +2139,10 @@ function renderRealTalkStories() {
       <p style="margin-top:0.75rem;color:var(--accent);font-weight:600;">— ${escapeHtml(s.name)}</p>
     </div>
   `).join('');
+  // Re-bind tag clicks on new elements
+  container.querySelectorAll('.rt-tag').forEach(tag => {
+    tag.addEventListener('click', function() { filterByTag(this.textContent, 'rt'); });
+  });
 }
 function submitRealTalk() {
   const title = document.getElementById('rt-title').value.trim();
@@ -2136,7 +2167,7 @@ function renderSagOnRecordStories() {
   const container = document.getElementById('sor-user-stories');
   if (!container) return;
   container.innerHTML = stories.map(s => `
-    <div class="card" style="margin-top:1rem;">
+    <div class="card" style="margin-top:1rem;" data-tags="${s.tags.map(t => escapeHtml(t)).join(',')}">
       <div class="card-title">${escapeHtml(s.title)}</div>
       <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
         ${s.tags.map(t => `<span class="rt-tag">${escapeHtml(t)}</span>`).join('')}
@@ -2149,6 +2180,10 @@ function renderSagOnRecordStories() {
       <p style="margin-top:0.75rem;font-size:0.83rem;color:var(--text-dim);">Submitted by ${escapeHtml(s.name)}</p>
     </div>
   `).join('');
+  // Re-bind tag clicks on new elements
+  container.querySelectorAll('.rt-tag').forEach(tag => {
+    tag.addEventListener('click', function() { filterByTag(this.textContent, 'sor'); });
+  });
 }
 function submitSagOnRecord() {
   const title = document.getElementById('sor-title').value.trim();
@@ -2174,44 +2209,478 @@ function escapeHtml(str) {
 }
 document.addEventListener('DOMContentLoaded', renderSagOnRecordStories);
 
-// ── RESIDUAL ESTIMATOR ──
-function calcResidual() {
-  const type = document.getElementById('res-type').value;
-  const fee = parseFloat(document.getElementById('res-fee').value) || 0;
-  const run = parseInt(document.getElementById('res-run').value) || 1;
-  let pct = 0;
-  let detail = '';
-  if (type === 'network') {
-    // Network TV reruns — step-down schedule based on applicable minimum
-    const schedule = [1.0, 0.75, 0.50, 0.50, 0.40, 0.40, 0.35, 0.35, 0.30, 0.30, 0.25, 0.25, 0.25];
-    const idx = Math.min(run - 1, schedule.length - 1);
-    pct = schedule[idx];
-    detail = 'Network TV rerun #' + run + ' at ' + (pct * 100).toFixed(0) + '% of session fee';
-  } else if (type === 'basic_cable') {
-    pct = 0.40;
-    detail = 'Basic cable — approx. 40% of session fee per quarter (varies by distributor gross)';
-  } else if (type === 'streaming') {
-    // SVOD fixed residual approximation per 2023 contract
-    pct = 0.75;
-    detail = 'Streaming (SVOD) — approx. 75% of session fee per exhibition window (varies by subscriber count and hours)';
-  } else if (type === 'pay_tv') {
-    pct = 0.50;
-    detail = 'Pay TV / Premium Cable — approx. 50% of session fee per exhibition period';
-  } else if (type === 'theatrical_domestic') {
-    pct = 0.60;
-    detail = 'Theatrical (Domestic) — approx. 60% of session fee (based on distributor gross receipts)';
-  } else if (type === 'home_video') {
-    pct = 0.30;
-    detail = 'Home Video / DVD — approx. 30% of session fee (based on units sold)';
-  } else if (type === 'free_tv') {
-    pct = 0.45;
-    detail = 'Free TV (Syndication) — approx. 45% of session fee per run (based on distributor gross)';
+// ── MANAGE STORIES (ADMIN) ──
+function renderAdminStories() {
+  // SAG Stories
+  const rtStories = JSON.parse(localStorage.getItem('rt-stories') || '[]');
+  const rtList = document.getElementById('admin-rt-list');
+  const rtEmpty = document.getElementById('admin-rt-empty');
+  if (!rtList) return;
+  if (rtStories.length === 0) {
+    rtList.innerHTML = '';
+    rtEmpty.style.display = '';
+  } else {
+    rtEmpty.style.display = 'none';
+    rtList.innerHTML = rtStories.map((s, i) => `
+      <div style="padding:0.75rem;background:var(--bg3);border-radius:8px;margin-bottom:0.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+          <div style="flex:1;">
+            <div style="font-weight:600;color:var(--text);">${escapeHtml(s.title)}</div>
+            <div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">${escapeHtml(s.date)} — ${escapeHtml(s.name)}</div>
+          </div>
+          <div style="display:flex;gap:0.4rem;flex-shrink:0;">
+            <button onclick="editRtStory(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--blue);font-size:0.82rem;cursor:pointer;">Edit</button>
+            <button onclick="deleteRtStory(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--red);font-size:0.82rem;cursor:pointer;">Delete</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
   }
-  const total = fee * pct;
-  document.getElementById('res-total').textContent = '$' + total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  document.getElementById('res-detail').innerHTML = detail + '<br><span style="font-size:0.82rem;color:var(--text-dim);">These are estimates. Actual residuals depend on distributor gross, contract terms, and exhibition details.</span>';
+  // SAG On Record
+  const sorStories = JSON.parse(localStorage.getItem('sor-stories') || '[]');
+  const sorList = document.getElementById('admin-sor-list');
+  const sorEmpty = document.getElementById('admin-sor-empty');
+  if (sorStories.length === 0) {
+    sorList.innerHTML = '';
+    sorEmpty.style.display = '';
+  } else {
+    sorEmpty.style.display = 'none';
+    sorList.innerHTML = sorStories.map((s, i) => `
+      <div style="padding:0.75rem;background:var(--bg3);border-radius:8px;margin-bottom:0.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+          <div style="flex:1;">
+            <div style="font-weight:600;color:var(--text);">${escapeHtml(s.title)}</div>
+            <div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">${escapeHtml(s.date)} — ${escapeHtml(s.name)}</div>
+          </div>
+          <div style="display:flex;gap:0.4rem;flex-shrink:0;">
+            <button onclick="editSorStory(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--blue);font-size:0.82rem;cursor:pointer;">Edit</button>
+            <button onclick="deleteSorStory(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--red);font-size:0.82rem;cursor:pointer;">Delete</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  // Contract Ideas
+  const ciIdeas = getContractIdeas();
+  const ciList = document.getElementById('admin-ci-list');
+  const ciEmpty = document.getElementById('admin-ci-empty');
+  if (ciList) {
+    if (ciIdeas.length === 0) {
+      ciList.innerHTML = '';
+      ciEmpty.style.display = '';
+    } else {
+      ciEmpty.style.display = 'none';
+      ciList.innerHTML = ciIdeas.map((s, i) => `
+        <div style="padding:0.75rem;background:var(--bg3);border-radius:8px;margin-bottom:0.5rem;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+            <div style="flex:1;">
+              <div style="font-weight:600;color:var(--text);">${escapeHtml(s.title)} <span style="font-weight:400;color:var(--text-dim);font-size:0.82rem;">(${s.votes} votes)</span></div>
+              <div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">${escapeHtml(s.date)} — ${escapeHtml(s.name)}</div>
+            </div>
+            <div style="display:flex;gap:0.4rem;flex-shrink:0;">
+              <button onclick="editCiIdea(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--blue);font-size:0.82rem;cursor:pointer;">Edit</button>
+              <button onclick="deleteCiIdea(${i})" style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--red);font-size:0.82rem;cursor:pointer;">Delete</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
 }
-document.addEventListener('DOMContentLoaded', calcResidual);
+function deleteCiIdea(idx) {
+  if (!confirm('Delete this idea?')) return;
+  const ideas = getContractIdeas();
+  ideas.splice(idx, 1);
+  saveContractIdeas(ideas);
+  renderAdminStories();
+  renderContractIdeas();
+}
+function editCiIdea(idx) {
+  const ideas = getContractIdeas();
+  const s = ideas[idx];
+  const newTitle = prompt('Title:', s.title);
+  if (newTitle === null) return;
+  const newDesc = prompt('Description:', s.desc);
+  if (newDesc === null) return;
+  s.title = newTitle;
+  s.desc = newDesc;
+  saveContractIdeas(ideas);
+  renderAdminStories();
+  renderContractIdeas();
+}
+function deleteRtStory(idx) {
+  if (!confirm('Delete this story?')) return;
+  const stories = JSON.parse(localStorage.getItem('rt-stories') || '[]');
+  stories.splice(idx, 1);
+  localStorage.setItem('rt-stories', JSON.stringify(stories));
+  renderAdminStories();
+  renderRealTalkStories();
+}
+function editRtStory(idx) {
+  const stories = JSON.parse(localStorage.getItem('rt-stories') || '[]');
+  const s = stories[idx];
+  const newTitle = prompt('Title:', s.title);
+  if (newTitle === null) return;
+  const newStory = prompt('Story:', s.story);
+  if (newStory === null) return;
+  s.title = newTitle;
+  s.story = newStory;
+  localStorage.setItem('rt-stories', JSON.stringify(stories));
+  renderAdminStories();
+  renderRealTalkStories();
+}
+function deleteSorStory(idx) {
+  if (!confirm('Delete this response?')) return;
+  const stories = JSON.parse(localStorage.getItem('sor-stories') || '[]');
+  stories.splice(idx, 1);
+  localStorage.setItem('sor-stories', JSON.stringify(stories));
+  renderAdminStories();
+  renderSagOnRecordStories();
+}
+function editSorStory(idx) {
+  const stories = JSON.parse(localStorage.getItem('sor-stories') || '[]');
+  const s = stories[idx];
+  const newTitle = prompt('Title:', s.title);
+  if (newTitle === null) return;
+  const newQ = prompt('Question:', s.question);
+  if (newQ === null) return;
+  const newR = prompt('SAG-AFTRA Response:', s.response);
+  if (newR === null) return;
+  s.title = newTitle;
+  s.question = newQ;
+  s.response = newR;
+  localStorage.setItem('sor-stories', JSON.stringify(stories));
+  renderAdminStories();
+  renderSagOnRecordStories();
+}
+document.addEventListener('DOMContentLoaded', renderAdminStories);
+
+// ── TAG FILTERING ──
+function filterByTag(tag, sectionPrefix) {
+  const sectionId = sectionPrefix === 'rt' ? 'real-talk' : 'sag-on-record';
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  const cards = section.querySelectorAll('.card[data-tags]');
+  cards.forEach(card => {
+    const tags = (card.dataset.tags || '').split(',').map(t => t.trim().toLowerCase());
+    card.style.display = tags.includes(tag.toLowerCase()) ? '' : 'none';
+  });
+  // Also filter user stories container
+  const userContainer = document.getElementById(sectionPrefix === 'rt' ? 'rt-user-stories' : 'sor-user-stories');
+  if (userContainer) {
+    userContainer.querySelectorAll('.card[data-tags]').forEach(card => {
+      const tags = (card.dataset.tags || '').split(',').map(t => t.trim().toLowerCase());
+      card.style.display = tags.includes(tag.toLowerCase()) ? '' : 'none';
+    });
+  }
+  const bar = document.getElementById(sectionPrefix + '-filter-bar');
+  bar.style.display = 'flex';
+  document.getElementById(sectionPrefix + '-filter-tag').textContent = tag;
+}
+function clearTagFilter(sectionPrefix) {
+  const sectionId = sectionPrefix === 'rt' ? 'real-talk' : 'sag-on-record';
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  section.querySelectorAll('.card[data-tags]').forEach(card => { card.style.display = ''; });
+  const userContainer = document.getElementById(sectionPrefix === 'rt' ? 'rt-user-stories' : 'sor-user-stories');
+  if (userContainer) userContainer.querySelectorAll('.card[data-tags]').forEach(card => { card.style.display = ''; });
+  document.getElementById(sectionPrefix + '-filter-bar').style.display = 'none';
+}
+function initTagClicks() {
+  document.querySelectorAll('#real-talk .rt-tag').forEach(tag => {
+    tag.addEventListener('click', function() { filterByTag(this.textContent, 'rt'); });
+  });
+  document.querySelectorAll('#sag-on-record .rt-tag').forEach(tag => {
+    tag.addEventListener('click', function() { filterByTag(this.textContent, 'sor'); });
+  });
+}
+document.addEventListener('DOMContentLoaded', initTagClicks);
+
+// ── CONTRACT IDEAS ──
+function getContractIdeas() {
+  return JSON.parse(localStorage.getItem('ci-ideas') || '[]');
+}
+function saveContractIdeas(ideas) {
+  localStorage.setItem('ci-ideas', JSON.stringify(ideas));
+}
+function getMyVotes() {
+  return JSON.parse(localStorage.getItem('ci-votes') || '{}');
+}
+function saveMyVotes(votes) {
+  localStorage.setItem('ci-votes', JSON.stringify(votes));
+}
+function submitContractIdea() {
+  const title = document.getElementById('ci-title').value.trim();
+  const desc = document.getElementById('ci-desc').value.trim();
+  const category = document.getElementById('ci-category').value;
+  const name = document.getElementById('ci-name').value.trim();
+  if (!title || !desc || !name) { alert('Please fill in the title, description, and your name.'); return; }
+  const ideas = getContractIdeas();
+  ideas.push({
+    id: Date.now().toString(),
+    title, desc, category, name,
+    date: new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }),
+    votes: 0
+  });
+  saveContractIdeas(ideas);
+  document.getElementById('ci-title').value = '';
+  document.getElementById('ci-desc').value = '';
+  document.getElementById('ci-name').value = '';
+  renderContractIdeas();
+}
+function voteIdea(id, dir) {
+  const ideas = getContractIdeas();
+  const myVotes = getMyVotes();
+  const prev = myVotes[id] || 0;
+  // Toggle: if same direction, undo. If different, switch.
+  let delta = 0;
+  if (dir === prev) {
+    delta = -dir;
+    myVotes[id] = 0;
+  } else {
+    delta = dir - prev;
+    myVotes[id] = dir;
+  }
+  const idea = ideas.find(i => i.id === id);
+  if (idea) idea.votes += delta;
+  saveContractIdeas(ideas);
+  saveMyVotes(myVotes);
+  renderContractIdeas();
+}
+function renderContractIdeas() {
+  const ideas = getContractIdeas();
+  const sort = document.getElementById('ci-sort') ? document.getElementById('ci-sort').value : 'votes';
+  const myVotes = getMyVotes();
+  const sorted = [...ideas].sort((a, b) => sort === 'votes' ? b.votes - a.votes : parseInt(b.id) - parseInt(a.id));
+  const list = document.getElementById('ci-list');
+  if (!list) return;
+  if (sorted.length === 0) {
+    list.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:2rem 0;font-size:0.92rem;">No ideas yet. Be the first to submit one.</div>';
+    return;
+  }
+  list.innerHTML = sorted.map(idea => {
+    const myVote = myVotes[idea.id] || 0;
+    const upActive = myVote === 1 ? 'color:var(--green);font-weight:700;' : 'color:var(--text-dim);';
+    const downActive = myVote === -1 ? 'color:var(--red);font-weight:700;' : 'color:var(--text-dim);';
+    return `
+    <div class="card" style="margin-bottom:0.75rem;">
+      <div style="display:flex;gap:1rem;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.15rem;min-width:44px;padding-top:0.2rem;">
+          <button onclick="voteIdea('${idea.id}',1)" style="background:none;border:none;cursor:pointer;font-size:1.3rem;line-height:1;padding:4px;${upActive}" title="Vote up">&#9650;</button>
+          <span style="font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:600;color:${idea.votes > 0 ? 'var(--green)' : idea.votes < 0 ? 'var(--red)' : 'var(--text-dim)'};">${idea.votes}</span>
+          <button onclick="voteIdea('${idea.id}',-1)" style="background:none;border:none;cursor:pointer;font-size:1.3rem;line-height:1;padding:4px;${downActive}" title="Vote down">&#9660;</button>
+        </div>
+        <div style="flex:1;">
+          <div style="font-weight:600;color:var(--text);font-size:1rem;">${escapeHtml(idea.title)}</div>
+          <div style="margin-top:0.3rem;display:flex;gap:0.4rem;flex-wrap:wrap;">
+            <span class="rt-tag">${escapeHtml(idea.category)}</span>
+          </div>
+          <div style="margin-top:0.5rem;color:var(--text-muted);font-size:0.92rem;line-height:1.6;">${escapeHtml(idea.desc)}</div>
+          <div style="margin-top:0.5rem;font-size:0.82rem;color:var(--text-dim);">${escapeHtml(idea.name)} — ${escapeHtml(idea.date)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+document.addEventListener('DOMContentLoaded', renderContractIdeas);
+
+// ── EXHIBIT G INTERACTIVE ──
+const egSections = [
+  { label: 'Production Info', fields: [
+    { name: 'Picture Title', def: 'The title of the film or working title. It should match all other SAG paperwork for the show.' },
+    { name: 'Company', def: 'The production company.' },
+    { name: 'Shooting Location', def: 'Today\'s location.' },
+    { name: 'Production Number', def: 'Copy this from all of the other SAG paperwork from this production.' },
+    { name: 'Date', def: 'Today\'s date.' },
+    { name: 'Contact', def: 'The name of the person filling out the report.' },
+    { name: 'Phone Number', def: 'The number of the person filling out the report.' },
+    { name: 'Is Today a Day Off', def: 'Production designates 2 days off out of seven (sometimes one). Is this one of them?' },
+    { name: 'Production Type', def: 'What are you shooting. MP is motion picture (aka movie).' },
+  ]},
+  { label: 'Cast & Status', fields: [
+    { name: 'Cast', def: 'The actor\'s name.' },
+    { name: 'Minor?', def: 'Are they currently a minor child? Y for yes, N for no.' },
+    { name: 'Character', def: 'The name of the role being played by the actor whose name is under Cast.' },
+    { name: 'Status', def: 'What are they doing?<br><strong>W</strong> — Work (acting)<br><strong>R</strong> — Rehearsal (no cameras)<br><strong>FT</strong> — Fitting (trying on wardrobe, no camera)<br><strong>TR</strong> — Travel day (flying to/from locations)<br><strong>Hold</strong> — Held that day (told not to take other jobs) but did not work<br><strong>T</strong> — Test (testing hair, makeup, costumes with a camera but not acting)<br><br>Add <strong>S</strong> for Start on the first day and <strong>F</strong> for Finish on the last day. First work day is <strong>SW</strong>, last is <strong>WF</strong>, all others are <strong>W</strong>. A one-day gig is <strong>SWF</strong>.' },
+  ]},
+  { label: 'Times', fields: [
+    { name: 'Report Makeup/Wardrobe', def: 'The time the actor arrived for makeup & wardrobe — as in physically showed up for this to happen.' },
+    { name: 'Report on Set', def: 'The time the actor got to set after leaving makeup, etc.' },
+    { name: 'Dismiss on Set', def: 'The time the actor was let go from set for the day.' },
+    { name: 'Dismiss Makeup/Wardrobe', def: 'The time the actor was finished having makeup, etc. taken off and dismissed.' },
+  ]},
+  { label: 'Meals', fields: [
+    { name: 'ND Meal', def: 'Non-deductible meal. You can\'t be charged a penalty for it. This is the meal provided when actors arrive.<br><strong>In</strong> — The time the actor was first allowed at it.<br><strong>Out</strong> — The time the actor finished.' },
+    { name: '1st Meal', def: 'Due 6 hours after ND meal out time. This is "lunch."<br><strong>Start</strong> — When the actor got to the place the meal was being served and joined the line for food.<br><strong>Finish</strong> — When the meal time was over.' },
+    { name: '2nd Meal', def: 'Due 6 hours after 1st meal finished. This is "dinner." Start and Finish same as above.' },
+  ]},
+  { label: 'Travel', fields: [
+    { name: 'Travel Time', def: 'Time spent traveling.' },
+    { name: 'Leave for Location', def: 'The time the actor left for location that day.' },
+    { name: 'Arrive at Location', def: 'The time the actor got to location that day.' },
+    { name: 'Leave Location', def: 'The time the actor physically left the location that day.' },
+    { name: 'Arrive at Studio', def: 'If the actor was sent to a studio, the time they got there.' },
+  ]},
+  { label: 'Special Items', fields: [
+    { name: 'Stunt Adj.', def: 'The stunt adjustment the actor will receive for stunts performed that day. No stunts, no adjustment.' },
+    { name: 'Minors Tutoring Time', def: 'The time the minor child spent with the teacher or tutor. Adults don\'t get this.' },
+    { name: 'No. Outfits Provided', def: 'The number of outfits the actor brought to set with them that day at the request of production.' },
+    { name: 'Forced Call', def: 'Was today a forced call? Generally 12 hours are needed between leaving set and being required to return the next day. If the proper amount of time isn\'t given, it\'s a forced call. <a href="#" onclick="showSection(\'rest-periods\');return false;" style="color:var(--blue);">Check with our Rest Period calculator →</a>' },
+    { name: 'MPVs', def: 'Meal Period Violations. The number of violations which occurred that day.' },
+    { name: 'Performer\'s Signature', def: 'The actor <strong>must</strong> sign this form for it to be valid.' },
+  ]},
+];
+let activeEgBtn = null;
+function buildEgWidget() {
+  const widget = document.getElementById('eg-widget');
+  if (!widget) return;
+  const defPanel = widget.querySelector('#eg-def');
+  egSections.forEach(sec => {
+    const secDiv = document.createElement('div');
+    secDiv.style.cssText = 'margin-bottom:1rem;';
+    secDiv.innerHTML = '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem;letter-spacing:0.06em;color:var(--text-dim);margin-bottom:0.5rem;">' + sec.label + '</div>';
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;';
+    sec.fields.forEach(f => {
+      const btn = document.createElement('button');
+      btn.textContent = f.name;
+      btn.style.cssText = 'background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);font-family:\'DM Sans\',sans-serif;font-size:0.88rem;cursor:pointer;transition:all 0.15s;';
+      btn.addEventListener('click', function() {
+        if (activeEgBtn) activeEgBtn.style.cssText = 'background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);font-family:\'DM Sans\',sans-serif;font-size:0.88rem;cursor:pointer;transition:all 0.15s;';
+        activeEgBtn = btn;
+        btn.style.cssText = 'background:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:6px 14px;color:var(--bg);font-family:\'DM Sans\',sans-serif;font-size:0.88rem;cursor:pointer;transition:all 0.15s;font-weight:600;';
+        document.getElementById('eg-def-title').textContent = f.name;
+        document.getElementById('eg-def-body').innerHTML = f.def;
+        defPanel.style.display = '';
+        defPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      grid.appendChild(btn);
+    });
+    secDiv.appendChild(grid);
+    widget.appendChild(secDiv);
+  });
+}
+function closeEgDef() {
+  document.getElementById('eg-def').style.display = 'none';
+  if (activeEgBtn) {
+    activeEgBtn.style.cssText = 'background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);font-family:\'DM Sans\',sans-serif;font-size:0.88rem;cursor:pointer;transition:all 0.15s;';
+    activeEgBtn = null;
+  }
+}
+document.addEventListener('DOMContentLoaded', buildEgWidget);
+
+// ── RESIDUAL INFO ──
+const residualInfo = {
+  network_tv: {
+    title: 'Network TV Rerun',
+    how: 'Residuals are paid per rerun on a <strong>step-down schedule</strong> — the first rerun pays the most, each subsequent rerun pays less. The rate is a percentage of the <strong>applicable minimum</strong> for your contract type, not your negotiated rate (unless your rate was scale).',
+    need: [
+      'Your <strong>contract type</strong> (daily, 3-day, weekly)',
+      'The <strong>applicable SAG-AFTRA minimum</strong> for that contract type',
+      'Which <strong>rerun number</strong> this is (1st, 2nd, 3rd, etc.)',
+      'Whether it aired on the <strong>same network</strong> or was licensed to another'
+    ],
+    note: 'The step-down schedule is defined in the TV Agreement. After the 13th rerun, residuals are paid at a flat reduced rate. Performers who negotiated above scale still receive residuals based on the applicable minimum unless their contract specifies otherwise.'
+  },
+  basic_cable: {
+    title: 'Basic Cable',
+    how: 'Residuals are based on a <strong>percentage of the distributor\'s gross revenue</strong>, not your session fee. Your individual share is proportional to your session fee relative to the total cast compensation for that episode.',
+    need: [
+      'The <strong>distributor\'s gross revenue</strong> for the exhibition period (you won\'t have this)',
+      'Your <strong>session fee</strong>',
+      'The <strong>total cast compensation</strong> for the episode (you won\'t have this)',
+      'The <strong>applicable residual percentage</strong> from the contract'
+    ],
+    note: 'Basic cable residuals are paid quarterly or semi-annually. Because they depend on distributor gross — a number performers never see — you cannot independently calculate what you\'re owed. This is why checking the SAG-AFTRA Residuals Tracker is important.'
+  },
+  pay_tv: {
+    title: 'Pay TV / Premium Cable (HBO, Showtime, etc.)',
+    how: 'Similar to basic cable — residuals are a <strong>percentage of distributor\'s gross</strong>. Different percentage rates apply for pay TV vs. basic cable.',
+    need: [
+      'The <strong>distributor\'s gross revenue</strong> (you won\'t have this)',
+      'Your <strong>session fee</strong> and <strong>total cast compensation</strong>',
+      'The <strong>exhibition window</strong> (pay TV has specific exhibition periods)'
+    ],
+    note: 'Pay TV residual percentages differ from basic cable. The contract defines separate rates for each platform tier.'
+  },
+  streaming_tv: {
+    title: 'Streaming / SVOD (TV Series)',
+    how: 'Under the <strong>2023 contract</strong>, streaming residuals for TV series are based on the <strong>number of hours of content</strong> on the platform and the platform\'s <strong>domestic and international subscriber count</strong>. This replaced the older fixed-residual model.',
+    need: [
+      'The <strong>platform\'s subscriber count</strong> (domestic and international — you won\'t have exact numbers)',
+      'The <strong>total hours of content</strong> on the platform',
+      'Your <strong>session fee</strong>',
+      'Whether it\'s the <strong>initial exhibition window</strong> or a subsequent one',
+      'Whether the show is <strong>high-budget</strong> ($35M+ per season) or standard'
+    ],
+    note: 'The 2023 MOA introduced a "streaming participation bonus" and revised the residual formula for SVOD. The exact calculation requires platform data that is not publicly available to performers.'
+  },
+  syndication: {
+    title: 'Free TV (Syndication)',
+    how: 'When a show is sold to local stations or into syndication, residuals are based on a <strong>percentage of the distributor\'s gross receipts</strong> from the syndication deal.',
+    need: [
+      'The <strong>distributor\'s gross receipts</strong> from syndication sales (you won\'t have this)',
+      'Your <strong>session fee</strong> and <strong>total cast compensation</strong>',
+      'The <strong>number of runs</strong> licensed in the syndication deal'
+    ],
+    note: 'Syndication residuals can continue for years as shows are resold. They are paid based on distributor reports, which performers cannot independently verify.'
+  },
+  theatrical_domestic: {
+    title: 'Theatrical — Domestic (Movies)',
+    how: 'For theatrical films, residuals are based on a <strong>percentage of the distributor\'s worldwide gross receipts</strong> after the initial theatrical exhibition. The formula differs significantly from TV.',
+    need: [
+      'The <strong>distributor\'s gross receipts</strong> (you won\'t have this)',
+      'Your <strong>session fee</strong> and <strong>total cast compensation</strong> for the film',
+      'The <strong>budget tier</strong> of the film (full scale, low budget, etc.)',
+      'Which <strong>exhibition market</strong> (domestic theatrical, then subsequent windows)'
+    ],
+    note: 'Theatrical residuals use a different formula than TV. The CBA defines the applicable percentages. Residuals from theatrical release are separate from subsequent TV, streaming, or home video distribution — each window generates its own residuals.'
+  },
+  theatrical_foreign: {
+    title: 'Theatrical — Foreign (Movies)',
+    how: 'Foreign theatrical residuals are calculated separately from domestic, based on the <strong>foreign distributor\'s gross receipts</strong>.',
+    need: [
+      'The <strong>foreign distributor\'s gross</strong> (you won\'t have this)',
+      'Your <strong>session fee</strong> and <strong>total cast compensation</strong>',
+      'Which <strong>foreign markets</strong> the film was distributed to'
+    ],
+    note: 'Foreign residuals can take significantly longer to process due to international distribution timelines and reporting delays.'
+  },
+  streaming_film: {
+    title: 'Streaming / SVOD (Film)',
+    how: 'Films released on streaming platforms follow a <strong>different residual structure than TV series</strong>. Under the 2023 contract, the formula accounts for the film\'s budget, the platform\'s subscriber base, and whether it had a prior theatrical release.',
+    need: [
+      'The <strong>platform\'s subscriber count</strong> (you won\'t have this)',
+      'The <strong>film\'s production budget</strong>',
+      'Your <strong>session fee</strong>',
+      'Whether the film had a <strong>theatrical release first</strong> or was streaming-original',
+      'Whether it\'s <strong>high-budget</strong> ($30M+) or standard'
+    ],
+    note: 'Streaming-original films and films that had a prior theatrical release are treated differently under the contract. The 2023 MOA updated these formulas.'
+  },
+  home_video: {
+    title: 'Home Video / DVD',
+    how: 'Home video residuals are based on a <strong>fixed percentage of the distributor\'s gross</strong> from DVD/Blu-ray sales and rentals.',
+    need: [
+      'The <strong>distributor\'s gross revenue</strong> from home video sales (you won\'t have this)',
+      'Your <strong>session fee</strong> and <strong>total cast compensation</strong>',
+      'Whether it\'s a <strong>TV program or theatrical film</strong> (different rates apply)'
+    ],
+    note: 'Home video residuals have declined significantly as physical media sales have dropped, but they are still owed when applicable.'
+  }
+};
+function showResidualInfo() {
+  const type = document.getElementById('res-type').value;
+  const info = residualInfo[type];
+  if (!info) return;
+  const el = document.getElementById('res-info');
+  el.innerHTML = '<div style="font-weight:600;color:var(--accent);font-size:1.05rem;margin-bottom:0.5rem;">' + info.title + '</div>' +
+    '<div style="margin-bottom:0.75rem;">' + info.how + '</div>' +
+    '<div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">To calculate this, you would need:</div>' +
+    '<ul style="margin:0;padding-left:1.2rem;">' + info.need.map(n => '<li style="margin-bottom:0.3rem;">' + n + '</li>').join('') + '</ul>' +
+    '<div style="margin-top:0.75rem;padding:0.75rem;background:var(--bg2);border-radius:6px;font-size:0.88rem;color:var(--text-muted);">' + info.note + '</div>';
+}
+document.addEventListener('DOMContentLoaded', showResidualInfo);
 
 // ── SEARCH ──
 const searchData = [
@@ -2252,7 +2721,8 @@ const searchData = [
   { section: 'important-links', title: 'Important Links', body: 'File claim SAG-AFTRA Exhibit G StudioBinder Pat Peres email phone call contact grievance', sectionName: 'Important Links' },
   { section: 'exhibit-g', title: 'Exhibit G Explained', body: 'Exhibit G timecard field by field picture title company shooting location production number cast minor character status work rehearsal fitting travel hold test makeup wardrobe report dismiss ND meal 1st meal 2nd meal travel time stunt adjustment forced call MPV meal period violation signature', sectionName: 'Exhibit G Explained' },
   { section: 'residuals', title: 'Residuals & Reuse', body: 'Residuals reuse rerun streaming SVOD network TV basic cable pay TV theatrical domestic foreign home video DVD syndication free TV session fee distributor gross residual estimator calculator', sectionName: 'Residuals' },
-  { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
+  { section: 'contract-ideas', title: 'Contract Ideas', body: 'Contract ideas vote negotiate negotiation improvement suggestion safety pay rates residuals overtime hours benefits working conditions next contract', sectionName: 'Contract Ideas' },
+  { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim SAG stories story James Northrup', sectionName: 'SAG Stories' },
   { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Is It Stunt Driving?' },
 ];
 
