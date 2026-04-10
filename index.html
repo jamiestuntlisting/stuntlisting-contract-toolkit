@@ -721,6 +721,20 @@ Thank you,
     <div id="overtime" class="section">
       <div class="section-header"><h1>Overtime Rules</h1><p>Overtime is one of the most frequently underpaid items. How it's calculated depends on your contract type.</p></div>
 
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-title">When Am I in Overtime?</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Select your contract type to see when overtime kicks in.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;" id="ot-btns">
+          <button class="fc-option active" onclick="showOtRule('daily',this)">Daily</button>
+          <button class="fc-option" onclick="showOtRule('3day',this)">3-Day (TV)</button>
+          <button class="fc-option" onclick="showOtRule('weeklyB',this)">Weekly Sched B</button>
+          <button class="fc-option" onclick="showOtRule('weeklyC',this)">Weekly Sched C</button>
+          <button class="fc-option" onclick="showOtRule('coord',this)">Stunt Coord (Flat)</button>
+          <button class="fc-option" onclick="showOtRule('6th7th',this)">6th / 7th Day</button>
+        </div>
+        <div id="ot-rule-display" style="padding:1rem;background:var(--bg3);border-radius:8px;line-height:1.7;"></div>
+      </div>
+
       <div class="accordion">
         <button class="accordion-header" onclick="toggleAccordion(this)"><span>Daily Contract — How Overtime Works</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
@@ -788,7 +802,7 @@ Thank you,
             <li><strong>Schedule K — Stunt Coordinators (Flat Rate): No overtime.</strong> Flat deal coordinators receive premium pay or penalty pay instead. Includes on-camera work.</li>
             <li><strong>Schedule K — Non-Flat Rate:</strong> Paid per Schedule K Part 1 or Part 2.</li>
           </ul>
-          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+          <a class="source-link" href="docs/jeffords-rules-2024.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
         </div>
       </div>
 
@@ -803,7 +817,7 @@ Thank you,
             <li>6th or 7th day premium is only owed if it is actually your 6th or 7th day of work</li>
           </ul>
           <p style="margin-top:0.6rem;"><strong>Workweek changes:</strong> May be shifted once by adding/eliminating a day off to sync with Saturday or Sunday. May also shift multiple times provided you receive no fewer than two consecutive days off. If shift results in more than four consecutive days off, consecutive employment pay begins on the fifth day.</p>
-          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+          <a class="source-link" href="docs/jeffords-rules-2024.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
         </div>
       </div>
 
@@ -815,7 +829,7 @@ Thank you,
             <li><strong>Over 2x scale rate:</strong> 1.5x for all hours worked after 8 hours (with max rate cap)</li>
           </ul>
           <p style="margin-top:0.5rem;">OT computed in <strong>1/10th hourly units (6-minute increments)</strong>. Travel OT capped at 1.5x max. Ordinary makeup removal (up to 15 min) does not count toward OT triggers.</p>
-          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+          <a class="source-link" href="docs/jeffords-rules-2024.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
         </div>
       </div>
 
@@ -1054,7 +1068,7 @@ Thank you,
         <p style="margin-top:0.5rem;">For a fitting on the <strong>same day as your work call</strong>: fitting time is counted as part of your work time.</p>
         <p style="margin-top:0.5rem;"><strong>Important exception:</strong> Day performers with a pay rate of <strong>$1,500 or more per day</strong> are not entitled to pay for a fitting on a day prior to work.</p>
         <p style="margin-top:0.5rem;">If a wardrobe fitting or HMU test is paid but you are not ultimately called to work that day, you receive <strong>one day's pay</strong>.</p>
-        <a href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.75rem;display:inline-block;">→ Source: 2024 Jeffords Rules — SAG-AFTRA Fittings &amp; Rehearsals</a>
+        <a href="docs/jeffords-rules-2024.pdf" target="_blank" style="color:var(--blue);font-size:0.82rem;margin-top:0.75rem;display:inline-block;">→ Source: 2024 Jeffords Rules — SAG-AFTRA Fittings &amp; Rehearsals</a>
       </div>
       <div class="card">
         <div class="card-title">Fitting Pay Calculator</div>
@@ -1551,10 +1565,10 @@ Thank you,
       </div>
       <div class="card">
         <div class="card-title">Contact SAG-AFTRA</div>
-        <p style="margin-top:0.25rem;"><strong>Los Angeles:</strong> <a href="tel:+13239541600" style="color:var(--blue);">(323) 954-1600</a></p>
-        <p><strong>New York:</strong> <a href="tel:+12129441030" style="color:var(--blue);">(212) 944-1030</a></p>
+        <p style="margin-top:0.25rem;"><strong>Stunts &amp; Safety Department:</strong> <a href="tel:+13235496855" style="color:var(--blue);">(323) 549-6855</a> &nbsp;|&nbsp; <a href="mailto:sssd@sagaftra.org" style="color:var(--blue);">sssd@sagaftra.org</a></p>
+        <p style="margin-top:0.5rem;"><strong>Entertainment Contracts (claims, pay disputes):</strong> <a href="tel:+13235496828" style="color:var(--blue);">(323) 549-6828</a> &nbsp;|&nbsp; <a href="mailto:EntContractsInfo@sagaftra.org" style="color:var(--blue);">EntContractsInfo@sagaftra.org</a></p>
         <p style="margin-top:0.5rem;"><strong>Pat Perez</strong> — stunt performer pay disputes &amp; contract questions<br><a href="mailto:Pat.Perez@sagaftra.org" style="color:var(--blue);">Pat.Perez@sagaftra.org</a></p>
-        <p style="margin-top:0.5rem;"><strong>Stunts &amp; Safety Department</strong> — safety concerns &amp; unsafe working conditions<br><a href="mailto:sssd@sagaftra.org" style="color:var(--blue);">sssd@sagaftra.org</a></p>
+        <p style="margin-top:0.75rem;font-size:0.82rem;color:var(--text-dim);"><strong>General:</strong> LA <a href="tel:+13239541600" style="color:var(--text-dim);">(323) 954-1600</a> &nbsp;|&nbsp; NY <a href="tel:+12129441030" style="color:var(--text-dim);">(212) 944-1030</a> &nbsp;|&nbsp; On-set emergencies <a href="tel:+18447233773" style="color:var(--text-dim);">(844) 723-3773</a></p>
       </div>
       <div class="card">
         <div class="card-title">Exhibit G Explained (StudioBinder)</div>
@@ -1575,6 +1589,14 @@ Thank you,
         <div class="card-title">2023–2026 Memorandum of Agreement (MOA)</div>
         <p>The modifications to the CBA and Television Agreement negotiated in the 2023 contract cycle.</p>
         <a href="https://www.sagaftra.org/sites/default/files/2023_Theatrical_Television_MOA.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;margin-top:0.6rem;display:inline-block;">2023 Theatrical &amp; Television MOA (PDF)</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Jeffords Rules</div>
+        <p>Quick-reference guides summarizing SAG-AFTRA contract rules for production — rates, overtime, meal penalties, fittings, and more.</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.6rem;">
+          <a href="docs/jeffords-rules-2024.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;">2024 Jeffords Rules (PDF)</a>
+          <a href="docs/jeffords-rules-east-2021.pdf" target="_blank" style="color:var(--blue);font-size:0.92rem;">2021 Jeffords Rules — East (DGA) (PDF)</a>
+        </div>
       </div>
     </div>
 
@@ -1605,7 +1627,7 @@ Thank you,
         <button class="accordion-header" onclick="toggleAccordion(this)"><span>What is the rate for a wardrobe fitting?</span><svg class="accordion-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
         <div class="accordion-body">
           <p>For Schedule A principal performers, a fitting on a day prior to your work day earns a minimum of <strong>1 hour's pay</strong>, with additional time in <strong>15-minute increments</strong>. A fitting on the same day as your work call is counted as work time. Exception: performers earning $1,500/day or more are not entitled to fitting pay on a day prior to work. If you were paid for a fitting but not called to work, you are owed a full day's pay.</p>
-          <a class="source-link" href="https://alejandromora.com/files/jeffords-rules.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
+          <a class="source-link" href="docs/jeffords-rules-2024.pdf" target="_blank">→ Source: 2024 Jeffords Rules</a>
         </div>
       </div>
 
@@ -1952,6 +1974,104 @@ document.addEventListener('DOMContentLoaded', function() {
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('lp-end').value = today;
 });
+
+// ── OVERTIME WIDGET ──
+const otRules = {
+  daily: {
+    title: 'Daily Contract',
+    bars: [
+      { label: 'Straight Time', hours: '1–8', width: 62, color: 'var(--green)' },
+      { label: '1.5x', hours: '9–10', width: 15, color: 'var(--accent)' },
+      { label: '2.0x', hours: '11+', width: 23, color: 'var(--red)' },
+    ],
+    notes: [
+      'Hourly rate = daily rate ÷ 8 (include stunt adjustment in base)',
+      'OT calculated in 1/10th hourly units (6-minute increments)',
+      'Money break (Theatrical & TV): 2x the minimum day rate — if you earn above this, OT after hour 10 is capped at 1.5x based on the money break amount',
+    ]
+  },
+  '3day': {
+    title: '3-Day Contract (TV Only)',
+    bars: [
+      { label: 'Straight Time', hours: '1–10 / day', width: 77, color: 'var(--green)' },
+      { label: '2.0x', hours: '11+ / day', width: 23, color: 'var(--red)' },
+    ],
+    notes: [
+      '<strong>Daily OT:</strong> 2x beyond 10 hours per day',
+      '<strong>Cumulative OT:</strong> 1.5x beyond 24 cumulative straight-time hours over the 3-day period',
+      'Days beyond guarantee: OT starts after 8 hrs — 1.5x for hours 9–10, 2x after that',
+      'Money break: $3,000',
+    ]
+  },
+  weeklyB: {
+    title: 'Weekly — Schedule B (≤$6,200/week)',
+    bars: [
+      { label: 'Straight Time', hours: '1–10 / day', width: 77, color: 'var(--green)' },
+      { label: '2.0x', hours: '11+ / day', width: 23, color: 'var(--red)' },
+    ],
+    notes: [
+      '<strong>Daily OT:</strong> 2x beyond 10 hours per day',
+      '<strong>Weekly OT:</strong> 1.5x beyond 44 hrs/week (studio) or 48 hrs/week (overnight location)',
+      'Money break (TV): $4,400 &nbsp;|&nbsp; Money break (Theatrical): $5,500',
+    ]
+  },
+  weeklyC: {
+    title: 'Weekly — Schedule C (>$6,200/week)',
+    bars: [
+      { label: 'Straight Time', hours: '1–10 / day', width: 77, color: 'var(--green)' },
+      { label: '2.0x (capped)', hours: '11+ / day', width: 23, color: 'var(--red)' },
+    ],
+    notes: [
+      '<strong>Daily OT:</strong> 2x beyond 10 hours per day, on a maximum basis of $5,500',
+      'No weekly OT provision — only daily applies',
+    ]
+  },
+  coord: {
+    title: 'Stunt Coordinator — Flat Deal (Schedule K)',
+    bars: [
+      { label: 'Flat Rate — No Overtime', hours: 'All hours', width: 100, color: 'var(--text-dim)' },
+    ],
+    notes: [
+      'Flat deal stunt coordinators receive <strong>no overtime</strong>',
+      'They receive premium pay or penalty pay instead',
+      'This includes any on-camera work performed under the flat deal',
+      'Non-flat-rate coordinators (Schedule K Part 1/2) follow standard OT rules',
+    ]
+  },
+  '6th7th': {
+    title: '6th & 7th Day Premium',
+    bars: [
+      { label: 'Days 1–5: Regular', hours: 'Mon–Fri', width: 50, color: 'var(--green)' },
+      { label: '6th Day: 1.5x', hours: 'Sat', width: 25, color: 'var(--accent)' },
+      { label: '7th Day: 2.0x', hours: 'Sun', width: 25, color: 'var(--red)' },
+    ],
+    notes: [
+      '6th day = 1.5x &nbsp;|&nbsp; 7th day = 2x &nbsp;|&nbsp; Holidays = 2x',
+      'Premium only owed if it is actually your 6th or 7th consecutive day of work',
+      'Workweek may be shifted once by adding/eliminating a day off to sync with Sat or Sun',
+    ]
+  },
+};
+function showOtRule(key, btn) {
+  if (btn) {
+    document.querySelectorAll('#ot-btns .fc-option').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const rule = otRules[key];
+  if (!rule) return;
+  const display = document.getElementById('ot-rule-display');
+  const barHtml = rule.bars.map(b =>
+    `<div style="flex:0 0 ${b.width}%;background:${b.color};padding:8px 10px;border-radius:6px;text-align:center;min-width:0;">
+      <div style="font-weight:700;font-size:0.88rem;color:var(--bg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${b.label}</div>
+      <div style="font-size:0.78rem;color:rgba(0,0,0,0.6);margin-top:2px;">${b.hours}</div>
+    </div>`
+  ).join('');
+  display.innerHTML =
+    `<div style="font-weight:600;color:var(--accent);font-size:1.05rem;margin-bottom:0.75rem;">${rule.title}</div>` +
+    `<div style="display:flex;gap:4px;margin-bottom:1rem;">${barHtml}</div>` +
+    `<ul style="margin:0;padding-left:1.2rem;">${rule.notes.map(n => `<li style="margin-bottom:0.3rem;font-size:0.92rem;">${n}</li>`).join('')}</ul>`;
+}
+document.addEventListener('DOMContentLoaded', function() { showOtRule('daily', null); });
 
 // ── FITTING CALCULATOR ──
 function calcFitting() {
