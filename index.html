@@ -352,7 +352,6 @@
     <button class="nav-btn" onclick="showSection('late-payments')"><span class="nav-dot"></span>Late Payments</button>
     <div class="nav-section-label">Tools</div>
     <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Is It Stunt Driving?</button>
-    <button class="nav-btn" onclick="showSection('forced-call')"><span class="nav-dot"></span>Forced Call Check</button>
     <button class="nav-btn" onclick="showSection('studio-zones')"><span class="nav-dot"></span>Studio Zones</button>
     <div class="nav-section-label">Community</div>
     <button class="nav-btn" onclick="showSection('real-talk')"><span class="nav-dot"></span>Real Talk</button>
@@ -1091,71 +1090,6 @@ Thank you,
       </div>
     </div>
 
-    <!-- FORCED CALL CHECK -->
-    <div id="forced-call" class="section">
-      <div class="section-header"><h1>Is It a Forced Call?</h1><p>Answer the questions below to determine what rest period rules apply and whether a forced call penalty is owed.</p></div>
-
-      <div id="fc-result" style="text-align:center;padding:1.5rem 0 1rem;">
-        <div id="fc-type" style="font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:0.04em;line-height:1;color:var(--accent);margin-bottom:0.5rem;">Inside Studio Zone</div>
-        <div id="fc-answer" style="font-size:1.05rem;color:var(--text-muted);line-height:1.6;max-width:600px;margin:0 auto;"></div>
-      </div>
-
-      <div id="fc-questions">
-        <div class="sd-question" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
-          <span style="font-weight:600;color:var(--text);">What kind of show?</span>
-          <div style="display:flex;gap:0.5rem;">
-            <button class="fc-option active" onclick="setFcShow('TV',this)" id="fc-tv">TV</button>
-            <button class="fc-option" onclick="setFcShow('Theatrical',this)" id="fc-theatrical">Theatrical</button>
-          </div>
-        </div>
-        <div class="sd-question" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
-          <span style="font-weight:600;color:var(--text);">Is this an overnight location?</span>
-          <div style="display:flex;gap:0.5rem;">
-            <button class="fc-option" onclick="setFcOvernight('Yes',this)" id="fc-overnight-yes">Yes</button>
-            <button class="fc-option active" onclick="setFcOvernight('No',this)" id="fc-overnight-no">No</button>
-          </div>
-        </div>
-        <div class="sd-question" id="fc-zone-row" style="cursor:default;flex-direction:column;align-items:stretch;gap:0.75rem;">
-          <span style="font-weight:600;color:var(--text);">Is the location outside the Studio Zone?</span>
-          <div style="display:flex;gap:0.5rem;">
-            <button class="fc-option" onclick="setFcZone('Yes',this)" id="fc-zone-yes">Yes</button>
-            <button class="fc-option active" onclick="setFcZone('No',this)" id="fc-zone-no">No</button>
-          </div>
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <div class="card">
-        <div class="card-title">Overnight Location</div>
-        <p>Any location where the Producer requires the performer to remain away from his or her residence and be lodged overnight. It is understood that the Producer's offer of courtesy housing to a performer does not convert a location into an overnight location. Los Angeles and its environs are not considered to be "overnight locations."</p>
-      </div>
-      <div class="card">
-        <div class="card-title">LA Studio Zone</div>
-        <p>The Los Angeles studio zone shall include all territory within a radius of thirty (30) miles from the intersection of Beverly Boulevard and La Cienega Boulevard, Los Angeles, California, and shall also include Agua Dulce, Castaic (including Lake Castaic), Leo Carillo State Beach, Moorpark, Ontario International Airport, Piru and Pomona (including the Los Angeles County Fairgrounds) and such other territory (such as the present Columbia Ranch and Disney Ranch) as is generally recognized as being within the Los Angeles studio zone.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">LA Secondary Studio Zone</div>
-        <p>The Los Angeles secondary studio zone shall be the area extending ten (10) miles from the perimeter of the studio zone and including John Wayne Airport. It does not include any of the areas that fall within the definition of the Los Angeles studio zone. The Union shall not unreasonably deny waivers for locations, such as Lake Hughes, Elizabeth Lake and the Nikken Building in Irvine, that are outside the Los Angeles studio zone and the Los Angeles secondary studio zone, to be treated as within the Los Angeles secondary studio zone.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">NY Studio Zone</div>
-        <p>The New York studio zone shall encompass any location within a thirty (30) mile radius of Columbus Circle other than Sandy Hook, New Jersey.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Eight Mile NY Zone</div>
-        <p>The eight (8) mile New York Zone means all territory within a radius of eight (8) miles from Columbus Circle.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">San Francisco Studio Zone</div>
-        <p>The San Francisco studio zone shall include all territory within a radius of thirty (30) miles from the intersection of Market and Powell Streets.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Other Studio Zones</div>
-        <p>The Union and the Producers shall agree to recognize other studio zones on a similar basis to the established Los Angeles, New York and San Francisco studio zones set forth above. In default of such agreement, the territory to be considered a studio zone shall be determined by arbitration under Section 50 whenever the situation arises.</p>
-      </div>
-    </div>
-
     <!-- STUDIO ZONES -->
     <div id="studio-zones" class="section">
       <div class="section-header"><h1>Studio Zones</h1><p>Check if your basecamp or shooting location falls within a studio zone. Studio zone determines travel pay, per diem, and overnight location rules.</p></div>
@@ -1489,7 +1423,7 @@ Thank you,
           <div><strong style="color:var(--accent);">Stunt Adj.</strong> — The stunt adjustment the actor will receive for stunts performed that day. No stunts, no adjustment.</div>
           <div><strong style="color:var(--accent);">Minors Tutoring Time</strong> — The time the minor child spent with the teacher or tutor. Adults don't get this.</div>
           <div><strong style="color:var(--accent);">No. Outfits Provided</strong> — The number of outfits the actor brought to set with them that day at the request of production.</div>
-          <div><strong style="color:var(--accent);">Forced Call</strong> — Was today a forced call? Generally 12 hours are needed between leaving set and being required to return the next day. If the proper amount of time isn't given, it's a forced call. <a href="#" onclick="showSection('forced-call');return false;" style="color:var(--blue);">Check with our Forced Call calculator →</a></div>
+          <div><strong style="color:var(--accent);">Forced Call</strong> — Was today a forced call? Generally 12 hours are needed between leaving set and being required to return the next day. If the proper amount of time isn't given, it's a forced call. <a href="#" onclick="showSection('rest-periods');return false;" style="color:var(--blue);">Check with our Rest Period calculator →</a></div>
           <div><strong style="color:var(--accent);">MPVs</strong> — Meal Period Violations. The number of violations which occurred that day.</div>
           <div><strong style="color:var(--accent);">Performer's Signature</strong> — The actor <strong>must</strong> sign this form for it to be valid.</div>
         </div>
@@ -2023,51 +1957,6 @@ function resetStuntDriving() {
   updateStuntDriving();
 }
 
-// ── FORCED CALL CHECK ──
-let fcShow = 'TV', fcOvernight = 'No', fcZone = 'No';
-function setFcShow(val, btn) {
-  fcShow = val;
-  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  updateForcedCall();
-}
-function setFcOvernight(val, btn) {
-  fcOvernight = val;
-  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  updateForcedCall();
-}
-function setFcZone(val, btn) {
-  fcZone = val;
-  btn.parentElement.querySelectorAll('.fc-option').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  updateForcedCall();
-}
-function updateForcedCall() {
-  const zoneRow = document.getElementById('fc-zone-row');
-  const typeEl = document.getElementById('fc-type');
-  const answerEl = document.getElementById('fc-answer');
-  let type;
-  if (fcOvernight === 'Yes') {
-    zoneRow.style.display = 'none';
-    type = fcShow === 'TV' ? 'Overnight TV' : 'Overnight Theatrical';
-  } else {
-    zoneRow.style.display = '';
-    type = fcZone === 'Yes' ? 'Outside Studio Zone' : 'Inside Studio Zone';
-  }
-  typeEl.textContent = type;
-  if (type === 'Inside Studio Zone') {
-    answerEl.textContent = 'The performer is entitled to a 12 hour rest period from the time he is dismissed until the first call for the next day. This applies for makeup, wardrobe, hairdress, or any other purpose.';
-  } else if (type === 'Outside Studio Zone') {
-    answerEl.textContent = 'The rest period may be reduced from 12 to 10 hours where exterior photography is required on such location on the day before and the day after such reduced rest period. This is applicable once every fourth consecutive day.';
-  } else if (type === 'Overnight Theatrical') {
-    answerEl.textContent = 'The rest period may be reduced from 12 hours to 11 hours on any two non-consecutive days in a workweek.';
-  } else {
-    answerEl.textContent = 'There is no reduction of the 12 hour rest period.';
-  }
-}
-document.addEventListener('DOMContentLoaded', updateForcedCall);
-
 // ── SEARCH ──
 const searchData = [
   { section: 'paystub-errors', title: 'Stunt Adjustment Not Paid', body: 'Stunt adjustment not paid missing stunt adjustment paystub error', sectionName: 'Paystub Errors' },
@@ -2100,7 +1989,6 @@ const searchData = [
   { section: 'vocab', title: 'Glossary — All Terms', body: 'Glossary vocab network basic cable local hire regional hire per diem Exhibit G stunt adjustment studio zone forced call flat deal loan out corporation reuse location allowance schedule H K ND meal', sectionName: 'Glossary' },
   { section: 'email-templates', title: 'Email Templates', body: 'Email templates dispute missing pay stunt adjustment overtime meal penalty late payment', sectionName: 'Email Templates' },
   { section: 'studio-zones', title: 'Studio Zones Map', body: 'Studio zone map NY New York LA Los Angeles San Francisco 30 mile radius Columbus Circle Beverly La Cienega basecamp address', sectionName: 'Studio Zones' },
-  { section: 'forced-call', title: 'Is It a Forced Call?', body: 'Forced call rest period 12 hours 11 hours 10 hours overnight location studio zone TV theatrical penalty turnaround', sectionName: 'Forced Call Check' },
   { section: 'sag-on-record', title: 'SAG On Record — Dressing Rooms', body: 'Dressing room stunt coordinator studio location cast room TV Agreement', sectionName: 'SAG On Record' },
   { section: 'sag-on-record', title: 'SAG On Record — Cross-Boarding', body: 'Cross-boarding cross board episode pay stunt coordinator two episodes same day', sectionName: 'SAG On Record' },
   { section: 'sag-on-record', title: 'SAG On Record — Per Diem', body: 'Per diem cash taxes non-salary overnight location CBA TV Agreement payroll check taxable', sectionName: 'SAG On Record' },
