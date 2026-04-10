@@ -350,6 +350,7 @@
     <button class="nav-btn" onclick="showSection('travel')"><span class="nav-dot"></span>Travel &amp; Location Expenses</button>
     <button class="nav-btn" onclick="showSection('fittings')"><span class="nav-dot"></span>Fittings</button>
     <button class="nav-btn" onclick="showSection('late-payments')"><span class="nav-dot"></span>Late Payments</button>
+    <button class="nav-btn" onclick="showSection('residuals')"><span class="nav-dot"></span>Residuals</button>
     <div class="nav-section-label">Tools</div>
     <button class="nav-btn" onclick="showSection('stunt-driving')"><span class="nav-dot"></span>Is It Stunt Driving?</button>
     <button class="nav-btn" onclick="showSection('studio-zones')"><span class="nav-dot"></span>Studio Zones</button>
@@ -1092,7 +1093,7 @@ Thank you,
 
     <!-- STUDIO ZONES -->
     <div id="studio-zones" class="section">
-      <div class="section-header"><h1>Studio Zones</h1><p>Check if your basecamp or shooting location falls within a studio zone. Studio zone determines travel pay, per diem, and overnight location rules.</p></div>
+      <div class="section-header"><h1>Studio Zones</h1><p>Check if your basecamp or shooting location falls within a studio zone. Studio zone determines travel pay, per diem, and overnight location rules. The 30-mile radius zones below apply to principal performers and stunt performers.</p></div>
 
       <div class="card" style="margin-bottom:1.5rem;">
         <div class="card-title">Zone Map — New York (30-mile radius from Columbus Circle)</div>
@@ -1122,10 +1123,6 @@ Thank you,
       <div class="card">
         <div class="card-title">New York Studio Zone</div>
         <p>Any location within a <strong>30-mile radius of Columbus Circle</strong>, other than Sandy Hook, New Jersey.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Eight Mile New York Zone</div>
-        <p>All territory within a <strong>radius of 8 miles from Columbus Circle</strong>.</p>
       </div>
       <div class="card">
         <div class="card-title">Los Angeles Studio Zone</div>
@@ -1193,6 +1190,92 @@ Thank you,
       </div>
     </div>
 
+    <!-- RESIDUALS -->
+    <div id="residuals" class="section">
+      <div class="section-header"><h1>Residuals</h1><p>Residuals are payments owed to performers when their work is reused, rerun, or distributed on additional platforms. They are one of the most valuable — and most misunderstood — parts of SAG-AFTRA compensation.</p></div>
+
+      <div class="card">
+        <div class="card-title">What Are Residuals?</div>
+        <p>Residuals are additional compensation paid to performers when a production is exhibited beyond its initial use. Your original session fee covers the first airing or exhibition window. Every subsequent use — reruns, streaming, home video, foreign distribution — triggers a residual payment.</p>
+        <p style="margin-top:0.5rem;">Residuals are calculated as a percentage of your original session fee, and the percentage varies by media type, market, and number of airings.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Types of Residuals</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div><strong style="color:var(--accent);">Network TV Reruns</strong> — Each rerun triggers a residual payment. The first rerun pays the highest percentage, declining with subsequent airings. Typically starts around 100% of the applicable minimum for the first rerun, stepping down from there.</div>
+          <div><strong style="color:var(--accent);">Basic Cable</strong> — Residuals are based on a percentage of the distributor's gross revenue, paid quarterly or semi-annually. The performer's share is calculated based on their original session fee relative to the total cast compensation.</div>
+          <div><strong style="color:var(--accent);">Pay TV / Premium Cable</strong> — Similar to basic cable but with different revenue percentages. Covers channels like HBO, Showtime, etc.</div>
+          <div><strong style="color:var(--accent);">Streaming / New Media (SVOD)</strong> — Under the 2023 contract, streaming residuals are based on the number of hours of content exhibited on the platform and the platform's subscriber count. This replaced the old "fixed residual" model for most SVOD content.</div>
+          <div><strong style="color:var(--accent);">Theatrical (Domestic)</strong> — Feature films exhibited in domestic theaters. Residuals are based on a percentage of distributor's gross receipts.</div>
+          <div><strong style="color:var(--accent);">Theatrical (Foreign)</strong> — Feature films exhibited in foreign markets. Separate residual calculations apply based on foreign distributor's gross.</div>
+          <div><strong style="color:var(--accent);">Home Video / DVD</strong> — A fixed percentage of the distributor's gross for home video/DVD sales and rentals.</div>
+          <div><strong style="color:var(--accent);">Free TV (Syndication)</strong> — When a show is sold to local stations or syndication, residuals are based on distributor's gross.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Reuse vs. Residuals</div>
+        <p><strong>Reuse</strong> is when footage from one production is used in another context — for example, a clip from Episode 5 appearing in a recap at the top of Episode 10. Reuse triggers a separate payment.</p>
+        <p style="margin-top:0.5rem;"><strong>Residuals</strong> are payments for the same production being exhibited again — reruns, streaming releases, foreign distribution, etc.</p>
+        <p style="margin-top:0.5rem;">Both are owed. They are not the same thing. A production can owe you both reuse fees <em>and</em> residuals.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">When Are Residuals Owed?</div>
+        <ul>
+          <li>A TV episode reruns on the same network or is sold to another</li>
+          <li>A show moves from broadcast to a streaming platform</li>
+          <li>A film is released on home video, VOD, or streaming after theatrical</li>
+          <li>A production is exhibited in foreign markets</li>
+          <li>Footage is reused in a recap, clip show, or other production</li>
+        </ul>
+        <p style="margin-top:0.5rem;">Production has <strong>60 business days</strong> from the exhibition date to issue reuse/residual payment. After that, late penalties apply.</p>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem;">
+        <div class="card-title">Residual Estimator</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Estimate your residual payment based on media type and session fee. These are approximations based on SAG-AFTRA minimums — actual residuals depend on distributor gross, subscriber counts, and contract specifics.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="res-calc">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Media Type</label>
+            <select id="res-type" onchange="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+              <option value="network">Network TV Rerun</option>
+              <option value="basic_cable">Basic Cable</option>
+              <option value="streaming">Streaming (SVOD)</option>
+              <option value="pay_tv">Pay TV / Premium Cable</option>
+              <option value="theatrical_domestic">Theatrical (Domestic)</option>
+              <option value="home_video">Home Video / DVD</option>
+              <option value="free_tv">Free TV (Syndication)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Session Fee ($)</label>
+            <input type="number" id="res-fee" value="1246" oninput="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Rerun / Use Number</label>
+            <input type="number" id="res-run" value="1" min="1" max="13" oninput="calcResidual()" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:1rem;">
+          </div>
+        </div>
+        <div id="res-result" style="margin-top:1rem;padding:1rem;background:var(--bg3);border-radius:8px;text-align:center;">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.25rem;">Estimated Residual</div>
+          <div id="res-total" style="font-family:'DM Mono',monospace;font-size:2rem;color:var(--green);font-weight:600;">$0.00</div>
+          <div id="res-detail" style="font-size:0.88rem;color:var(--text-muted);margin-top:0.25rem;line-height:1.6;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">How to Check Your Residuals</div>
+        <p>SAG-AFTRA provides a <strong>Residuals Tracker</strong> through your member portal. Log in at sagaftra.org to view your residual payment history.</p>
+        <p style="margin-top:0.5rem;">If you believe you're missing residuals, file an inquiry:</p>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.6rem;">
+          <a href="https://www.sagaftra.org/residual-inquiry-form" target="_blank" style="color:var(--blue);font-size:0.92rem;">File a Residuals Claim Inquiry</a>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.83rem;color:var(--text-dim);">Note: Commercial residuals are processed and mailed directly by payroll companies, not SAG-AFTRA. For commercial residual questions, contact the Commercials Department at (323) 549-6858.</p>
+      </div>
+    </div>
+
     <!-- REAL TALK -->
     <div id="real-talk" class="section">
       <div class="section-header"><h1>Real Talk</h1><p>First-person stories from stunt performers who learned the rules the hard way. Names included with permission.</p></div>
@@ -1210,6 +1293,32 @@ Thank you,
         <p style="margin-top:0.5rem;">What made it worse was how it was handled. The business rep treated the $100 like it was a big win, but to me, it felt like the production got off easy for breaking a rule. In the end, the whole situation left a bad taste in my mouth. It felt like more trouble than it was worth — and like I hadn't really been backed up the way I should have been.</p>
         <p style="margin-top:0.75rem;color:var(--accent);font-weight:600;">— James Northrup</p>
       </div>
+
+      <div id="rt-user-stories"></div>
+
+      <div class="card" style="margin-top:1.5rem;border:1px dashed var(--border);">
+        <div class="card-title">Share Your Story</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Your story will be posted directly to this page and saved in your browser.</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Title</label>
+            <input type="text" id="rt-title" placeholder="e.g. The Missing Stunt Adjustment" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Tags (comma-separated)</label>
+            <input type="text" id="rt-tags" placeholder="e.g. stunt adjustment, overtime, TV" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Story</label>
+            <textarea id="rt-story" rows="6" placeholder="Tell us what happened..." style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Name</label>
+            <input type="text" id="rt-name" placeholder="First and last name" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <button onclick="submitRealTalk()" style="align-self:flex-start;background:var(--accent);border:none;border-radius:8px;padding:10px 24px;color:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">Post Your Story</button>
+        </div>
+      </div>
     </div>
 
     <!-- SAG ON RECORD -->
@@ -1217,7 +1326,7 @@ Thank you,
       <div class="section-header"><h1>SAG On Record</h1><p>Direct statements from SAG-AFTRA representatives, cited from official emails and correspondence.</p></div>
       <div class="alert alert-info">
         <span class="alert-icon"></span>
-        <div>This section documents specific guidance received from SAG-AFTRA reps. Each entry includes the source and context. Have something to add? Contact us.</div>
+        <div>This section documents specific guidance received from SAG-AFTRA reps. Each entry includes the source and context. Note: The language of some conversations may have been edited for clarity and readability.</div>
       </div>
 
       <div class="card" style="margin-top:1rem;">
@@ -1292,6 +1401,36 @@ Thank you,
         <div class="alert alert-warn" style="margin-top:0.75rem;margin-bottom:0;">
           <span class="alert-icon"></span>
           <div><strong>Key takeaway:</strong> Recaps = reuse pay may be owed. Promos/previews = generally no reuse pay (producer's promotional right).</div>
+        </div>
+      </div>
+
+      <div id="sor-user-stories"></div>
+
+      <div class="card" style="margin-top:1.5rem;border:1px dashed var(--border);">
+        <div class="card-title">Submit a SAG-AFTRA Response</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.75rem;">Have a direct response from a SAG-AFTRA rep? Post it here. Your submission will appear on this page and be saved in your browser.</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Topic / Title</label>
+            <input type="text" id="sor-title" placeholder="e.g. Overtime on Distant Location" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Tags (comma-separated)</label>
+            <input type="text" id="sor-tags" placeholder="e.g. overtime, distant location, weekly" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Question You Asked</label>
+            <textarea id="sor-question" rows="3" placeholder="What did you ask SAG-AFTRA?" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">SAG-AFTRA's Response</label>
+            <textarea id="sor-response" rows="5" placeholder="What did the rep say?" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;resize:vertical;"></textarea>
+          </div>
+          <div>
+            <label style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:0.4rem;">Your Name</label>
+            <input type="text" id="sor-name" placeholder="First and last name" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;">
+          </div>
+          <button onclick="submitSagOnRecord()" style="align-self:flex-start;background:var(--accent);border:none;border-radius:8px;padding:10px 24px;color:var(--bg);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">Post Response</button>
         </div>
       </div>
     </div>
@@ -1957,6 +2096,123 @@ function resetStuntDriving() {
   updateStuntDriving();
 }
 
+// ── REAL TALK SUBMISSIONS ──
+function renderRealTalkStories() {
+  const stories = JSON.parse(localStorage.getItem('rt-stories') || '[]');
+  const container = document.getElementById('rt-user-stories');
+  if (!container) return;
+  container.innerHTML = stories.map(s => `
+    <div class="card" style="position:relative;margin-top:1rem;">
+      <div class="card-title">${escapeHtml(s.title)}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
+        ${s.tags.map(t => `<span class="rt-tag">${escapeHtml(t)}</span>`).join('')}
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:0.5rem;">${escapeHtml(s.date)}</p>
+      ${s.story.split('\n').filter(p => p.trim()).map(p => `<p style="margin-top:0.5rem;">${escapeHtml(p)}</p>`).join('')}
+      <p style="margin-top:0.75rem;color:var(--accent);font-weight:600;">— ${escapeHtml(s.name)}</p>
+    </div>
+  `).join('');
+}
+function submitRealTalk() {
+  const title = document.getElementById('rt-title').value.trim();
+  const tags = document.getElementById('rt-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+  const story = document.getElementById('rt-story').value.trim();
+  const name = document.getElementById('rt-name').value.trim();
+  if (!title || !story || !name) { alert('Please fill in the title, story, and your name.'); return; }
+  const stories = JSON.parse(localStorage.getItem('rt-stories') || '[]');
+  stories.unshift({ title, tags, story, name, date: new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) });
+  localStorage.setItem('rt-stories', JSON.stringify(stories));
+  document.getElementById('rt-title').value = '';
+  document.getElementById('rt-tags').value = '';
+  document.getElementById('rt-story').value = '';
+  document.getElementById('rt-name').value = '';
+  renderRealTalkStories();
+}
+document.addEventListener('DOMContentLoaded', renderRealTalkStories);
+
+// ── SAG ON RECORD SUBMISSIONS ──
+function renderSagOnRecordStories() {
+  const stories = JSON.parse(localStorage.getItem('sor-stories') || '[]');
+  const container = document.getElementById('sor-user-stories');
+  if (!container) return;
+  container.innerHTML = stories.map(s => `
+    <div class="card" style="margin-top:1rem;">
+      <div class="card-title">${escapeHtml(s.title)}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">
+        ${s.tags.map(t => `<span class="rt-tag">${escapeHtml(t)}</span>`).join('')}
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:0.5rem;">${escapeHtml(s.date)}</p>
+      <p><strong>Q:</strong> ${escapeHtml(s.question)}</p>
+      <div class="highlight" style="margin-top:0.75rem;">
+        ${s.response.split('\n').filter(p => p.trim()).map((p, i) => `<p${i > 0 ? ' style="margin-top:0.5rem;"' : ''}>${i === 0 ? '<strong>SAG-AFTRA:</strong> ' : ''}${escapeHtml(p)}</p>`).join('')}
+      </div>
+      <p style="margin-top:0.75rem;font-size:0.83rem;color:var(--text-dim);">Submitted by ${escapeHtml(s.name)}</p>
+    </div>
+  `).join('');
+}
+function submitSagOnRecord() {
+  const title = document.getElementById('sor-title').value.trim();
+  const tags = document.getElementById('sor-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+  const question = document.getElementById('sor-question').value.trim();
+  const response = document.getElementById('sor-response').value.trim();
+  const name = document.getElementById('sor-name').value.trim();
+  if (!title || !question || !response || !name) { alert('Please fill in all fields.'); return; }
+  const stories = JSON.parse(localStorage.getItem('sor-stories') || '[]');
+  stories.unshift({ title, tags, question, response, name, date: new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) });
+  localStorage.setItem('sor-stories', JSON.stringify(stories));
+  document.getElementById('sor-title').value = '';
+  document.getElementById('sor-tags').value = '';
+  document.getElementById('sor-question').value = '';
+  document.getElementById('sor-response').value = '';
+  document.getElementById('sor-name').value = '';
+  renderSagOnRecordStories();
+}
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+document.addEventListener('DOMContentLoaded', renderSagOnRecordStories);
+
+// ── RESIDUAL ESTIMATOR ──
+function calcResidual() {
+  const type = document.getElementById('res-type').value;
+  const fee = parseFloat(document.getElementById('res-fee').value) || 0;
+  const run = parseInt(document.getElementById('res-run').value) || 1;
+  let pct = 0;
+  let detail = '';
+  if (type === 'network') {
+    // Network TV reruns — step-down schedule based on applicable minimum
+    const schedule = [1.0, 0.75, 0.50, 0.50, 0.40, 0.40, 0.35, 0.35, 0.30, 0.30, 0.25, 0.25, 0.25];
+    const idx = Math.min(run - 1, schedule.length - 1);
+    pct = schedule[idx];
+    detail = 'Network TV rerun #' + run + ' at ' + (pct * 100).toFixed(0) + '% of session fee';
+  } else if (type === 'basic_cable') {
+    pct = 0.40;
+    detail = 'Basic cable — approx. 40% of session fee per quarter (varies by distributor gross)';
+  } else if (type === 'streaming') {
+    // SVOD fixed residual approximation per 2023 contract
+    pct = 0.75;
+    detail = 'Streaming (SVOD) — approx. 75% of session fee per exhibition window (varies by subscriber count and hours)';
+  } else if (type === 'pay_tv') {
+    pct = 0.50;
+    detail = 'Pay TV / Premium Cable — approx. 50% of session fee per exhibition period';
+  } else if (type === 'theatrical_domestic') {
+    pct = 0.60;
+    detail = 'Theatrical (Domestic) — approx. 60% of session fee (based on distributor gross receipts)';
+  } else if (type === 'home_video') {
+    pct = 0.30;
+    detail = 'Home Video / DVD — approx. 30% of session fee (based on units sold)';
+  } else if (type === 'free_tv') {
+    pct = 0.45;
+    detail = 'Free TV (Syndication) — approx. 45% of session fee per run (based on distributor gross)';
+  }
+  const total = fee * pct;
+  document.getElementById('res-total').textContent = '$' + total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('res-detail').innerHTML = detail + '<br><span style="font-size:0.82rem;color:var(--text-dim);">These are estimates. Actual residuals depend on distributor gross, contract terms, and exhibition details.</span>';
+}
+document.addEventListener('DOMContentLoaded', calcResidual);
+
 // ── SEARCH ──
 const searchData = [
   { section: 'paystub-errors', title: 'Stunt Adjustment Not Paid', body: 'Stunt adjustment not paid missing stunt adjustment paystub error', sectionName: 'Paystub Errors' },
@@ -1995,6 +2251,7 @@ const searchData = [
   { section: 'sag-on-record', title: 'SAG On Record — Promos vs Recaps', body: 'Promo preview recap reuse fee residuals trailer episode promote reuse payment', sectionName: 'SAG On Record' },
   { section: 'important-links', title: 'Important Links', body: 'File claim SAG-AFTRA Exhibit G StudioBinder Pat Peres email phone call contact grievance', sectionName: 'Important Links' },
   { section: 'exhibit-g', title: 'Exhibit G Explained', body: 'Exhibit G timecard field by field picture title company shooting location production number cast minor character status work rehearsal fitting travel hold test makeup wardrobe report dismiss ND meal 1st meal 2nd meal travel time stunt adjustment forced call MPV meal period violation signature', sectionName: 'Exhibit G Explained' },
+  { section: 'residuals', title: 'Residuals & Reuse', body: 'Residuals reuse rerun streaming SVOD network TV basic cable pay TV theatrical domestic foreign home video DVD syndication free TV session fee distributor gross residual estimator calculator', sectionName: 'Residuals' },
   { section: 'real-talk', title: 'The $100 Reuse Fee', body: 'Reuse fee SAG business rep late-night TV recap image still shot claim real talk story James Northrup', sectionName: 'Real Talk' },
   { section: 'stunt-driving', title: 'Is This Stunt Driving?', body: 'Stunt driving checklist tires traction skid slide vision impaired speed off-road aircraft proximity high speed doubled safety hazardous', sectionName: 'Is It Stunt Driving?' },
 ];
